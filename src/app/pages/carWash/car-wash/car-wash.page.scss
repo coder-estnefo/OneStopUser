@@ -19,12 +19,12 @@
 
       #label {
         position: absolute;
-        top: 50%;
+        top: 60%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -60%);
         color: black;
         border-radius: 10px;
-        background-color: rgb(30, 199, 30);
+        // background-color: rgb(30, 199, 30);
         font-size: 20px;
 
       }
@@ -43,12 +43,13 @@
         border-top-left-radius: 20px;
         background-image: url("../../../../assets/icon/img1.jpg");
         background-attachment: fixed;
+        
       }
 
       .select{
         background-color: blue;
         width: 100%;
-        min-height: 450px;
+        min-height: 460px;
       }
 
     }
@@ -114,7 +115,7 @@
     position: absolute;
     top: 0%;
     left: 0%;
-    transition: all 1s ease-in-out;
+    transition: all 15s ease-in-out;
     z-index: 4;
   }
 
