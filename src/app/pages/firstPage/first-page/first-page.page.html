@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>OneStop Services</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="ion-page" id="main-content">
+
+    <ion-card color="primary" [routerLink]="['/menu/apartment']" class="ion-card">
+      <ion-card-content>
+        <ion-card-title >APARTMENTS </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="warning" [routerLink]="['/menu/car-wash']" class="ion-card">
+
+      <ion-card-content>
+        <ion-card-title >CAR WASH </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="danger" class="ion-card" [routerLink]="['/menu/event']">
+      <ion-card-content>
+        <ion-card-title  style="color: white;">EVENTS</ion-card-title>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
+
+</ion-content>
