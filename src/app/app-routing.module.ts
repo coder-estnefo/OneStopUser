@@ -5,13 +5,13 @@ import { MenuPage } from './pages/menu/menu/menu.page';
 
 const routes: Routes = [
 	{
-		path: 'home',
-		loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-	},
-	{
 		path: '',
 		redirectTo: 'login',
 		pathMatch: 'full'
+	},
+	{
+		path: 'home',
+		loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
 	},
 	{
 		path: 'login',
@@ -104,7 +104,7 @@ const routes: Routes = [
 	},
 
 ];
-({
+@NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
