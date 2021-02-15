@@ -26,141 +26,136 @@
       Recomended
     </ion-label>
     <ion-label slot="end">
-      <a>View all</a>
+      <!-- <a>View all</a> -->
+      <a>Filter</a>
     </ion-label>
 
   </ion-item-divider>
 
   <ion-content class="ion-padding">
-    <ion-list>
 
-      <ion-card color="primary" class="ion-card">
-        <ion-content color="primary">
-          <ion-slides pager="true" [options]="slideOpts">
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/01.jpeg">
-              </ion-card-content>
-            </ion-slide>
+      <ion-list>
 
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/02.jpeg">
-              </ion-card-content>
-            </ion-slide>
+        <ion-card (click)="presentModal()" color="primary" class="ion-card">
+          <ion-content color="primary">
+            <ion-slides pager="true" [options]="slideOpts">
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/01.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-            <ion-slide color="primary">
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/03.jpeg">
-              </ion-card-content>
-            </ion-slide>
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/02.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-            <ion-slide color="primary">
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/04.jpeg">
-              </ion-card-content>
-            </ion-slide>
+              <ion-slide color="primary">
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/03.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-          </ion-slides>
-        </ion-content>
+              <ion-slide color="primary">
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/04.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-      </ion-card>
-      <!-- ********************************************************** -->
-      <ion-card color="primary" class="ion-card">
-        <ion-content color="primary">
-          <ion-slides pager="true" [options]="slideOpts">
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/1.1.jpeg">
-              </ion-card-content>
-            </ion-slide>
+              <ion-slide color="primary">
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/05.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/1.2.jpeg">
-              </ion-card-content>
-            </ion-slide>
+            </ion-slides>
+          </ion-content>
 
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/1.3.jpeg">
-              </ion-card-content>
-            </ion-slide>
+        </ion-card>
+        <!-- ********************************************************** -->
+        <ion-card (click)="presentModal()" color="primary" class="ion-card">
+          <ion-content color="primary">
+            <ion-slides pager="true" [options]="slideOpts">
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/1.1.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/1.4.jpeg">
-              </ion-card-content>
-            </ion-slide>
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/1.2.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/apartment/1.5.jpeg">
-              </ion-card-content>
-            </ion-slide>
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/1.3.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-          </ion-slides>
-        </ion-content>
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/1.4.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-      </ion-card>
-      <!-- ********************************************************** -->
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/1.5.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-      <ion-card color="primary" class="ion-card">
-        <ion-content color="primary">
-          <ion-slides pager="true" [options]="slideOpts">
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/01.jpeg">
-              </ion-card-content>
-            </ion-slide>
+            </ion-slides>
+          </ion-content>
 
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/01.jpeg">
-              </ion-card-content>
-            </ion-slide>
+        </ion-card>
+        <!-- ********************************************************** -->
 
-            <ion-slide color="primary">
-              <ion-card-content>
-                <img src="../../../../assets/icon/01.jpeg">
-              </ion-card-content>
-            </ion-slide>
+        <ion-card (click)="presentModal()" color="primary" class="ion-card">
+          <ion-content color="primary">
+            <ion-slides pager="true" [options]="slideOpts">
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/2.1.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-          </ion-slides>
-        </ion-content>
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/2.2.jpeg">
+                </ion-card-content>
+              </ion-slide>
 
-      </ion-card>
-      <!-- ********************************************************** -->
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/2.3.jpeg">
+                </ion-card-content>
+              </ion-slide>
+
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/2.4.jpeg">
+                </ion-card-content>
+              </ion-slide>
+
+              <ion-slide>
+                <ion-card-content>
+                  <img src="../../../../assets/icon/apartment/2.5.jpeg">
+                </ion-card-content>
+              </ion-slide>
+
+            </ion-slides>
+          </ion-content>
+
+        </ion-card>
+        <!-- ********************************************************** -->
 
 
-      <ion-card color="primary" class="ion-card">
-        <ion-content color="primary">
-          <ion-slides pager="true" [options]="slideOpts">
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/01.jpeg">
-              </ion-card-content>
-            </ion-slide>
+      </ion-list>
 
-            <ion-slide>
-              <ion-card-content>
-                <img src="../../../../assets/icon/01.jpeg">
-              </ion-card-content>
-            </ion-slide>
 
-            <ion-slide color="primary">
-              <ion-card-content>
-                <img src="../../../../assets/icon/01.jpeg">
-              </ion-card-content>
-            </ion-slide>
-
-          </ion-slides>
-        </ion-content>
-
-      </ion-card>
-      <!-- ********************************************************** -->
-
-    </ion-list>
   </ion-content>
 
 </div>
