@@ -11,5 +11,9 @@ export class ApartmentPage implements OnInit {
 
   ngOnInit() {
   }
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
 }

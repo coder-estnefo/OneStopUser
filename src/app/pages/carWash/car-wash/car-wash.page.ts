@@ -8,6 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class CarWashPage implements OnInit {
 
   constructor() { 
+
+    window.addEventListener('load',()=>{
+      const preload=document.querySelector('.spinner');
+      //const preload=document.querySelector('.sk-circle');
+      const preloadDiv=document.querySelector('.spainContainer');
+      preload.classList.add('preload_finished');
+      preloadDiv.classList.add('div_finished');
+      
+    })
      
   }
 
