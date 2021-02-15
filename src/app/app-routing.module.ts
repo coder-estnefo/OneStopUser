@@ -10,7 +10,7 @@ const routes: Routes = [
 	},
 	{
 		path: '',
-		redirectTo: 'menu/first-page',
+		redirectTo: 'login',
 		pathMatch: 'full'
 	},
 	{
@@ -104,7 +104,6 @@ const routes: Routes = [
 	},
 
 ];
-
 ({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
