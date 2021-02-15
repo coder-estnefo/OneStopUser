@@ -1,0 +1,15 @@
+.ion-card{
+    height: 35vh;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    
+
+    ion-card-content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+}
