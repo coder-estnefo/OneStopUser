@@ -101,7 +101,11 @@ const routes: Routes = [
 	{
 		path: 'model',
 		loadChildren: () => import('./pages/Model/model/model.module').then( m => m.ModelPageModule)
-	},
+	},  {
+    path: 'prices',
+    loadChildren: () => import('./pages/user/carwash-management/prices/prices.module').then( m => m.PricesPageModule)
+  },
+
 
 ];
 @NgModule({
