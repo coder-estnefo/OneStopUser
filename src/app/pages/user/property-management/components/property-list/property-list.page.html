@@ -4,7 +4,8 @@
           <ion-card class="card" *ngFor="let i of properties" (click)="gotoPropertyDetails()">
             <ion-card-content class="ion-text-left">
               <div class="img-wrapper">
-                <ion-img src="../../../../../../assets/images/property.jpeg"></ion-img>
+                <!-- <ion-img src="../../../../../../assets/images/property.jpeg"></ion-img> -->
+                <ion-img [src]=i.img></ion-img>
               </div>
               
               <ion-card-title class="title">John's Properties</ion-card-title>

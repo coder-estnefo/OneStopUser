@@ -42,5 +42,6 @@ export class LoginPage implements OnInit {
 	loginWithEmailAndPassword(){
 		this.validateAllFormFields(this.login_form);
 		this.spinner = true;
+		this.router.navigate(['tabs-pages/tabs/dashboard'])
 	}
 }
