@@ -1,3 +1,5 @@
+<!-- 
+
 <ion-header class="ion-no-border">
 
 	<ion-item lines="none">
@@ -36,3 +38,45 @@
 
     <app-property-list [properties]="properties"></app-property-list>
 </ion-content>
+ -->
+
+
+  <div class="header">
+    <ion-toolbar>
+
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+
+
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+
+  <div class="seachbar">
+    <ion-searchbar animated placeholder="Search Location"></ion-searchbar>
+
+  </div>
+
+  <ion-item-divider class="ion-padding">
+    <ion-label>
+      Popular
+    </ion-label>
+    <ion-label class="ion-padding-right" slot="end">
+      <a>View all</a>
+      
+    </ion-label>
+
+  </ion-item-divider>
+
+  <ion-content class="ion-padding">
+
+     
+
+      <app-property-list [properties]="properties"></app-property-list>
+
+  </ion-content>
+
+<!-- </div> -->
