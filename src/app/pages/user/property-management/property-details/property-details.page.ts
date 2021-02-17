@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,10 +8,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PropertyDetailsPage implements OnInit {
 
+
+  propertiesDetails = [{ img: "../../../../../assets/icon/apartment1/settingroom/setting.jpg" },
+                       { img: "../../../../../assets/icon/apartment1/bathroom/bathRoom.jpg" },
+                       { img: "../../../../../assets/icon/apartment1/bedroom/bedRoom.jpg" },];
+
+  // @Input() propertiesDetails;
+
   options = {
-    centeredSlides: true,
     slidesPerView: 1,
-    spaceBetween: 10,
+  coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: true,}
+
+
   };
 
   category = {

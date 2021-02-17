@@ -30,5 +30,23 @@
     </ion-label> 
   </ion-item-divider>
 
+
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+            <ion-card class="card" *ngFor="let i of properties" (click)="gotoPropertyDetails()">
+              <ion-card-content class="ion-text-left">
+                <div class="img-wrapper">
+                  <ion-img src="../../../../../../assets/images/property.jpeg"></ion-img>
+                </div>
+                
+                <ion-card-title class="title">John's Properties</ion-card-title>
+                <ion-card-subtitle>44 Grand Central, Midrand, Johannesburg, South africa</ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </div>
 
