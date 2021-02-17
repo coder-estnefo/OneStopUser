@@ -30,5 +30,8 @@ export class CarwashDetailsPage implements OnInit {
   gotoBookSlot(){
     this.router.navigateByUrl('book-slot');
   }
+  gotoPrices(){
+    this.router.navigate(['prices'])
+  }
 
 }

@@ -36,3 +36,16 @@ ion-item {
     padding: 10px;
     font-size: 14px;
   }
+
+  .seachbar {
+    margin: auto;
+    width: 85%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: white;
+    border-radius: 10px;
+    color: rgb(87, 87, 87);
+    // border: 1px solid black;
+    box-shadow: 0.1px 1px 3px 0px;
+    z-index: 2;
+  }

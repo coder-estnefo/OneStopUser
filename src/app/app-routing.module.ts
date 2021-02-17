@@ -105,6 +105,14 @@ const routes: Routes = [
     path: 'prices',
     loadChildren: () => import('./pages/user/carwash-management/prices/prices.module').then( m => m.PricesPageModule)
   },
+  {
+    path: 'property-map',
+    loadChildren: () => import('./pages/user/property-management/property-map/property-map.module').then( m => m.PropertyMapPageModule)
+  },
+  {
+    path: 'searched-property',
+    loadChildren: () => import('./pages/user/property-management/searched-property/searched-property.module').then( m => m.SearchedPropertyPageModule)
+  },
 
 
 ];

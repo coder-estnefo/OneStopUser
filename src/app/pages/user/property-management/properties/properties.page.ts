@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,9 +17,14 @@ export class PropertiesPage implements OnInit {
 
  
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+
+  gotoMap(){
+    this.router.navigate(['property-map'])
+    
   }
 
 }
