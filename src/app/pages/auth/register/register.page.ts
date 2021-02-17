@@ -23,17 +23,17 @@ export class RegisterPage implements OnInit {
 
 	createForm() {
 		this.register_form = this.formBuilder.group({
-      name: new FormControl(null,  
+      name: new FormControl(null,
         Validators.compose([
-          Validators.required, 
+          Validators.required,
           Validators.minLength(3),
           Validators.maxLength(30),
           Validators.pattern('[A-Za-z]+')])),
 
-      email: new FormControl(null, 
+      email: new FormControl(null,
         Validators.compose([
-          Validators.required, 
-          Validators.email, 
+          Validators.required,
+          Validators.email,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$')])),
 
 			password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
