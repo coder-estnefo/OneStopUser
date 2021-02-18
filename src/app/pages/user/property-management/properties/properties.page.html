@@ -1,45 +1,44 @@
 <ion-header class="ion-no-border">
 
-  <ion-item lines="none">
+    <ion-item lines="none">
 
-    <ion-buttons slot="start">
+        <ion-buttons slot="start">
 
-      <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+            <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
 
-    </ion-buttons>
+        </ion-buttons>
 
-  </ion-item>
+    </ion-item>
 
 </ion-header>
 
 
 
 <ion-content [fullscreen]="true">
-  <div class="ion-padding wrapper">
-    <div (click)="gotoMap()" class="seachbar ">
-      <ion-input readonly="true" clearInput type="text" placeholder="Search Location">
-        <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" 
-        class="ion-padding-left" slot="start" name="search-outline">
-        </ion-icon>
-      </ion-input>
+    <div class="ion-padding wrapper">
+        <div (click)="gotoMap()" class="seachbar ">
+            <ion-input readonly="true" clearInput type="text" placeholder="Search Location">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                </ion-icon>
+            </ion-input>
+        </div>
+
+        <ion-grid class="">
+            <ion-row class="ion-align-items-baseline">
+                <ion-col size="6">
+                    <h4 class="title">
+                        Popular
+                    </h4>
+                </ion-col>
+                <ion-col size="6">
+                    <h4 class="more ion-text-end">
+                        View more
+                    </h4>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
     </div>
 
-    <ion-grid class="">
-      <ion-row class="ion-align-items-baseline">
-        <ion-col size="6">
-          <h4 class="title">
-            Popular
-          </h4>
-        </ion-col>
-        <ion-col size="6">
-          <h4 class="more ion-text-end">
-            View more
-          </h4>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-  </div>
-
-  <app-property-list [properties]="properties"></app-property-list>
+    <app-property-list [properties]="properties"></app-property-list>
 </ion-content>
