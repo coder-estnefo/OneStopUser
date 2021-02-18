@@ -1,0 +1,87 @@
+<ion-header class="ion-no-border">
+
+    <ion-item lines="none">
+
+        <ion-buttons slot="start">
+
+            <ion-back-button defaultHref="/tabs-pages"></ion-back-button>
+
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
+                <ion-badge color="primary" *ngIf="!spinner" (click)="logOut()">Logout</ion-badge>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-item>
+
+</ion-header>
+
+<ion-content>
+
+    <ion-list class="ion-margin">
+
+        <ion-item-group>
+
+            <ion-item-divider>
+
+
+            </ion-item-divider>
+
+            <ion-item button>
+                
+
+            </ion-item>
+
+            <ion-item lines="">
+
+               
+
+            </ion-item>
+
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="" routerLink="/personal-details">
+
+
+                <ion-note slot="end" color="">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
+
+            </ion-item>
+
+            <ion-item lines="">
+
+               
+                <ion-note slot="end" color="">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
+
+            </ion-item>
+
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="">
+
+
+                <ion-note slot="end" color="">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
+
+            </ion-item>
+
+            <ion-item lines="">
+
+
+                <ion-note slot="end" color="">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
+
+            </ion-item>
+
+        </ion-item-group>
+    </ion-list>
+
+</ion-content>

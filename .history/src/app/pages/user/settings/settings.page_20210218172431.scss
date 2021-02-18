@@ -1,0 +1,18 @@
+ion-item {
+    --background: rgba(248, 248, 250, .96);
+  
+    h2 {
+      font-weight: bold;
+      font-size: 18px;
+      padding-top: 8px;
+    }
+  
+}
+  
+ion-content {
+    --background: #f8f8fa;
+
+    .avatar-col{
+        padding-top: 10px;
+    }
+}

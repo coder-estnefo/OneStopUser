@@ -1,0 +1,23 @@
+ion-item {
+    --background: #f8f8fa;
+  
+    
+    h2 {
+        font-weight: bolder;
+        font-size: 18px;
+        padding-top: 8px;
+    }
+    
+}
+    
+ion-content {
+    --background: #f8f8fa;
+
+    .avatar{
+        width: 10%;
+    }
+}
+
+ion-item-group{
+    --background: #f8f8fa;
+}
