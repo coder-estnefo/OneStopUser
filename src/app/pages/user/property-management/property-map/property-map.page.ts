@@ -189,8 +189,14 @@ export class PropertyMapPage implements OnInit {
     divElement.innerHTML = innerHtmlContent;
     divElement.appendChild(viewBtn);
 
-    // marker icon
+    viewBtn.addEventListener('click', (e) => {
+      // alert( arry3[i]);
+      this.router.navigate(['/property-details/'+id])
+    });
 
+    // "/property-details/{{property.id}}
+
+    // marker icon
     var geojson = {
       'type': 'FeatureCollection',
       'features': [
@@ -251,5 +257,7 @@ export class PropertyMapPage implements OnInit {
     });
 
   }
+
+
 
 }
