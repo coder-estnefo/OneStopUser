@@ -71,7 +71,7 @@ const routes: Routes = [
 		loadChildren: () => import('./pages/user/property-management/components/property-list/property-list.module').then( m => m.PropertyListPageModule)
 	},
 	{
-		path: 'property-details/:id',
+		path: 'property-details/:',
 		loadChildren: () => import('./pages/user/property-management/property-details/property-details.module').then( m => m.PropertyDetailsPageModule)
 	},
 	{

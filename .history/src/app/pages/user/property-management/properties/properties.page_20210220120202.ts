@@ -20,9 +20,8 @@ export class PropertiesPage implements OnInit {
     private _propertyService: PropertiesService
     ) { }
 
-    ngOnInit() {
-      this.getProperties();
-    }
+  ngOnInit() {
+  }
 
   gotoMap(){
      this.router.navigate(['property-map'])
