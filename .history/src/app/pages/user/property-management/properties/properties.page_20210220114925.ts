@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { IProperty } from 'src/app/structures/interfaces';
 
 
 @Component({
@@ -12,7 +11,9 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class PropertiesPage implements OnInit {
 
-  properties: IProperty[] = [];
+  properties : IProperty[] = [];
+
+ 
 
   constructor(
     private router:Router, 
@@ -32,8 +33,7 @@ export class PropertiesPage implements OnInit {
     let mode="property"
 
     this.userservice.setMapDetails(arry1,arry2,arry3,mode);
-  }
-  
+
   getProperties(){
     let uid, property;
     this._propertyService.getProperties().subscribe(
@@ -57,7 +57,10 @@ export class PropertiesPage implements OnInit {
           });
         });
       }
-    );
+    )
+=======
+    // console.log(coodinate.arry1[1])
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
   }
 
 }

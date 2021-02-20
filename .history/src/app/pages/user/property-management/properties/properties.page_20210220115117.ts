@@ -12,7 +12,7 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class PropertiesPage implements OnInit {
 
-  properties: IProperty[] = [];
+  properties : IProperty[] = [];
 
   constructor(
     private router:Router, 

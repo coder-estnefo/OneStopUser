@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
-import { IProperty } from 'src/app/structures/interfaces';
 
 @Component({
   selector: 'app-appointment',

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PropertiesService } from 'src/app/services/properties/properties.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { IProperty } from 'src/app/structures/interfaces';
 
 
 @Component({
@@ -12,12 +10,17 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class PropertiesPage implements OnInit {
 
-  properties: IProperty[] = [];
+  properties = [{ img: "../../../../../assets/icon/apartment1/outside/out.jfif" },
+  { img: "../../../../../assets/icon/apartment1/outside/2.jfif" },
+  { img: "../../../../../assets/icon/apartment1/outside/3.jpg" },
+  { img: "../../../../../assets/icon/apartment1/outside/4.jfif" },
+  { img: "../../../../../assets/icon/apartment1/outside/5.jfif" }];
+
+ 
 
   constructor(
     private router:Router, 
     private userservice:UserService,
-    private _propertyService: PropertiesService
     ) { }
 
   ngOnInit() {
@@ -32,8 +35,7 @@ export class PropertiesPage implements OnInit {
     let mode="property"
 
     this.userservice.setMapDetails(arry1,arry2,arry3,mode);
-  }
-  
+
   getProperties(){
     let uid, property;
     this._propertyService.getProperties().subscribe(
@@ -57,7 +59,10 @@ export class PropertiesPage implements OnInit {
           });
         });
       }
-    );
+    )
+=======
+    // console.log(coodinate.arry1[1])
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
   }
 
 }

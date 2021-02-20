@@ -12,7 +12,9 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class PropertiesPage implements OnInit {
 
-  properties: IProperty[] = [];
+  properties : IProperty[] = [];
+
+ 
 
   constructor(
     private router:Router, 
@@ -33,7 +35,6 @@ export class PropertiesPage implements OnInit {
 
     this.userservice.setMapDetails(arry1,arry2,arry3,mode);
   }
-  
   getProperties(){
     let uid, property;
     this._propertyService.getProperties().subscribe(

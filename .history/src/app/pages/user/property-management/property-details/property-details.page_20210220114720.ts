@@ -17,6 +17,7 @@ export class PropertyDetailsPage implements OnInit {
 
   options = {
     slidesPerView: 1,
+=======
   coverflowEffect: {
     rotate: 50,
     stretch: 0,
@@ -29,6 +30,7 @@ export class PropertyDetailsPage implements OnInit {
 
   category = {
     slidesPerView: 2.5,
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
   };
 
   constructor(
