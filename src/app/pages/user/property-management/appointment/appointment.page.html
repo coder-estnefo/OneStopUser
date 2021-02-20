@@ -47,14 +47,7 @@
 
 			<div class="ion-text-center ion-margin">
 				<ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
-				<ion-button 
-					(click)="setAppointment(property.id)"
-					class="ion-button" 
-					*ngIf="!spinner" 
-					[disabled]="!appointment_form.valid" 
-					shape="round" 
-					type="submit"
-					 expand="block" >
+				<ion-button class="ion-button" *ngIf="!spinner" [disabled]="!appointment_form.valid" shape="round" type="submit" expand="block" >
 					SET APPOINTMENT
 				</ion-button>
 			</div>

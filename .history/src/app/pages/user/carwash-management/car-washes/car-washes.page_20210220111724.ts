@@ -13,11 +13,13 @@ export class CarWashesPage implements OnInit {
 
   car_washes: ICarWash[] = [];
 
+<<<<<<< HEAD
   constructor(
-    private router:Router,
-    private userservice:UserService,
     private _carWashService: CarwashService
-    ) { }
+  ) { }
+=======
+  constructor(private router:Router, private userservice:UserService) { }
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
 
   ngOnInit() {
     this.getCarWashes();

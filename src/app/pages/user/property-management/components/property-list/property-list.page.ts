@@ -1,4 +1,3 @@
-import { IProperty } from 'src/app/structures/interfaces';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
@@ -10,7 +9,7 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
 })
 export class PropertyListPage implements OnInit {
 
-  @Input() properties: IProperty[];
+  @Input() properties;
   
   constructor(
     private router: Router,

@@ -127,6 +127,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user/property-management/searched-property/searched-property.module').then( m => m.SearchedPropertyPageModule)
   },
 
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
+
 ];
 @NgModule({
   imports: [

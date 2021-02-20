@@ -114,6 +114,8 @@ const routes: Routes = [
     path: 'searched-property',
     loadChildren: () => import('./pages/user/property-management/searched-property/searched-property.module').then( m => m.SearchedPropertyPageModule)
   },
+  
+	},
   {
     path: 'prices',
     loadChildren: () => import('./pages/user/carwash-management/prices/prices.module').then( m => m.PricesPageModule)
@@ -126,6 +128,8 @@ const routes: Routes = [
     path: 'searched-property',
     loadChildren: () => import('./pages/user/property-management/searched-property/searched-property.module').then( m => m.SearchedPropertyPageModule)
   },
+
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
 
 ];
 @NgModule({

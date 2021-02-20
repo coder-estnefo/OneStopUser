@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
 import { ICarWash } from 'src/app/structures/interfaces';
+
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -13,11 +14,13 @@ export class CarWashesPage implements OnInit {
 
   car_washes: ICarWash[] = [];
 
+<<<<<<< HEAD
   constructor(
-    private router:Router,
-    private userservice:UserService,
     private _carWashService: CarwashService
-    ) { }
+  ) { }
+=======
+  constructor(private router:Router, private userservice:UserService) { }
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
 
   ngOnInit() {
     this.getCarWashes();

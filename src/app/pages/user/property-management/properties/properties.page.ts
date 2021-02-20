@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PropertiesService } from 'src/app/services/properties/properties.service';
-import { IProperty } from 'src/app/structures/interfaces';
+import { UserService } from 'src/app/services/user/user.service';
 
 
 @Component({
@@ -11,21 +10,30 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class PropertiesPage implements OnInit {
 
-  properties: IProperty[] = [];
+  properties = [{ img: "../../../../../assets/icon/apartment1/outside/out.jfif" },
+  { img: "../../../../../assets/icon/apartment1/outside/2.jfif" },
+  { img: "../../../../../assets/icon/apartment1/outside/3.jpg" },
+  { img: "../../../../../assets/icon/apartment1/outside/4.jfif" },
+  { img: "../../../../../assets/icon/apartment1/outside/5.jfif" }];
 
-  constructor(
-    private router:Router,
-    private _propertyService: PropertiesService
-    ) { }
+ 
+
+  constructor(private router:Router, private userservice:UserService) { }
 
   ngOnInit() {
-    this.getProperties();
   }
 
   gotoMap(){
-    this.router.navigate(['property-map'])
-  }
+     this.router.navigate(['property-map'])
 
+    let arry1 = [28.218370, 28.212370, 28.215370];
+    let arry2 = [-25.731340, -25.735340, -25.737340];
+    let arry3 = ["Librito flets availeble", "D_head flets availeble", "vivis flets availeble"];
+    let mode="property"
+
+    this.userservice.setMapDetails(arry1,arry2,arry3,mode);
+
+<<<<<<< HEAD
   getProperties(){
     let uid, property;
     this._propertyService.getProperties().subscribe(
@@ -50,6 +58,9 @@ export class PropertiesPage implements OnInit {
         });
       }
     )
+=======
+    // console.log(coodinate.arry1[1])
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
   }
 
 }

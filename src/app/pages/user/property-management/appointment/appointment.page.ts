@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { PropertiesService } from 'src/app/services/properties/properties.service';
-import { IProperty } from 'src/app/structures/interfaces';
 
 @Component({
   selector: 'app-appointment',
@@ -12,24 +10,20 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class AppointmentPage implements OnInit {
 
-  property: IProperty;
+
   spinner: boolean = false;
   appointment_form: FormGroup;
   
   constructor(
 		private router: Router,
-    private toast: ToastController,
     private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private _propertyService: PropertiesService
+    private toast: ToastController
 	) { }
 
 
   ngOnInit() {
-    this.createForm();
-    const property_id: string = this.activatedRoute.snapshot.paramMap.get('id');
-    this.getPropertyById(property_id);
-  }
+		this.createForm();
+	}
 
 	createForm() {
 		this.appointment_form = this.formBuilder.group({
@@ -41,13 +35,13 @@ export class AppointmentPage implements OnInit {
 		});
 	}
 
-  setAppointment(property_id: string){
+  setAppointment(){
     this.spinner = true;
-    this._propertyService.setAppointment(property_id, this.appointment_form.value).then(
-      reponse => {
-        this.spinner = false;
-      }
-    )
+    setTimeout(() => {
+      this.spinner = false;
+      this.appointment_form.reset();
+			this.presentToast('You applied for an appointment')
+		}, 5000);
   }
 
   async presentToast(message: string) {
@@ -57,6 +51,7 @@ export class AppointmentPage implements OnInit {
       color: 'secondary'
     });
     toast.present();
+<<<<<<< HEAD
   }  
 
   getPropertyById(property_id: string){
@@ -84,4 +79,7 @@ export class AppointmentPage implements OnInit {
       }
     )
   }
+=======
+}
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
 }

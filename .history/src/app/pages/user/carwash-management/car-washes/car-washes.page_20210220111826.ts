@@ -15,9 +15,7 @@ export class CarWashesPage implements OnInit {
 
   constructor(
     private router:Router,
-    private userservice:UserService,
-    private _carWashService: CarwashService
-    ) { }
+    private userservice:UserService) { }
 
   ngOnInit() {
     this.getCarWashes();

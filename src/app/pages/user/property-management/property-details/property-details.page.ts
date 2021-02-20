@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap} from '@angular/router';
-import { PropertiesService } from 'src/app/services/properties/properties.service';
-import { IProperty } from 'src/app/structures/interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-property-details',
@@ -10,51 +8,41 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class PropertyDetailsPage implements OnInit {
 
-  property: IProperty;
+
+  propertiesDetails = [{ img: "../../../../../assets/icon/apartment1/settingroom/setting.jpg" },
+                       { img: "../../../../../assets/icon/apartment1/bathroom/bathRoom.jpg" },
+                       { img: "../../../../../assets/icon/apartment1/bedroom/bedRoom.jpg" },];
+
+  // @Input() propertiesDetails;
 
   options = {
     slidesPerView: 1,
+<<<<<<< HEAD
+=======
+  coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: true,}
+
+
+  };
+
+  category = {
+    slidesPerView: 2.5,
+>>>>>>> 091f797bf1c7cd301df46ea5787bfcc643ba74ca
   };
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private _propertyService: PropertiesService
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    const property_id: string = this.activatedRoute.snapshot.paramMap.get('id');
-    this.getPropertyById(property_id);
   }
 
   gotoSetAppointment(){
     this.router.navigateByUrl('appointment');
   }
-
-  getPropertyById(property_id: string){
-    let id, property, temp_property;
-    this.property = null;
-    this._propertyService.getPropertyById(property_id).subscribe(
-      response => {
-        id = response.payload.id;
-        property = response.payload.data();
-        temp_property = {
-          id: id,
-          name: property.name,
-          location: property.location,
-          image: property.image,
-          price: property.price,
-          garages: property.garages,
-          bedrooms: property.bedrooms,
-          bathrooms: property.bathrooms,
-          description: property.description,
-          availability_status: property.availability,
-          features: property.featues
-        }
-        this.property = temp_property;
-        console.log(this.property);
-      }
-    )
-  }
-
 }
