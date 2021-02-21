@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+
+    <ion-item lines="none">
+
+        <ion-buttons slot="start">
+
+            <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+
+        </ion-buttons>
+
+
+    </ion-item>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+    <div class="ion-padding wrapper">
+
+        <div (click)="gotoMap()" class="seachbar ">
+            <ion-input readonly="true" clearInput type="text" placeholder="Search Location">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                </ion-icon>
+            </ion-input>
+        </div>
+    </div>
+
+    <app-carwash-list [car_washes]="car_washes"></app-carwash-list>
+

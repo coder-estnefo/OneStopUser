@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+
+    <ion-item lines="none">
+
+        <ion-buttons slot="start">
+
+            <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+
+        </ion-buttons>
+
+        <ion-label class="ion-text-end">
+            <h2>Apartments</h2>
+            <p>one Stop.</p>
+        </ion-label>
+
+    </ion-item>
+
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+    <div class="ion-padding ion-margin-bottom wrapper">
+        <div (click)="gotoMap()" class="seachbar ">
+            <ion-input readonly="true" clearInput type="text" placeholder="Search Location">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                </ion-icon>
+            </ion-input>
+        </div>
+        
+
+        <!-- <ion-grid class="ion-margin-top">
+            <ion-row class="">
+                <ion-col size="6">
+                    <ion-badge color="light" class="ion-margin-end ion-text-left">
+                        Apartments
+                    </ion-badge>
+                </ion-col>
+            </ion-row>
+        </ion-grid> -->
+
+    </div>
+
+    <app-property-list [properties]="properties"></app-property-list>
+</ion-content>

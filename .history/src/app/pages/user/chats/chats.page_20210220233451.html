@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+
+  <ion-item lines="none">
+
+      <ion-buttons slot="start">
+
+          <h2>
+              Chats
+          </h2>
+
+      </ion-buttons>
+
+      <!-- <ion-buttons slot="end">
+          <ion-button>
+              <ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
+              <ion-badge color="primary" *ngIf="!spinner" (click)="logOut()">Logout</ion-badge>
+          </ion-button>
+      </ion-buttons> -->
+
+  </ion-item>
+
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding ion-margin-bottom wrapper">
+        <div class="seachbar ">
+            <ion-input clearInput type="text" placeholder="Search Location">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                </ion-icon>
+            </ion-input>
+        </div>
+    </div>
+</ion-content>

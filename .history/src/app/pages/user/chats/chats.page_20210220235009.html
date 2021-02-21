@@ -1,0 +1,84 @@
+<ion-header class="ion-no-border">
+
+  <ion-item lines="none">
+
+      <ion-buttons slot="start">
+
+          <h2>
+              Chats
+          </h2>
+
+      </ion-buttons>
+
+      <!-- <ion-buttons slot="end">
+          <ion-button>
+              <ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
+              <ion-badge color="primary" *ngIf="!spinner" (click)="logOut()">Logout</ion-badge>
+          </ion-button>
+      </ion-buttons> -->
+
+  </ion-item>
+
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding wrapper">
+        <div class="seachbar ">
+            <ion-input clearInput type="text" placeholder="Search Location">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                </ion-icon>
+            </ion-input>
+        </div>
+    </div>
+
+    <ion-list>
+        <ion-item class="user-item" *ngFor="let user of [1,2,3]">
+            <div class="user-avatar">
+                <img  src="../../../../assets/images/user.png" alt="">
+            </div>
+            <ion-label class="user-name">
+      
+            </ion-label>
+            <div class="user-presence">
+                <ion-icon [ name="radio-button-on"></ion-icon>
+            </div>  
+        </ion-item>
+    </ion-list>
+
+      <!-- class.user-online]="isOnline(user)" -->
+
+    <!-- <ion-list class="">
+        <ion-item-group>
+
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="full" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2" class="avatar-col">
+                            <ion-avatar>
+                                <ion-img src="../../../../assets/images/user.png"></ion-img>
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="8" ion-padding class="ion-text-center ion-padding-left">
+                            <h3>
+                                John
+                            </h3>
+                            <ion-label class="email">
+                                John@gmail.com
+                            </ion-label>
+                        </ion-col>
+                        <ion-col size="2" ion-padding class="ion-text-end">
+                            <h3>
+                                22:23
+                            </h3>
+                            <ion-label class="email">
+                                1
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-item-group>
+    </ion-list> -->
+</ion-content>
