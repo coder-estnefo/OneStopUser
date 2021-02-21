@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { url } from 'inspector';
 import { UserService } from 'src/app/services/user/user.service';
+import { AngularFireAuth } from '@angular/fire/auth'
+import { IProperty } from 'src/app/structures/interfaces';
+import { PropertiesService } from 'src/app/services/properties/properties.service';
+import { $ } from 'protractor';
 declare var mapboxgl;
 declare var MapboxGeocoder;
+declare var mapboxSdk;
 
 @Component({
   selector: 'app-property-map',
@@ -12,32 +16,25 @@ declare var MapboxGeocoder;
 })
 export class PropertyMapPage implements OnInit {
 
-  map
-  arry1 = []
-  arry2 = []
-  arry3 = []
-  mode
+  map: any;
+  address = [];
+  properties: IProperty[] = [];
 
-  img="../../../../../assets/icon/apartment1/outside/2.jfif"
+  options = {
+    centeredSlides: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+  };
 
-  constructor(private router: Router, private userservice: UserService) { }
+
+  constructor(private router: Router,
+    private userservice: UserService,
+    private _propertyService: PropertiesService,
+  ) { }
 
   ngOnInit() {
 
-    let coodinates: any = this.userservice.getMapDetails();
-    this.mode=this.userservice.mode;
-
-
-    coodinates['lng'].forEach(a => {
-      this.arry1.push(a);
-    });
-    coodinates['lat'].forEach(a => {
-      this.arry2.push(a);
-    });
-    coodinates['names'].forEach(a => {
-      this.arry3.push(a);
-    });
-
+    this.getProperties();
 
     mapboxgl.accessToken = 'pk.eyJ1IjoidGVhcnoiLCJhIjoiY2toa2dqcmM3MWIwNjJ5cDlqazhyYzdteiJ9.jYlNVUpq4tkE1jva-mtyqg';
     this.map = new mapboxgl.Map({
@@ -50,11 +47,54 @@ export class PropertyMapPage implements OnInit {
 
     this.geoCoder();
     this.controls();
-    this.markers();
+
+  }
 
 
-    // this.displayType();
+  // Get properties
+  getProperties() {
+    let uid, property;
+    this._propertyService.getProperties().subscribe(
+      responses => {
+        responses.forEach(response => {
+          uid = response.payload.doc.id;
+          property = response.payload.doc.data();
+          this.properties.push({
+            id: uid,
+            name: property.name,
+            location: property.location,
+            image: property.image,
+            price: property.price,
+            garages: property.garages,
+            bedrooms: property.bedrooms,
+            bathrooms: property.bathrooms,
+            description: property.description,
+            availability_status: property.availability,
+            features: property.features,
+            favorite: property.favorite
+          })
 
+          var _address;
+          var _id,_name ,_img;
+          
+          this.properties.forEach(a => {
+            // console.log(a.location)
+            _address = "";
+            a.location.forEach(b => {
+              _address = _address + " " + b
+            });
+              _id=a.id
+              _name=a.name
+              _img=a.image
+
+            console.log(_address);
+            this.convetAddressToCoo(_id,_name,_img,_address);
+          });
+
+
+        });
+      }
+    )
   }
 
   reSize() {
@@ -81,181 +121,11 @@ export class PropertyMapPage implements OnInit {
 
   markers() {
 
-    /* let arry1 = [28.218370, 28.212370, 28.215370];
-     let arry2 = [-25.731340, -25.735340, -25.737340];
-     let arry3 = ["Librito flets availeble", "D_head flets availeble", "vivis flets availeble"];*/
-    let arry4 = ['../../../../../assets/icon/apartment1/outside/2.jfif',
-      '../../../../../assets/icon/apartment1/outside/3.jpg', '../../../../../assets/icon/apartment1/outside/4.jfif']
-
     // 28.218370, -25.731340       
     for (let i = 0; i < 3; i++) {
 
       const innerHtmlContent = `<div style=" font-size: large;color : black;">
-                  <h4 >${this.arry3[i]} </h4> </div>`;
-
-      const divElement = document.createElement('div');
-      const viewBtn = document.createElement('div');
-      viewBtn.innerHTML = `<button style="border: 1px solid gray; width:'400px';" > View </button>`;
-      divElement.innerHTML = innerHtmlContent;
-      divElement.appendChild(viewBtn);
-
-      viewBtn.addEventListener('click', (e) => {
-        // alert( arry3[i]);
-         if (this.mode=='property') {
-          this.router.navigate(['searched-property'])
-         }
-         if (this.mode=='car-wash') {
-          this.router.navigate(['carwash-details'])
-         }
-        
-      });
-
-      var geojson = {
-        'type': 'FeatureCollection',
-        'features': [
-          {
-            'type': 'Feature',
-            'properties': {
-              'message': this.arry3[i],
-              'iconSize': [45, 45]
-            },
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [this.arry1[i], this.arry2[i]]
-            }
-          },
-        ]
-      };
-
-
-
-
-
-
-      var map = this.map
-
-      geojson.features.forEach(function (marker) {
-        // create a DOM element for the marker
-        var el = document.createElement('div');
-        el.className = 'marker';
-        el.style.backgroundImage =el.style.backgroundImage ='url(https://placekitten.com/g/' +
-        marker.properties.iconSize.join('/') +
-        '/)';
-        el.style.width = marker.properties.iconSize[0] + 'px';
-        el.style.height = marker.properties.iconSize[1] + 'px';
-
-        new mapboxgl.Marker(el)
-          .setLngLat(marker.geometry.coordinates)
-          .setPopup(new mapboxgl.Popup({
-            offset: 25
-          }).setDOMContent(divElement))
-          .addTo(map);
-      });
-
-    }
-
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-  displayType() {
-    var geojson = {
-      'type': 'FeatureCollection',
-      'features': [
-
-        {
-          'type': 'Feature',
-          'properties': {
-            'message': 'Foo',
-            'iconSize': [60, 60]
-          },
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [-66.324462890625, -16.024695711685304]
-          }
-        },
-
-        {
-          'type': 'Feature',
-          'properties': {
-            'message': 'Bar',
-            'iconSize': [50, 50]
-          },
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [-61.2158203125, -15.97189158092897]
-          }
-        },
-        {
-          'type': 'Feature',
-          'properties': {
-            'message': 'Baz',
-            'iconSize': [40, 40]
-          },
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [-63.29223632812499, -18.28151823530889]
-          }
-        }
-      ]
-    };
-
-    var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-65.017, -16.457],
-      zoom: 5
-    });
-
-    // add markers to map
-    geojson.features.forEach(function (marker) {
-      // create a DOM element for the marker
-      var el = document.createElement('div');
-      el.className = 'marker';
-      el.style.backgroundImage =
-        'url(https://placekitten.com/g/' +
-        marker.properties.iconSize.join('/') +
-        '/)';
-      el.style.width = marker.properties.iconSize[0] + 'px';
-      el.style.height = marker.properties.iconSize[1] + 'px';
-
-      el.addEventListener('click', function () {
-        window.alert(marker.properties.message);
-      });
-
-      // add marker to map
-      new mapboxgl.Marker(el)
-        .setLngLat(marker.geometry.coordinates)
-        .addTo(map);
-    });
-  }
-
-
-
-}
-
-
-/*
-    for (let i = 0; i < 3; i++) {
-
-      const innerHtmlContent = `<div style=" min-width: 600px;font-size: large;color : black;">
-                  <h4 >${arry3[i]} </h4> </div>`;
+                  <h4 >${"massege"} </h4> </div>`;
 
       const divElement = document.createElement('div');
       const viewBtn = document.createElement('div');
@@ -268,17 +138,126 @@ export class PropertyMapPage implements OnInit {
         this.router.navigate(['searched-property'])
       });
 
-      let popUp = new mapboxgl.Popup({ maxWidth: '300px', })
+      var geojson = {
+        'type': 'FeatureCollection',
+        'features': [
+          {
+            'type': 'Feature',
+            'properties': {
+              'message': "this.arry3[i]",
+              'iconSize': [45, 45]
+            },
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [-28.42534534, 25.56464665]
+            }
+          },
+        ]
+      };
 
-      var marker = new mapboxgl.Marker()
-        .setLngLat([arry1[i], arry2[i]])
-        .setPopup(new mapboxgl.Popup({
-          offset: 25
-        }).setDOMContent(divElement)
+      var map = this.map
 
-        )
-        .addTo(this.map);
+      geojson.features.forEach(function (marker) {
+        // create a DOM element for the marker
+        var el = document.createElement('div');
+        el.className = 'marker';
+        el.style.backgroundImage = el.style.backgroundImage = 'url(https://placekitten.com/g/' +
+          marker.properties.iconSize.join('/') +
+          '/)';
+        el.style.width = marker.properties.iconSize[0] + 'px';
+        el.style.height = marker.properties.iconSize[1] + 'px';
+
+        new mapboxgl.Marker(el)
+          .setLngLat(marker.geometry.coordinates)
+          .setPopup(new mapboxgl.Popup({
+            offset: 25
+          }).setDOMContent(divElement))
+          .addTo(map);
+      });
+
     }
+  }
+
+  convetAddressToCoo(id,name,img,address) {
+
+    const innerHtmlContent = `<div style=" font-size: large;color : black;">
+                  <h4 >${name} </h4> <h4> ${address}</h4> </div>`;
+
+    const divElement = document.createElement('div');
+    const viewBtn = document.createElement('div');
+    viewBtn.innerHTML = `<button style="border: 1px solid gray; width:'400px';" > View </button>`;
+    divElement.innerHTML = innerHtmlContent;
+    divElement.appendChild(viewBtn);
+
+    viewBtn.addEventListener('click', (e) => {
+      // alert( arry3[i]);
+      this.router.navigate(['/property-details/'+id])
+    });
+
+    // "/property-details/{{property.id}}
+
+    // marker icon
+    var geojson = {
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': "this.arry3[i]",
+            'iconSize': [45, 45]
+          },
+          'geometry': {
+            'type': 'Point',
+
+          }
+        },
+      ]
+    };
+
+    var map = this.map
+
+    geojson.features.forEach(function (marker) {
+      // create a DOM element for the marker
+      var el = document.createElement('div');
+      el.className = 'marker';
+      el.style.backgroundImage = el.style.backgroundImage = 'url(https://placekitten.com/g/' +
+        marker.properties.iconSize.join('/') +
+        '/)';
+      el.style.width = marker.properties.iconSize[0] + 'px';
+      el.style.height = marker.properties.iconSize[1] + 'px';
+
+      // converting address to coodinates
+      var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken = 'pk.eyJ1IjoidGVhcnoiLCJhIjoiY2toa2dqcmM3MWIwNjJ5cDlqazhyYzdteiJ9.jYlNVUpq4tkE1jva-mtyqg' });
+      mapboxClient.geocoding
+        .forwardGeocode({
+          query: address,
+          autocomplete: false,
+          limit: 1
+        })
+        .send()
+        .then(function (response) {
+          if (
+            response &&
+            response.body &&
+            response.body.features &&
+            response.body.features.length
+          ) {
+            var feature = response.body.features[0];
+
+            // Adding the marker to the Map
+            new mapboxgl.Marker(el)
+              .setLngLat(feature.center)
+              .setPopup(new mapboxgl.Popup({
+                offset: 25
+              }).setDOMContent(divElement))
+              .addTo(map);
+          }
+        });
+
+    });
+
+  }
 
 
-*/
+
+}
