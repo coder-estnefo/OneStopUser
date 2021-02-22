@@ -10,7 +10,7 @@ import { IWashType } from 'src/app/structures/interfaces';
 })
 export class PricesPage implements OnInit {
 
-  wash_types: IWashType[] = []; 
+  wash_types: IWashType[] = [];
 
   constructor(
     private router: Router,
@@ -20,12 +20,12 @@ export class PricesPage implements OnInit {
 
   ngOnInit() {
     const carwash_id: string = this.activatedRoute.snapshot.paramMap.get('id');
-    this.getCarwashPrices(carwash_id);
+    this.getWashTypes(carwash_id);
   }
 
-  getCarwashPrices(carwash_id: string){
+  getWashTypes(carwash_id: string){
     let id, temp_carwash;
-    this._carwashService.getCarwashPrices(carwash_id).subscribe(
+    this._carwashService.getWashTypes(carwash_id).subscribe(
       responses => {
         responses.forEach(response => {
           id = response.payload.doc.id;
