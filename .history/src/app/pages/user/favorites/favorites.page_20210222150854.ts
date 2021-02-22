@@ -34,7 +34,7 @@ export class FavoritesPage implements OnInit {
           uid = response.payload.doc.id;
           property = response.payload.doc.data();
           if(this.checkPropertyDuplicate(uid) == null){
-            this.favorites.push({
+            this.properties.push({
               id: uid,
               name: property.name,
               address: property.location,

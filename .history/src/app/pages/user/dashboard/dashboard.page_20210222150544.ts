@@ -141,21 +141,9 @@ export class DashboardPage implements OnInit {
           property = response.payload.doc.data();
 
           if(this.checkPropertyDuplicate(uid) == null){
-            this.properties.push({
-              id: uid,
-              name: property.name,
-              address: property.location,
-              images: property.images,
-              price: property.price,
-              garages: property.garages,
-              bedrooms: property.bedrooms,
-              bathrooms: property.bathrooms,
-              description: property.description,
-              availability_status: property.availability,
-              features: property.features,
-              favorite: property.favorite
-            });
+
           }
+          
         });
       }
     )

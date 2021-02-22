@@ -75,7 +75,7 @@ export class DashboardPage implements OnInit {
 
   // Check property duplicates
   checkPropertyDuplicate(property_id: string){
-    return this.properties.find(property => {
+    retun this.properties.find(property => {
       return property.id == property_id;
     })
   }
@@ -139,23 +139,20 @@ export class DashboardPage implements OnInit {
         responses.forEach(response => {
           uid = response.payload.doc.id;
           property = response.payload.doc.data();
-
-          if(this.checkPropertyDuplicate(uid) == null){
-            this.properties.push({
-              id: uid,
-              name: property.name,
-              address: property.location,
-              images: property.images,
-              price: property.price,
-              garages: property.garages,
-              bedrooms: property.bedrooms,
-              bathrooms: property.bathrooms,
-              description: property.description,
-              availability_status: property.availability,
-              features: property.features,
-              favorite: property.favorite
-            });
-          }
+          this.properties.push({
+            id: uid,
+            name: property.name,
+            address: property.location,
+            images: property.images,
+            price: property.price,
+            garages: property.garages,
+            bedrooms: property.bedrooms,
+            bathrooms: property.bathrooms,
+            description: property.description,
+            availability_status: property.availability,
+            features: property.features,
+            favorite: property.favorite
+          });
         });
       }
     )

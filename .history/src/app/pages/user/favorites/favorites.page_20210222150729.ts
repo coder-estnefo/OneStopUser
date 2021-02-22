@@ -33,9 +33,8 @@ export class FavoritesPage implements OnInit {
         responses.forEach(response => {
           uid = response.payload.doc.id;
           property = response.payload.doc.data();
-          if(this.checkPropertyDuplicate(uid) == null){
-            this.favorites.push({
-              id: uid,
+          this.favorites.push({
+            id: uid,
               name: property.name,
               address: property.location,
               images: property.images,
@@ -47,8 +46,7 @@ export class FavoritesPage implements OnInit {
               availability_status: property.availability,
               features: property.features,
               favorite: property.favorite
-            });
-          }
+          });
         });
       }
     )
