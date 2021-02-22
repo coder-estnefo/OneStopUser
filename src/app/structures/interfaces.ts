@@ -1,6 +1,7 @@
 // Co-Ordinates interface
 export interface ICoordinates{
     latitude: string;
+ 
     longitude: string;
 }
 
@@ -11,6 +12,7 @@ export interface IProperty{
     address: [];
     images: [];
     price: number;
+    location:string;
     garages: number;
     bedrooms: number;
     bathrooms: number;
@@ -33,11 +35,10 @@ export interface IAppointment{
     date: string;
 }
 
-// Wash type
-export interface IWashType{
+export interface ICleaning{
     id: string;
     name: string;
-    price: number;
+    favorite: boolean;
+    coordinates: ICoordinates; 
     image: string;
-    description: string;
 }
