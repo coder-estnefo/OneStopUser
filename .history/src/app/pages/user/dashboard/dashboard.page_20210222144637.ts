@@ -135,7 +135,7 @@ export class DashboardPage implements OnInit {
             id: uid,
             name: property.name,
             address: property.location,
-            images: property.images,
+            image: property.images,
             price: property.price,
             garages: property.garages,
             bedrooms: property.bedrooms,

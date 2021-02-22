@@ -8,7 +8,7 @@ export interface ICoordinates{
 export interface IProperty{
     id: string;
     name: string;
-    address: [];
+    location: [];
     images: [];
     price: number;
     garages: number;

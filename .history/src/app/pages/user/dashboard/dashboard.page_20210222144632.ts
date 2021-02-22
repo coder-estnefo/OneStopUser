@@ -134,8 +134,8 @@ export class DashboardPage implements OnInit {
           this.properties.push({
             id: uid,
             name: property.name,
-            address: property.location,
-            images: property.images,
+            add: property.location,
+            image: property.image,
             price: property.price,
             garages: property.garages,
             bedrooms: property.bedrooms,

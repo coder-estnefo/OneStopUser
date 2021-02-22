@@ -40,7 +40,7 @@ export class PropertyDetailsPage implements OnInit {
         id = response.payload.id;
         property = response.payload.data();
         temp_property = {
-            id: id,
+          id: uid,
             name: property.name,
             address: property.location,
             images: property.images,
