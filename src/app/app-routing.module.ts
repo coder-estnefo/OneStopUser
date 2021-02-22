@@ -126,6 +126,10 @@ const routes: Routes = [
     path: 'searched-property',
     loadChildren: () => import('./pages/user/property-management/searched-property/searched-property.module').then( m => m.SearchedPropertyPageModule)
   },
+  {
+    path: 'confirm',
+    loadChildren: () => import('./pages/user/confirm/confirm.module').then( m => m.ConfirmPageModule)
+  },
 
 ];
 @NgModule({

@@ -26,6 +26,14 @@ const routes: Routes = [
           loadChildren: () => import('../chats/chats.module').then( m => m.ChatsPageModule)
         },
         {
+          path: 'profile',
+          loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
+        },
+        {
+          path: 'confirm',
+          loadChildren: () => import('../confirm/confirm.module').then( m => m.ConfirmPageModule)
+        },
+        {
           path: 'favorites',
           loadChildren: () => import('../favorites/favorites.module').then( m => m.FavoritesPageModule)
         },

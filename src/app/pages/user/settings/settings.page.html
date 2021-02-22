@@ -17,6 +17,7 @@
 <ion-content>
     <ion-list class="">
         <ion-item-group>
+<<<<<<< Updated upstream
             <ion-item lines="full" button *ngIf="user">
                 <ion-avatar slot="start" shape="round">
                     <img src="../../../../assets/images/user.png" alt="">
@@ -25,6 +26,24 @@
                     <h3>{{user.name}}</h3>
                     <p>{{user.email}}</p>
                 </ion-label>
+=======
+
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="full" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="7" class="avatar-col">
+                            <div class = "img-wrapper">
+                                <img src="./assets/images/avatar.jpg" atl=""> <br/> <br/>
+
+                                 <ion-icon name="person-sharp">Name</ion-icon>{{ user.name }}<br />
+                                <ion-icon name="mail-sharp">Email</ion-icon>{{ user.email }}<br /><br />
+                                </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+>>>>>>> Stashed changes
             </ion-item>
 
             <ion-item-divider></ion-item-divider>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-button  size="medium" shape ="round" style="right: auto;" class= "btn" (click)="goProfile()">Back</ion-button>
+    <ion-title>My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+ 
+<ion-card>
+  <ion-card-header>
+    <div class = "img-wrapper">
+    <img src="./assets/images/avatar.jpg" atl=""> <br/> <br/>
+     <ion-icon name="person-sharp">Name</ion-icon>{{ user.name }}<br /><br />
+    <ion-icon name="mail-sharp">Email</ion-icon>{{ user.email }}<br /><br />
+    </div>
+  </ion-card-header>
+</ion-card>
+
+
+  <ion-card>
+
+      <ion-card-content>
+ 
+        <ion-icon name="call-sharp">Phone</ion-icon>{{ user.phone }}<br /><br />
+        <ion-icon name="home-sharp">Address</ion-icon>{{ user.address }}<br /><br />
+        <ion-icon name="male-female-sharp">Gender</ion-icon>{{ user.gender }}<br /><br />
+        <ion-icon name="calendar-sharp">Age</ion-icon> {{ user.age }}
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-row>
+    <ion-col col-6>
+      <ion-button  color="secondary" size="medium" shape ="round" style="left: auto;" class= "btn" (click)="goProfile()">Edit</ion-button>
+      <ion-button  color="secondary" size="medium" shape ="round" style="left: auto;" class= "btn" (click)="goDashboard()">Done</ion-button>
+
+    </ion-col>
+
+ 
+  </ion-row>
+</ion-content>
