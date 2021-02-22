@@ -9,9 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchedPropertyPage implements OnInit {
 
  
-  propertiesDetails = [{ img: "../../../../../assets/icon/apartment1/settingroom/setting.jpg" },
-                       { img: "../../../../../assets/icon/apartment1/bathroom/bathRoom.jpg" },
-                       { img: "../../../../../assets/icon/apartment1/bedroom/bedRoom.jpg" },];
+ 
 
   // @Input() propertiesDetails;
 

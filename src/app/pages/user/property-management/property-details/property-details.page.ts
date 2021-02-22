@@ -29,7 +29,8 @@ export class PropertyDetailsPage implements OnInit {
   }
 
   gotoSetAppointment(){
-    this.router.navigateByUrl('appointment');
+    // this.router.navigateByUrl('appointment');
+    this.router.navigateByUrl('notification');
   }
 
   getPropertyById(property_id: string){

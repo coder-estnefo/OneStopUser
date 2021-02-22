@@ -129,7 +129,11 @@ const routes: Routes = [
   {
     path: 'confirm',
     loadChildren: () => import('./pages/user/confirm/confirm.module').then( m => m.ConfirmPageModule)
+  },  {
+    path: 'notification',
+    loadChildren: () => import('./pages/user/notification/notification.module').then( m => m.NotificationPageModule)
   },
+
 
 ];
 @NgModule({

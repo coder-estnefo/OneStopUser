@@ -54,6 +54,7 @@ export class LoginPage implements OnInit {
 			},
 			error => {
 				console.log(error);
+				this.spinner = false;
 			}
 		);
 	}
