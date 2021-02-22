@@ -17,14 +17,13 @@
 <ion-content>
     <ion-list class="">
         <ion-item-group>
-
-            <ion-item lines="full" button>
+            <ion-item lines="full" button *ngIf="user">
                 <ion-avatar slot="start" shape="round">
-                    <img  src="../../../../assets/images/user.png" alt="">
+                    <img src="../../../../assets/images/user.png" alt="">
                 </ion-avatar>
                 <ion-label slot="">
-                  <h3>Itumeleng Tshabalala</h3>
-                  <p>ItumelengTshabalala8@gmail.com</p>
+                    <h3>{{user.name}}</h3>
+                    <p>{{user.email}}</p>
                 </ion-label>
             </ion-item>
 
@@ -44,8 +43,8 @@
                     </ion-row>
                 </ion-grid>
                 <ion-note slot="end" color="">
-					<ion-icon name="arrow-forward-outline"></ion-icon>
-				</ion-note>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
             </ion-item>
 
             <ion-item lines="full" button>
@@ -62,8 +61,8 @@
                     </ion-row>
                 </ion-grid>
                 <ion-note slot="end" color="">
-					<ion-icon name="arrow-forward-outline"></ion-icon>
-				</ion-note>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
 
             </ion-item>
 
@@ -83,8 +82,8 @@
                     </ion-row>
                 </ion-grid>
                 <ion-note slot="end" color="">
-					<ion-icon name="arrow-forward-outline"></ion-icon>
-				</ion-note>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
             </ion-item>
 
             <ion-item lines="full" button>
@@ -101,10 +100,10 @@
                     </ion-row>
                 </ion-grid>
                 <ion-note slot="end" color="">
-					<ion-icon name="arrow-forward-outline"></ion-icon>
-				</ion-note>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
             </ion-item>
-            
+
             <ion-item-divider></ion-item-divider>
 
             <ion-item lines="" button>
@@ -121,8 +120,8 @@
                     </ion-row>
                 </ion-grid>
                 <ion-note slot="end" color="">
-					<ion-icon name="arrow-forward-outline"></ion-icon>
-				</ion-note>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
             </ion-item>
 
             <ion-item lines="" button>
@@ -139,8 +138,8 @@
                     </ion-row>
                 </ion-grid>
                 <ion-note slot="end" color="">
-					<ion-icon name="arrow-forward-outline"></ion-icon>
-				</ion-note>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
             </ion-item>
 
             <ion-item lines="full" button>
@@ -157,8 +156,8 @@
                     </ion-row>
                 </ion-grid>
                 <ion-note slot="end" color="">
-					<ion-icon name="arrow-forward-outline"></ion-icon>
-				</ion-note>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-note>
             </ion-item>
 
             <div class="ion-padding">
@@ -175,7 +174,7 @@
                     </ion-col>
                 </ion-row>
             </div>
-            
+
         </ion-item-group>
     </ion-list>
 </ion-content>

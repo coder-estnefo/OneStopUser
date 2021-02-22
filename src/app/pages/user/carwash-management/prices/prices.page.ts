@@ -37,7 +37,6 @@ export class PricesPage implements OnInit {
             price: temp_carwash.price,
             description: temp_carwash.description
           });
-
         })
       }
     )
