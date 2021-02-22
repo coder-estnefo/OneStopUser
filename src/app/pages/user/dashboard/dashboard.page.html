@@ -3,18 +3,22 @@
         <ion-buttons slot="start">
             <ion-menu-button auto-hide="false"></ion-menu-button>
         </ion-buttons>
+        <ion-label class="ion-text-center">
+            <h2>One Stop</h2>
+        </ion-label>
         <ion-buttons slot="end">
             <ion-button>
                 <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
                 <ion-badge color="primary" style="position: absolute; right: -5px; top: -5px;">0</ion-badge>
             </ion-button>
         </ion-buttons>
+
     </ion-item>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-    <div class="ion-padding">
+    <!-- <div class="ion-padding">
         <ion-row>
             <ion-col size="6">
                 <ion-badge color="light" class="ion-margin-end">
@@ -27,9 +31,9 @@
                 </ion-label>
             </ion-col>
         </ion-row>
-    </div>
+    </div> -->
 
-    <ion-grid class="ion-no-padding">
+    <!-- <ion-grid class="ion-no-padding">
         <ion-row>
             <ion-col size="12">
                 <ion-slides [options]="options">
@@ -40,7 +44,7 @@
                                     <ion-row>
                                         <ion-col>
                                             <div class="img-wrapper">
-                                                <ion-img  routerLink="/property-details/{{property.id}}" src="{{property.images}}"></ion-img>
+                                                <ion-img routerLink="/property-details/{{property.id}}" src="{{property.images}}"></ion-img>
                                             </div>
                                         </ion-col>
                                     </ion-row>
@@ -67,9 +71,9 @@
                 </ion-slides>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 
-    <div class="ion-padding">
+    <!-- <div class="ion-padding">
         <ion-row>
             <ion-col size="6">
                 <ion-badge color="light" class="ion-margin-end">
@@ -82,9 +86,9 @@
                 </ion-label>
             </ion-col>
         </ion-row>
-    </div>
+    </div> -->
 
-    <ion-grid class="ion-no-padding">
+    <!-- <ion-grid class="ion-no-padding">
         <ion-row>
             <ion-col size="12">
                 <ion-slides [options]="options">
@@ -122,9 +126,9 @@
                 </ion-slides>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 
-    <div class="ion-padding">
+    <!-- <div class="ion-padding">
         <ion-row>
             <ion-col size="6">
                 <ion-badge color="light" class="ion-margin-end">
@@ -137,9 +141,9 @@
                 </ion-label>
             </ion-col>
         </ion-row>
-    </div>
+    </div> -->
 
-    <ion-grid class="ion-no-padding">
+    <!-- <ion-grid class="ion-no-padding">
         <ion-row>
             <ion-col size="12">
                 <ion-slides [options]="options">
@@ -154,7 +158,7 @@
                                         <ion-col size="10" class="ion-margin-top">
                                             <ion-card-title class="title">{{carwash.name}}</ion-card-title>
                                         </ion-col>
-                                        <!-- <ion-col size="2">
+                                        <ion-col size="2">
                                         <ion-buttons slot="">
                                             <ion-button *ngIf="property.favorite" (click)="setFavorite(property.id, property.favorite)">
                                                 <ion-icon slot="icon-only" name="heart" color="primary"></ion-icon>
@@ -163,7 +167,7 @@
                                             <ion-icon slot="icon-only" name="heart-outline" color="primary"></ion-icon>
                                         </ion-button>
                                         </ion-buttons>
-                                        </ion-col> -->
+                                        </ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -172,11 +176,11 @@
                 </ion-slides>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 
 
 
-    <div class="ion-padding">
+    <!-- <div class="ion-padding">
         <ion-row>
             <ion-col size="6">
                 <ion-badge color="light" class="ion-margin-end">
@@ -189,26 +193,25 @@
                 </ion-badge>
             </ion-col>
         </ion-row>
-    </div>
-
-</ion-content>
+    </div> -->
 
 
 
 
 
 
-<!-- 
 
-     <ion-grid class="ion-padding">
+
+
+    <ion-grid class="ion-padding">
         <ion-row>
             <ion-col size="12">
-                <ion-card class="card" color="secondary" (click)="gotoProperties()">
+                <ion-card class="card property-dashboard" color="secondary" (click)="gotoProperties()">
                     <ion-card-content class="ion-text-left">
                         <ion-grid>
                             <ion-row>
-                                <ion-col size="12" class="ion-text-center">
-                                    <ion-icon name="business-outline" size="large"></ion-icon>
+                                <ion-col size="12" class="ion-text-center ion-margin-top">
+                                    <!-- <ion-icon name="business-outline" size="large"></ion-icon> -->
                                     <h2>Apartments</h2>
                                 </ion-col>
                             </ion-row>
@@ -230,12 +233,12 @@
 
         <ion-row>
             <ion-col size="12">
-                <ion-card class="card" color="warning" (click)="gotoproperty()">
+                <ion-card class="card carwash-dashboard" color="warning">
                     <ion-card-content class="ion-text-left">
                         <ion-grid>
                             <ion-row>
-                                <ion-col size="12" class="ion-text-center">
-                                    <ion-icon name="car-outline" size="large"></ion-icon>
+                                <ion-col size="12" class="ion-text-center ion-margin-top">
+                                    <!-- <ion-icon name="car-outline" size="large"></ion-icon> -->
                                     <h2>Car Wash</h2>
                                 </ion-col>
                             </ion-row>
@@ -258,12 +261,12 @@
 
         <ion-row>
             <ion-col size="12">
-                <ion-card class="card" color="danger" (click)="gotoEvents()">
+                <ion-card class="card cleaning-dashboard" color="danger" (click)="gotoEvents()">
                     <ion-card-content class="ion-text-left">
                         <ion-grid>
                             <ion-row>
-                                <ion-col size="12" class="ion-text-center">
-                                    <ion-icon name="shirt-outline" size="large"></ion-icon>
+                                <ion-col size="12" class="ion-text-center ion-margin-top">
+                                    <!-- <ion-icon name="shirt-outline" size="large"></ion-icon> -->
                                     <h2>Cleaning Services</h2>
                                 </ion-col>
                             </ion-row>
@@ -286,4 +289,5 @@
     </ion-grid>
 
 
- -->
+
+</ion-content>
