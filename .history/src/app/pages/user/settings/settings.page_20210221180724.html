@@ -1,0 +1,205 @@
+<ion-header class="ion-no-border">
+
+    <ion-item lines="none">
+
+        <ion-buttons slot="start">
+
+            <h2>
+                Settings
+            </h2>
+
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
+                <ion-badge color="primary" *ngIf="!spinner" (click)="logOut()">Logout</ion-badge>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-item>
+
+</ion-header>
+
+<ion-content>
+
+    <ion-list class="">
+        <ion-item-group>
+
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="full" button>
+                <ion-avatar slot="start" shape="round">
+                    <img  src="../../../../assets/images/user.png" alt="">
+                </ion-avatar>
+                <ion-label>
+                  <h3>Itumeleng Tshabalala</h3>
+                  <p>Lorem opsum upem lorme opsem lorem opsem</p>
+                </ion-label>
+            </ion-item>
+
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="key-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                Account
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+
+            </ion-item>
+            <ion-item lines="" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="alarm-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                Appointments
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+
+            </ion-item>
+            <ion-item lines="full" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="notifications-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                Notifications
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+
+            </ion-item>
+
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="information-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                Help Center
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+
+            </ion-item>
+            <ion-item lines="full" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="heart-circle-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                Tell a Friend
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+
+            </ion-item>
+            
+            <ion-item-divider></ion-item-divider>
+
+            <ion-item lines="" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="receipt-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                Privacy Policy
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+
+            </ion-item>
+            <ion-item lines="" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="accessibility-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                Accessibility
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+
+            </ion-item>
+            <ion-item lines="full" button>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-icon name="invert-mode-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-label>
+                                End User License Agreement
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-note slot="end" color="">
+					<ion-icon name="arrow-forward-outline"></ion-icon>
+				</ion-note>
+                
+            </ion-item>
+
+        </ion-item-group>
+    </ion-list>
+
+</ion-content>

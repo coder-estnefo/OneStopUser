@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+
+    <ion-item lines="none">
+
+        <ion-buttons slot="start">
+
+            <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+
+        </ion-buttons>
+
+
+    </ion-item>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <img src="../../../../assets/images/logo.jpg">
+
+    <div class="wrapper ion-margin">
+        <form [formGroup]="slot_form" (ngSubmit)="setAppointment()">
+
+            <ion-item>
+                <ion-icon name="car-outline" class="ion-padding"></ion-icon>
+                <ion-input formControlName="registration" placeholder="AB12CDGP"></ion-input>
+            </ion-item>
+
+              
+            <ion-item>
+                <ion-label>Gender</ion-label>
+                    <ion-select placeholder="Select One">
+                <ion-select-option value="{{wash.name}}" *ngFor="let wash of wash_types">{{wash.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name="calendar-outline" class="ion-padding"></ion-icon>
+                <ion-datetime formControlName="date" displayFormat="MM/DD/YYYY" placeholder="02/13/2021" min="1994-03-14" max="2050-12-09"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name="time-outline" class="ion-padding"></ion-icon>
+                <ion-datetime formControlName="time" displayFormat="HH:mm" placeholder="00:00"></ion-datetime>
+            </ion-item>
+
+            <div class="ion-text-center ion-margin">
+                <ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
+                <ion-button class="ion-button" s color="primary" *ngIf="!spinner" [disabled]="!slot_form.valid" shape="round" type="submit" expand="block">
+                    BOOK SLOT
+                </ion-button>
+            </div>
+
+        </form>
+    </div>
+
+</ion-content>

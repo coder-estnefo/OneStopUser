@@ -1,0 +1,98 @@
+<ion-header class="ion-no-border">
+
+	<ion-item lines="none">
+
+		<ion-buttons slot="start">
+
+		<ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+		
+		</ion-buttons>
+
+
+	</ion-item>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid class="ion-no-margin" *ngIf="property">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="card ion-padding-right" *ngIf="property">
+          <ion-card-header  class="ion-card-header ion-text-center">
+            {{property.name}}
+          </ion-card-header>
+          <ion-card-content class="ion-text-left">
+
+            <ion-slides pager="true" [options]="options">
+              <ion-slide *ngFor="let img of property.image">
+                <div class="img-wrapper">
+                    <ion-img src="{{img}}" routerLink="/img-details/{{img.id}}"></ion-img>
+                </div>
+              </ion-slide>
+          </ion-slides>
+            <ion-grid class="ion-no-margin">
+
+              <ion-row>
+                <ion-col size="4">
+                  <ion-label>
+                    Bedrooms: 
+                  </ion-label>
+                </ion-col>
+                <ion-col size="8" class="ion-text-right">
+                  <ion-label>
+                    {{property.bedrooms}}
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-label>
+                    Bathrooms: 
+                  </ion-label>
+                </ion-col>
+                <ion-col size="8" class="ion-text-right">
+                  <ion-label>
+                    {{property.bathrooms}}
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-label>
+                    Amount: 
+                  </ion-label>
+                </ion-col>
+                <ion-col size="8" class="ion-text-right">
+                  <ion-label>
+                    R {{property.price}}
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-label>
+                    Location: 
+                  </ion-label>
+                </ion-col>
+                <ion-col size="8" class="ion-text-right">
+                  <ion-label *ngFor="let address of property.location">
+                    {{address}}
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button class="ion-button" size="small" shape="round" expand="block" >Start Chat</ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button class="ion-button" size="small" shape="round" expand="block" >BOOk SLOT</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

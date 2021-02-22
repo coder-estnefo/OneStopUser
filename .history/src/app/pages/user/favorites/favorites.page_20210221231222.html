@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+
+  <ion-item lines="none">
+
+      <ion-buttons slot="start">
+
+          <h2>
+              Favorites
+          </h2>
+
+      </ion-buttons>
+
+      <!-- <ion-buttons slot="end">
+          <ion-button>
+              <ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
+              <ion-badge color="primary" *ngIf="!spinner" (click)="logOut()">Logout</ion-badge>
+          </ion-button>
+      </ion-buttons> -->
+
+  </ion-item>
+
+</ion-header>
+
+<ion-content>
+    <div *ngIf="favorites.length > 0; else empty">
+        available
+    </div>  
+    <ng-template #empty>
+        <h1>No Favorites Found</h1>
+        <h3>Add your favorite apartments, carwashes and cleaning services. </h3>
+    </ng-template>
+
+</ion-content>

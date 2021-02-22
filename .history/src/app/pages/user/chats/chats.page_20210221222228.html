@@ -1,0 +1,86 @@
+<ion-header class="ion-no-border">
+  <ion-item lines="none">
+      <ion-buttons slot="start">
+          <h2>
+              Chats
+          </h2>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button>
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            <!-- <ion-badge color="primary" style="position: absolute; right: -5px; top: -5px;">0</ion-badge> -->
+        </ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding wrapper">
+        <div class="seachbar ">
+            <ion-input clearInput type="text" placeholder="Search">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                </ion-icon>
+            </ion-input>
+        </div>
+    </div>
+
+
+    <ion-list class="">
+        <ion-item-group>
+
+            <!-- <ion-item button *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+                <ion-avatar slot="start" shape="round">
+                    <img  src="../../../../assets/images/user.png" alt="">
+                </ion-avatar>
+                <ion-label class="ion-text-center">
+                  <h3>Itumeleng Tshabalala</h3>
+                  <p>Lorem opsum upem lorme opsem lorem opsem</p>
+                </ion-label>
+                <ion-label class="ion-text-end">
+                    <p class="time">23:15</p>
+                    <ion-badge class="notification" shape="round" >2</ion-badge>
+                </ion-label>
+            </ion-item> -->
+
+            <ion-item button *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+                <ion-avatar slot="start" shape="round">
+                    <img  src="../../../../assets/images/user.png" alt="">
+                </ion-avatar>
+                <ion-label class="ion-text-left">
+                  <ion-row>
+                    <ion-col size="10">
+                        <h3>Itumeleng Tshabalala</h3>
+                      </ion-col>
+                      <ion-col size="2">
+                        <p class="time">23:15</p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="10">
+                        <p>Lorem opsum upem lorme opsem lorem opsem</p>
+                      </ion-col>
+                      <ion-col size="2" class="io-text-end">
+                        <ion-badge class="notification" shape="round" >2</ion-badge>
+                    </ion-col>
+                  </ion-row>
+                </ion-label>
+            </ion-item>
+
+        </ion-item-group>
+    </ion-list>
+
+     <div class="ion-padding">
+        <ion-row>
+            <ion-col size="6">
+                <ion-badge color="light" class="ion-margin-end">
+                    One Stop.
+                </ion-badge>
+            </ion-col>
+            <ion-col size="6" class="ion-text-end">
+                <ion-badge color="light">
+                    one-stop.com
+                </ion-badge>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-content>

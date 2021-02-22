@@ -1,0 +1,34 @@
+<ion-header class="ion-no-border">
+    <ion-item lines="none">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+        </ion-buttons>
+    </ion-item>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background-image">
+    <ion-card class="card first-card" *ngFor="let wash of wash_types">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-avatar class="avatar">
+                            <ion-img src="{{wash.image}}"></ion-img>
+                        </ion-avatar>
+                    </ion-col>
+                    <ion-col size="6" class="ion-text-right">
+                        <h3>
+                            {{wash.name}}
+                        </h3>
+                        <p>
+                            {{wash.description}}
+                        </p>
+                        <p class="prices">
+                            R {{wash.price}}
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card> 
+</ion-content>
