@@ -126,7 +126,7 @@ export class DashboardPage implements OnInit {
         responses.forEach(response => {
           id = response.payload.doc.id;
           temp_carwash = response.payload.doc.data();
-          if(this.checkCarwashDuplicate(id) == null){
+          if(this.checkCarwashDuplicate(id)){
             this.carwashes.push({
               id: id,
               name: temp_carwash.name,

@@ -91,7 +91,7 @@ export class DashboardPage implements OnInit {
   getUser(user_id: string){
     this._userService.getUser(user_id).subscribe(
       response => {
-        this.user = response.payload.data() as IUser;
+        this.user = response.payload.data() as IUser;g
       }
     )
   }

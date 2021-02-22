@@ -82,9 +82,7 @@ export class DashboardPage implements OnInit {
 
   // Check car wash duplicate
   checkCarwashDuplicate(carwash_id: string){
-    return this.carwashes.find(carwash => {
-      return carwash.id == carwash_id;
-    })
+    return this.carwashes.find(carwash)
   }
 
   // Get user
@@ -126,15 +124,13 @@ export class DashboardPage implements OnInit {
         responses.forEach(response => {
           id = response.payload.doc.id;
           temp_carwash = response.payload.doc.data();
-          if(this.checkCarwashDuplicate(id) == null){
-            this.carwashes.push({
-              id: id,
-              name: temp_carwash.name,
-              favorite: temp_carwash.favorite,
-              coordinates: temp_carwash.coordinates,
-              image: temp_carwash.image
-            });
-          }
+          this.carwashes.push({
+            id: id,
+            name: temp_carwash.name,
+            favorite: temp_carwash.favorite,
+            coordinates: temp_carwash.coordinates,
+            image: temp_carwash.image
+          });
         });
       }
     )
