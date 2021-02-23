@@ -12,7 +12,6 @@ export interface IProperty{
     address: [];
     images: [];
     price: number;
-    location:string;
     garages: number;
     bedrooms: number;
     bathrooms: number;
