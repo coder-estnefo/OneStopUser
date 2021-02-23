@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
 import { IWashType } from 'src/app/structures/interfaces';
 
+
 @Component({
   selector: 'app-prices',
   templateUrl: './prices.page.html',

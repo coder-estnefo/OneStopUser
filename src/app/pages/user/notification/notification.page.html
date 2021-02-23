@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>notification</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item>
+        <ion-label position="floating">user_ID</ion-label>
+        <ion-input [(ngModel)]="user_id"></ion-input>
+    </ion-item>
+
+    <ion-buttons>
+
+        <ion-button fill="outline" (click)="sendNotification()">Send Notification</ion-button>
+
+    </ion-buttons>
+
+</ion-content>

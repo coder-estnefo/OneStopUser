@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserService } from 'src/app/services/user/user.service';
 
-export interface IUser{
-  id: string;
-  name: string;
-  email: string;
-}
+
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
@@ -18,30 +16,18 @@ export class SettingsPage implements OnInit {
 
   spinner;
 
-  user: IUser;
+  user: any;
 
   constructor(
     private router: Router,
     private fireAuth: AngularFireAuth,
     private _authService: AuthService,
     private _userService: UserService,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit() {
-    this.fireAuth.onAuthStateChanged(user => {
-      if(user){
-        this.getUser(user.uid);
-      }
-    });
-  }
-
-  // Get user
-  getUser(user_id: string){
-    this._userService.getUser(user_id).subscribe(
-      response => {
-        this.user = response.payload.data() as IUser;
-      }
-    )
+    this.user = this.profileService;
   }
 
   // Logout

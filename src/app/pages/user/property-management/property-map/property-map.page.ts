@@ -78,7 +78,7 @@ export class PropertyMapPage implements OnInit {
           var _id,_name ,_img;
 
           this.properties.forEach(a => {
-            // console.log(a.location)
+            
             _address = "";
             a.address.forEach(b => {
               _address = _address + " " + b
@@ -245,7 +245,7 @@ export class PropertyMapPage implements OnInit {
             var feature = response.body.features[0];
 
             // Adding the marker to the Map
-            new mapboxgl.Marker(el)
+            new mapboxgl.Marker()
               .setLngLat(feature.center)
               .setPopup(new mapboxgl.Popup({
                 offset: 25

@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+ <ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-icon size="small" name="person-sharp">Name</ion-icon>
+        <ion-label position="fixed">Name</ion-label>
+        <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon size="small" name="mail-sharp">Email</ion-icon>
+        <ion-label position="fixed">Email</ion-label>
+        <ion-input type="string" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon size="small" name="call-sharp">Phone</ion-icon>
+        <ion-label position="fixed">Phone</ion-label>
+        <ion-input type="number" [(ngModel)]="user.phone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon size="small" name="home-sharp">Address</ion-icon>
+        <ion-label position="fixed">Address</ion-label>
+        <ion-input type="string" [(ngModel)]="user.address"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon size="small" name="male-female-sharp">Gender</ion-icon>
+        <ion-label position="fixed">Gender</ion-label>
+        <ion-input type="string" [(ngModel)]="user.gender"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon size="small" name="calendar-sharp">Age</ion-icon> 
+        <ion-label position="fixed">Age</ion-label>
+        <ion-input type="number" [(ngModel)]="user.age"></ion-input>
+      </ion-item>
+    </ion-list>
+
+      </ion-card>
+     </ion-col>
+     </ion-row>
+    </ion-grid>
+
+
+    <div>
+      <ion-item class="ion-float-right" lines="none">
+        <ion-button color="secondary" size="medium" shape ="round" style="float: right" class= "btn" (click)="goConfirm()">Confirm</ion-button>
+      </ion-item>
+  </div>
+
+</ion-content>
