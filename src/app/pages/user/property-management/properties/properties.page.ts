@@ -27,12 +27,6 @@ export class PropertiesPage implements OnInit {
   gotoMap(){
      this.router.navigate(['property-map'])
 
-    let arry1 = [28.218370, 28.212370, 28.215370];
-    let arry2 = [-25.731340, -25.735340, -25.737340];
-    let arry3 = ["Librito flets availeble", "D_head flets availeble", "vivis flets availeble"];
-    let mode="property"
-
-    this.userservice.setMapDetails(arry1,arry2,arry3,mode);
   }
   
   getProperties(){

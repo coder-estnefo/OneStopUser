@@ -46,8 +46,8 @@ export class PropertiesPage implements OnInit {
           this.properties.push({
             id: uid,
             name: property.name,
-            location: property.location,
-            image: property.image,
+            address: property.address,
+            images: property.images,
             price: property.price,
             garages: property.garages,
             bedrooms: property.bedrooms,

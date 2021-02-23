@@ -140,6 +140,14 @@ const routes: Routes = [
     path: 'service-details',
     loadChildren: () => import('./pages/user/cleaning-management/service-details/service-details.module').then( m => m.ServiceDetailsPageModule)
   },
+{
+    path: 'confirm',
+    loadChildren: () => import('./pages/user/confirm/confirm.module').then( m => m.ConfirmPageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./pages/user/notification/notification.module').then( m => m.NotificationPageModule)
+  },
 
 
 ];
