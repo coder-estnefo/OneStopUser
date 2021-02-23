@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OneSignal } from '@ionic-native/onesignal/ngx';
+// import { OneSignal } from '@ionic-native/onesignal/ngx';
 import firebase from 'firebase/app';
 
 @Component({
@@ -14,67 +14,68 @@ export class NotificationPage implements OnInit {
 
   user_id;
 
-  constructor(private oneSignal: OneSignal) { }
+  constructor(
+    // private oneSignal: OneSignal
+    ) { }
 
   ngOnInit() {
-
-    this.initApp()
+    // this.initApp()
   }
 
 
-  initApp() {
+  // initApp() {
 
-    alert("working");
-    this.oneSignal.setExternalUserId(this.userId);
+  //   alert("working");
+  //   this.oneSignal.setExternalUserId(this.userId);
 
-    this.oneSignal.startInit(this.app_id, '482944391704');
+  //   this.oneSignal.startInit(this.app_id, '482944391704');
 
-    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
+  //   this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
 
-    this.oneSignal.handleNotificationReceived().subscribe(data => {
+  //   this.oneSignal.handleNotificationReceived().subscribe(data => {
 
-      let msg = data.payload.body;
-      let title = data.payload.title;
+  //     let msg = data.payload.body;
+  //     let title = data.payload.title;
 
-      // alert(msg + title);
+  //     // alert(msg + title);
 
-      alert("received");
-    });
+  //     alert("received");
+  //   });
 
-    this.oneSignal.handleNotificationOpened().subscribe(data => {
-      let msg = data.notification.payload.body
-      // alert(msg)
-      alert("opened");
-    });
+  //   this.oneSignal.handleNotificationOpened().subscribe(data => {
+  //     let msg = data.notification.payload.body
+  //     // alert(msg)
+  //     alert("opened");
+  //   });
 
-    this.oneSignal.endInit();
+  //   this.oneSignal.endInit();
 
-  }
-
-
-  sendNotification(){
-
-    this.oneSignal.getIds().then(id=>{
-
-      let notificationObj = {
-        contents: {
-          en: "message body",
-        },
-        app_id: this.app_id,
-        include_player_ids: [this.user_id]
-      };
+  // }
 
 
-      this.oneSignal.postNotification(notificationObj).then((success) => {
-        // handle received here how you wish.
-         alert("message from "+this.userId+" to " + this.user_id)
-        // alert(JSON.stringify(success));
-      }).catch((error) => {
+  // sendNotification(){
 
-        alert(JSON.stringify(error));
-      })
-    })
-  }
+  //   this.oneSignal.getIds().then(id=>{
+
+  //     let notificationObj = {
+  //       contents: {
+  //         en: "message body",
+  //       },
+  //       app_id: this.app_id,
+  //       include_player_ids: [this.user_id]
+  //     };
+
+
+  //     this.oneSignal.postNotification(notificationObj).then((success) => {
+  //       // handle received here how you wish.
+  //        alert("message from "+this.userId+" to " + this.user_id)
+  //       // alert(JSON.stringify(success));
+  //     }).catch((error) => {
+
+  //       alert(JSON.stringify(error));
+  //     })
+  //   })
+  // }
 
 
 }
