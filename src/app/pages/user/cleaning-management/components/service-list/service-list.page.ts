@@ -6,7 +6,7 @@ import { ICarWash, ICleaning } from 'src/app/structures/interfaces';
 @Component({
   selector: 'app-service-list',
   templateUrl: './service-list.html',
-  styleUrls: ['./service-listscss'],
+  styleUrls: ['./service-lists.css'],
 })
 export class ServiceListPage implements OnInit {
 
