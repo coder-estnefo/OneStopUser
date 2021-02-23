@@ -78,7 +78,7 @@ export class PropertyMapPage implements OnInit {
           var _id,_name ,_img;
           
           this.properties.forEach(a => {
-           
+            
             _address = "";
             a.address.forEach(b => {
               _address = _address + " " + b
