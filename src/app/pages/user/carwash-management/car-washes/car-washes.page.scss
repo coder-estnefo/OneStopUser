@@ -1,5 +1,5 @@
 ion-item {
-    // --background: rgba(248, 248, 250, .96);
+    --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
     h2 {
         font-weight: bold;
         font-size: 18px;
@@ -8,7 +8,7 @@ ion-item {
 }
 
 ion-content {
-    // --background: #f8f8fa;
+    --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
 }
 
 ion-searchbar {
@@ -45,4 +45,4 @@ ion-badge {
     // border: 1px solid black;
     box-shadow: 0.1px 1px 3px 0px;
     z-index: 2;
-  }
+}

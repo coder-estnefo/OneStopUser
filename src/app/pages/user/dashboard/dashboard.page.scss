@@ -1,5 +1,13 @@
+ion-item {
+    --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
+}
+
+ion-content {
+    --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
+}
+
 h2 {
-    font-weight: bold;
+    font-weight: bolder;
     font-size: 22px;
 }
 
@@ -7,28 +15,27 @@ h2 {
     margin: 0;
     margin-right: 50px;
     width: 100%;
-    // box-shadow: none;
     border-radius: 20px;
     color: white;
     font-weight: bolder;
     height: 150px;
-    // opacity: 0.8;
 }
 
 .property-dashboard {
-    background-image: url(../../../../assets/images/property_dashboard.png);
+    // background-image:  linear-gradient(to right, rgba(255, 0, 0, 0), rgb(221, 202, 202)), url(../../../../assets/images/property_dashboard.png);
     // width: 100%;
     // opacity: 0.5;
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(221, 202, 202)), url(../../../../assets/images/property_dashboard.png);
 }
 
 .carwash-dashboard {
-    background-image: url(../../../../assets/images/car-dashboard.png);
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(221, 202, 202)), url(../../../../assets/images/car-dashboard.png);
     // width: 100%;
     // opacity: 0.5;
 }
 
 .cleaning-dashboard {
-    background-image: url(../../../../assets/images/cleaning-dashboard.jpg);
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(221, 202, 202)), url(../../../../assets/images/cleaning-dashboard.jpg);
     width: 100%;
     // opacity: 0.5;
 }
