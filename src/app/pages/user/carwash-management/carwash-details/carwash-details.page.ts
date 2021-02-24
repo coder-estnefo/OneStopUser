@@ -59,4 +59,8 @@ export class CarwashDetailsPage implements OnInit {
     )
   }
 
+  goToSetAppointment(){
+    this.router.navigate(['carwash-appointment'])
+  }
+
 }

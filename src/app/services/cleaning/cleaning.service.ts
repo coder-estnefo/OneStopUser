@@ -7,6 +7,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class CleaningService {
   getCleaning: any;
+  getEvent: any;
+  getCleaningById: any;
 
   constructor(
     private fireAuth: AngularFireAuth,
@@ -14,31 +16,31 @@ export class CleaningService {
   ) { }
 
   // Get cleaning
-  getCleaning_Services(){
-    return this.firestore.collection('Cleaning_services').snapshotChanges();
+  getEvents(){
+    return this.firestore.collection('events').snapshotChanges();
   }
 
   // Get Carwash by Id
-  getCleaningById(cleaning_id: string){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id).snapshotChanges();
+  getEventById(event_id: string){
+    return this.firestore.collection('events').doc(event_id).snapshotChanges();
   }
 
   // Set Car wash favorite
-  setFavorite(cleaning_id, favorite){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id).update({
+  setFavorite(event_id, favorite){
+    return this.firestore.collection('events').doc(event_id).update({
       favorite: favorite,
     });
   }
 
   // Get car wash prices
-  getCleaningServicePricesById(cleaning_id: string){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id)
+  getEventPricesById(event_id: string){
+    return this.firestore.collection('events').doc(event_id)
       .collection('Prices').snapshotChanges();
   }
 
   // Set appointment
-  bookSlot(cleaning_id, appointment){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id)
+  bookSlot(event_id, appointment){
+    return this.firestore.collection('event').doc(event_id)
       .collection('Appointments').add({
         name: appointment.name,
         phone: appointment.phone,
