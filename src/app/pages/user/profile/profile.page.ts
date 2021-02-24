@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { IUser } from '../dashboard/dashboard.page';
+
 import { AngularFireAuth } from '@angular/fire/auth';
+import { IUser } from 'src/app/structures/interfaces';
 
 @Component({
   selector: 'app-profile',
