@@ -51,4 +51,61 @@ export class PropertiesService {
         email: appointment.email  
       });
   }
+
+  //Chat
+  // startChat(chat) {
+  //   const { id, message, from, to, time, date } = chat;
+
+  //   return this.firestore.collection(`chats/${from}`).add({
+  //     id,
+  //     message,
+  //     from,
+  //     to,
+  //     time,
+  //     date,
+  //   }).then(()=> {
+  //     return this.firestore.collection(`chats/${from}`).add({
+  //       id,
+  //       message,
+  //       from,
+  //       to,
+  //       time,
+  //       date,
+  //     })
+  //   })
+  // }
+
+  //get chats
+  // getChats(userID) {
+  //   return this.firestore.collection(`chats/${userID}`).snapshotChanges();
+  // }
+
+  //Chat
+  startChat(chat) {
+    const { id, message, from, to, time, date } = chat;
+    const chatID = this.setChatID(from, to);
+
+    return this.firestore.collection('chats').add({
+      id,
+      message,
+      from,
+      to,
+      time,
+      date,
+      chatID,
+    });
+  }
+
+  //get chats
+  getChats(userID) {
+    return this.firestore.collection('chats').snapshotChanges();
+  }
+
+  setChatID(uid1, uid2) {
+    if (uid1 < uid2) {
+      return uid1 + uid2;
+    } else {
+      return uid2 + uid1;
+    }
+  }
 }

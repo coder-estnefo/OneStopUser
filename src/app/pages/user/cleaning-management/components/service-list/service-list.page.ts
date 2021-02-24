@@ -28,7 +28,7 @@ export class ServiceListPage implements OnInit {
   }
 
   setFavorite(cleaning_id: string, favorite: boolean){
-    let temp_cleaning;
+    let temp_cleaning: ICleaning;
     this._cleaningService.setFavorite(cleaning_id, !favorite).then(
       () => {
         temp_cleaning = this.getTempCleaningService(cleaning_id);

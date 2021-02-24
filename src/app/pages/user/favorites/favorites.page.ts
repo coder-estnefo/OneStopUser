@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
+import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
-import { ICarWash, IProperty } from 'src/app/structures/interfaces';
+import { ICarWash, ICleaning, IProperty } from 'src/app/structures/interfaces';
 
 @Component({
   selector: 'app-favorites',
@@ -12,8 +13,11 @@ export class FavoritesPage implements OnInit {
 
   carwashes: ICarWash[] = [];
   properties: IProperty[] = [];
+  cleaningServices: ICleaning[] = [];
+
   favoriteCarwashes: ICarWash[] = [];
   favoritesProperties: IProperty[] =[];
+  favoriteCleaningService: ICleaning[] = [];
 
   options = {
     centeredSlides: true,
@@ -23,7 +27,8 @@ export class FavoritesPage implements OnInit {
 
   constructor(
     private _carwashService: CarwashService,
-    private _propertyService: PropertiesService
+    private _propertyService: PropertiesService,
+    private _cleaningService: CleaningService
   ) { }
 
   ngOnInit() {
@@ -45,18 +50,11 @@ export class FavoritesPage implements OnInit {
     })
   }
 
-  // Find carwash from carwash array
-  getTempCarWash(carwash_id: string){
-    return this.carwashes.find(carwash => {
-      return carwash.id == carwash_id;
-    });
-  }
-
-  // Find property from properties array
-  getTempProperty(property_id: string){
-    return this.properties.find(property => {
-      return property.id == property_id;
-    });
+  // Check cleaning service duplicates
+  checkCleaningServiceDuplicates(cleaning_id: string){
+    return this.cleaningServices.find(cleaning => {
+      return cleaning.id == cleaning_id;
+    })
   }
 
   // Set favorite carwash
@@ -64,7 +62,7 @@ export class FavoritesPage implements OnInit {
     let temp_carwash: ICarWash;
     this._carwashService.setFavorite(carwash_id, !favorite).then(
       () => {
-        temp_carwash = this.getTempCarWash(carwash_id);
+        temp_carwash = this.checkCarwashDuplicate(carwash_id);
         temp_carwash.favorite = !favorite;
       }
     );
@@ -75,7 +73,7 @@ export class FavoritesPage implements OnInit {
     let temp_property: IProperty;
     this._propertyService.setFavoriteProperty(property_id, !favorite).then(
       () => {
-        temp_property = this.getTempProperty(property_id);
+        temp_property = this.checkPropertyDuplicate(property_id);
         temp_property.favorite = !favorite;
         this.getFavoriteProperties();
       }
@@ -97,6 +95,28 @@ export class FavoritesPage implements OnInit {
               favorite: carwash.favorite,
               coordinates: carwash.coordinates,
               image: carwash.image
+            });
+          }
+        });
+      }
+    )
+  }
+
+  // Get favourite cleaning services
+  getFavoriteCleaningServices(){
+    let id, cleaningService;
+    this._cleaningService.getCleaningServices().subscribe(
+      responses => {
+        responses.forEach(response => {
+          id = response.payload.doc.id;
+          cleaningService = response.payload.doc.data();
+          if(this.checkCleaningServiceDuplicates(id) == null){
+            this.cleaningServices.push({
+              id: id,
+              name: cleaningService.name,
+              favorite: cleaningService.favorite,
+              address: cleaningService.address,
+              images: cleaningService.images
             });
           }
         });

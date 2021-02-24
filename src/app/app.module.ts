@@ -12,6 +12,10 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+
+
 @NgModule({
   declarations: [AppComponent, MenuPage],
   entryComponents: [],
@@ -24,7 +28,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },OneSignal],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

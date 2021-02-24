@@ -26,7 +26,6 @@ export class PropertiesPage implements OnInit {
 
   gotoMap(){
      this.router.navigate(['property-map'])
-
   }
   
   getProperties(){

@@ -36,4 +36,10 @@ export class CleaningService {
     return this.firestore.collection('Cleaning_Services').doc(cleaning_id)
       .collection('Prices').snapshotChanges();
   }
+
+  // Get favourite car wash
+  getFavoriteCleaningServices(){
+    return this.firestore.collection('Cleaning_Services', ref => ref.where('favorite', '==', true))
+      .snapshotChanges();
+  }
 }
