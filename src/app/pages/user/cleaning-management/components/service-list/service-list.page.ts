@@ -28,16 +28,16 @@ export class ServiceListPage implements OnInit {
   }
 
   setFavorite(cleaning_id: string, favorite: boolean){
-    let temp_cleaning: ICarWash;
+    let temp_cleaning;
     this._cleaningService.setFavorite(cleaning_id, !favorite).then(
       () => {
-        temp_cleaning = this.getTempCleaning(cleaning_id);
+        temp_cleaning = this.getTempCleaningService(cleaning_id);
         temp_cleaning.favorite = !favorite;
       }
     );
   }
 
-  getTempCarWash(cleaning_id: string){
+  getTempCleaningService(cleaning_id: string){
     return this.cleaning_services.find(cleaning => {
       return cleaning.id == cleaning_id;
     });

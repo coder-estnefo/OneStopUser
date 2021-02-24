@@ -1,63 +1,70 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Edit Profile</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+
+    <ion-item lines="none" class="ion-item">
+
+        <ion-buttons slot="start">
+
+            <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+
+        </ion-buttons>
+
+        <ion-label class="ion-text-end">
+            <h2>Profile</h2>
+            <p>One Stop.</p>
+        </ion-label>
+
+
+    </ion-item>
+
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
- <ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-card>
-    <ion-list>
-      <ion-item>
-        <ion-icon size="small" name="person-sharp">Name</ion-icon>
-        <ion-label position="fixed">Name</ion-label>
-        <ion-input type="text" [(ngModel)]="user.name"></ion-input>
-      </ion-item>
+    <div class="ion-padding" *ngIf="user_details">
+        <div class="form-container" *ngIf="user_details">
 
-      <ion-item>
-        <ion-icon size="small" name="mail-sharp">Email</ion-icon>
-        <ion-label position="fixed">Email</ion-label>
-        <ion-input type="string" [(ngModel)]="user.email"></ion-input>
-      </ion-item>
+            <ion-item-divider lines="none">
+                Name
+            </ion-item-divider>
 
-      <ion-item>
-        <ion-icon size="small" name="call-sharp">Phone</ion-icon>
-        <ion-label position="fixed">Phone</ion-label>
-        <ion-input type="number" [(ngModel)]="user.phone"></ion-input>
-      </ion-item>
+            <ion-item lines="none">
+                <ion-icon name="person-outline" class="ion-padding"></ion-icon>
+                <ion-label>
+                    <p>{{user_details.name}}</p>
+                </ion-label>
+                <ion-note slot="end" color="">
+                    <a routerLink="">edit</a>
+                </ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon size="small" name="home-sharp">Address</ion-icon>
-        <ion-label position="fixed">Address</ion-label>
-        <ion-input type="string" [(ngModel)]="user.address"></ion-input>
-      </ion-item>
+            <ion-item-divider>
+                Email
+            </ion-item-divider>
 
-      <ion-item>
-        <ion-icon size="small" name="male-female-sharp">Gender</ion-icon>
-        <ion-label position="fixed">Gender</ion-label>
-        <ion-input type="string" [(ngModel)]="user.gender"></ion-input>
-      </ion-item>
+            <ion-item lines="none">
+                <ion-icon name="mail-outline" class="ion-padding"></ion-icon>
+                <ion-label>
+                    <p>{{user_details.email}}</p>
+                </ion-label>
+                <ion-note slot="end" color="">
+                    <a routerLink="">edit</a>
+                </ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon size="small" name="calendar-sharp">Age</ion-icon> 
-        <ion-label position="fixed">Age</ion-label>
-        <ion-input type="number" [(ngModel)]="user.age"></ion-input>
-      </ion-item>
-    </ion-list>
+            <ion-item-divider>
+                Phone
+            </ion-item-divider>
 
-      </ion-card>
-     </ion-col>
-     </ion-row>
-    </ion-grid>
+            <ion-item lines="none">
+                <ion-icon name="call-outline" class="ion-padding"></ion-icon>
+                <ion-label>
+                    <p>{{user_details.name}}</p>
+                </ion-label>
+                <ion-note slot="end" color="">
+                    <a routerLink="">edit</a>
+                </ion-note>
+            </ion-item>
 
-
-    <div>
-      <ion-item class="ion-float-right" lines="none">
-        <ion-button color="secondary" size="medium" shape ="round" style="float: right" class= "btn" (click)="goConfirm()">Confirm</ion-button>
-      </ion-item>
-  </div>
-
+        </div>
+    </div>
 </ion-content>

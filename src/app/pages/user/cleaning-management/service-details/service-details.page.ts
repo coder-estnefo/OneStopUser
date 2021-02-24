@@ -11,7 +11,7 @@ import { ICleaning } from 'src/app/structures/interfaces';
 export class ServiceDetailsPage implements OnInit {
   [x: string]: any;
 
-  cleaning: ICleaning;
+  cleaningService: ICleaning;
 
   options = {
     centeredSlides: true,
@@ -32,7 +32,7 @@ export class ServiceDetailsPage implements OnInit {
 
   ngOnInit() {
     const cleaning_id: string = this.activatedRoute.snapshot.paramMap.get('id');
-    this.getCleaningById(cleaning_id);
+    this.getCleaningServiceById(cleaning_id);
   }
 
   gotoBookSlot(){
@@ -43,18 +43,18 @@ export class ServiceDetailsPage implements OnInit {
     this.router.navigate(['prices'])
   }
 
-  getCarwashById(cleaning_id: string){
+  getCleaningServiceById(cleaning_id: string){
     let id, temp_cleaning;
-    this._cleaningService.getCleaningById(cleaning_id).subscribe(
+    this._cleaningService.getCleaningServiceById(cleaning_id).subscribe(
       response => {
         id = response.payload.id;
         temp_cleaning = response.payload.data();
-        this.cleaning = {
+        this.cleaningService = {
           id: id,
           name: temp_cleaning.name,
-          image: temp_cleaning.image,
+          images: temp_cleaning.images,
           favorite: temp_cleaning.favorite,
-          coordinates: temp_cleaning.coordinates
+          address: temp_cleaning.address
         }
       }
     )

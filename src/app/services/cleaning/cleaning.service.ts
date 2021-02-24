@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class CleaningService {
+
   getCleaning: any;
 
   constructor(
@@ -13,38 +14,26 @@ export class CleaningService {
     private firestore: AngularFirestore,
   ) { }
 
-  // Get cleaning
-  getCleaning_Services(){
-    return this.firestore.collection('Cleaning_services').snapshotChanges();
+  // Get cleaning services
+  getCleaningServices(){
+    return this.firestore.collection('Cleaning_Services').snapshotChanges();
   }
 
-  // Get Carwash by Id
-  getCleaningById(cleaning_id: string){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id).snapshotChanges();
+  // Get Cleaning service by Id
+  getCleaningServiceById(cleaning_id: string){
+    return this.firestore.collection('Cleaning_Services').doc(cleaning_id).snapshotChanges();
   }
 
-  // Set Car wash favorite
+  // Set favorite cleaning services
   setFavorite(cleaning_id, favorite){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id).update({
+    return this.firestore.collection('Cleaning_Services').doc(cleaning_id).update({
       favorite: favorite,
     });
   }
 
-  // Get car wash prices
+  // Get Cleaning service prices
   getCleaningServicePricesById(cleaning_id: string){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id)
+    return this.firestore.collection('Cleaning_Services').doc(cleaning_id)
       .collection('Prices').snapshotChanges();
-  }
-
-  // Set appointment
-  bookSlot(cleaning_id, appointment){
-    return this.firestore.collection('Cleaning_services').doc(cleaning_id)
-      .collection('Appointments').add({
-        name: appointment.name,
-        phone: appointment.phone,
-        date: appointment.date,
-        time: appointment.time,
-        email: appointment.email  
-      });
   }
 }
