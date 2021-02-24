@@ -23,20 +23,28 @@ export class CleaningServicesPage implements OnInit {
     this.getCleaningServices();
   }
 
+  getTempService(service_id: string){
+    return this.cleaning_services.find(service => {
+      return service.id == service_id;
+    })
+  }
+
   getCleaningServices(){
     let id, cleaning;
-    this._cleaningService.getCleaning().subscribe(
+    this._cleaningService.getCleaningServices().subscribe(
       responses => {
         responses.forEach(response => {
           id = response.payload.doc.id;
           cleaning = response.payload.doc.data();
-          this.cleaning_services.push({
-            id: id,
-            name: cleaning.name,
-            favorite: cleaning.favorite,
-            coordinates: cleaning.coordinates,
-            image: cleaning.image
-          });
+          if(this.getTempService(id) == null){
+            this.cleaning_services.push({
+              id: id,
+              name: cleaning.name,
+              favorite: cleaning.favorite,
+              address: cleaning.address,
+              images: cleaning.images
+            });
+          }
         });
       }
     )
@@ -49,8 +57,8 @@ export class CleaningServicesPage implements OnInit {
     let arry2 = [-25.731340, -25.735340, -25.737340];
     let arry3 = ["ALdophus cleaning services", "Expert cleaning services", "Megical Hands cleaning"];
     let mode="cleaning-services"
-    
-    
+
+
 
     this.userservice.setMapDetails(arry1,arry2,arry3,mode);
 

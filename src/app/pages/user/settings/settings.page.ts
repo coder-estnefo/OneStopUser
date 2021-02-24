@@ -28,6 +28,7 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.user = this.profileService;
+    console.log(this.user);
   }
 
   // Logout
