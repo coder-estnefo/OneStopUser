@@ -126,6 +126,20 @@ const routes: Routes = [
     path: 'searched-property',
     loadChildren: () => import('./pages/user/property-management/searched-property/searched-property.module').then( m => m.SearchedPropertyPageModule)
   },
+  {
+    path: 'cleaning-services',
+    loadChildren: () => import('./pages/user/cleaning-management/cleaning-services/cleaning-services.module').then( m => m.CleaningServicesPageModule)
+  },
+  
+
+  {
+    path: 'service-list',
+    loadChildren: () => import('./pages/user/cleaning-management/components/service-list/service-list.module').then( m => m.ServiceListPageModule)
+  },
+  {
+    path: 'service-details',
+    loadChildren: () => import('./pages/user/cleaning-management/service-details/service-details.module').then( m => m.ServiceDetailsPageModule)
+  },
 {
     path: 'confirm',
     loadChildren: () => import('./pages/user/confirm/confirm.module').then( m => m.ConfirmPageModule)
@@ -134,15 +148,6 @@ const routes: Routes = [
     path: 'notification',
     loadChildren: () => import('./pages/user/notification/notification.module').then( m => m.NotificationPageModule)
   },
-  {
-    path: 'carwash-appointment/:id',
-    loadChildren: () => import('./pages/user/carwash-management/carwash-appointment/carwash-appointment.module').then( m => m.CarwashAppointmentPageModule)
-  },
-  {
-    path: 'messages',
-    loadChildren: () => import('./pages/user/messages/messages.module').then( m => m.MessagesPageModule)
-  },
-
 
 
 ];
