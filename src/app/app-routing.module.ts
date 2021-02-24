@@ -148,6 +148,11 @@ const routes: Routes = [
     path: 'notification',
     loadChildren: () => import('./pages/user/notification/notification.module').then( m => m.NotificationPageModule)
   },
+  {
+    path: 'carwash-appointment/:id',
+    loadChildren: () => import('./pages/user/carwash-management/carwash-appointment/carwash-appointment.module').then( m => m.CarwashAppointmentPageModule)
+  },
+
 
 
 ];
