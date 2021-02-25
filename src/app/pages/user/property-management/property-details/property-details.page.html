@@ -88,8 +88,17 @@
                                     </ion-label>
                                 </ion-col>
                                 <ion-col size="8" class="ion-text-right">
-                                    <ion-label *ngFor="let address of property.address">
-                                        {{address}}
+                                    <ion-label>
+                                        {{property.address.streetAddress}}
+                                    </ion-label>
+                                    <ion-label>
+                                        {{property.address.suburb}}
+                                    </ion-label>
+                                    <ion-label>
+                                        {{property.address.province}}
+                                    </ion-label>
+                                    <ion-label>
+                                        {{property.address.areaCode}}
                                     </ion-label>
                                 </ion-col>
                             </ion-row>

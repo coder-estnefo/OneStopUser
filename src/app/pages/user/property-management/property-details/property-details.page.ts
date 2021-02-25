@@ -51,7 +51,7 @@ export class PropertyDetailsPage implements OnInit {
         temp_property = {
             id: id,
             name: property.name,
-            address: property.location,
+            address: property.address,
             images: property.images,
             price: property.price,
             garages: property.garages,
