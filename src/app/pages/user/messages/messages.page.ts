@@ -8,7 +8,7 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
   styleUrls: ['./messages.page.scss'],
 })
 export class MessagesPage implements OnInit {
-userID;
+  userID;
   propID;
   sendTo;
   chats = [];

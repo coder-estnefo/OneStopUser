@@ -78,7 +78,7 @@ export class PropertyDetailsPage implements OnInit {
     const chat = { id, message, from, to, time, date };
 
     this._propertyService.startChat(chat).then(()=>{
-      this.router.navigate(['/tabs/chats']);
+      this.router.navigate(['/tabs-pages/tabs/chats']);
     })
   }
 

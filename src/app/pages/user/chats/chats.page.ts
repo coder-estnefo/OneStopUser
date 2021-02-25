@@ -35,6 +35,9 @@ userID;
           ...(chats.payload.doc.data() as Object),
         };
       });
+
+      const temp_chats = this.propertyChats.sort((a, b) => b.date - a.date);
+      this.propertyChats = temp_chats;
     });
   }
 
