@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router, ParamMap} from '@angular/router';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { IProperty } from 'src/app/structures/interfaces';
 
 @Component({
@@ -12,6 +13,7 @@ import { IProperty } from 'src/app/structures/interfaces';
 export class PropertyDetailsPage implements OnInit {
 
   userID;
+  userDetails;
   property: IProperty;
 
   options = {
@@ -23,12 +25,16 @@ export class PropertyDetailsPage implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private _propertyService: PropertiesService,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
      this.auth.authState.subscribe((user) => {
       this.userID = user.uid;
+      this.userService.getUser(this.userID).subscribe((user)=> {
+        this.userDetails = user.payload.data();
+      })
     });
 
     const property_id: string = this.activatedRoute.snapshot.paramMap.get('id');
@@ -69,13 +75,14 @@ export class PropertyDetailsPage implements OnInit {
     )
   }
 
-  startChat(id, ownerID) {
+  startChat(id, ownerID, address) {
     const from = this.userID;
     const to = ownerID;
-    const message = 'I am interested in this property: ';
+    const message = 'I am interested in this property: '+ address.streetAddress;
     const date = new Date();
     const time = date.getHours() + ':' + date.getMinutes();
-    const chat = { id, message, from, to, time, date };
+    const senderName = this.userDetails.name;
+    const chat = { id, message, from, to, time, date , senderName};
 
     this._propertyService.startChat(chat).then(()=>{
       this.router.navigate(['/tabs-pages/tabs/chats']);

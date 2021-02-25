@@ -9,7 +9,7 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
   styleUrls: ['./chats.page.scss'],
 })
 export class ChatsPage implements OnInit {
-userID;
+  userID;
   propertyChats = [];
 
   constructor(
@@ -44,7 +44,7 @@ userID;
   toMessages(chat) {
     const { id, to, from } = chat;
     this.router.navigate(['messages'], {
-      queryParams: { propertyID: id, userID: to, sendTo: from },
+      queryParams: { propertyID: id, userID: from, sendTo: to },
     });
   }
 
