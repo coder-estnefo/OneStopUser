@@ -158,6 +158,10 @@ const routes: Routes = [
     path: 'carwash-appointment/:id',
     loadChildren: () => import('./pages/user/carwash-management/carwash-appointment/carwash-appointment.module').then( m => m.CarwashAppointmentPageModule)
   },
+  {
+    path: 'messages',
+    loadChildren: () => import('./pages/user/messages/messages.module').then( m => m.MessagesPageModule)
+  },
 
 
 
