@@ -1,4 +1,4 @@
-// Co-Ordinates interface
+// Co-ordinates interface
 export interface ICoordinates{
     latitude: string;
     longitude: string;
@@ -19,6 +19,7 @@ export interface IProperty{
     features: [];
     favorite: boolean;
 }
+
 // Car Wash Interface
 export interface ICarWash{
     id: string;
@@ -27,24 +28,34 @@ export interface ICarWash{
     coordinates: ICoordinates;
     image: string;
 }
+
 // Appointment interface
 export interface IAppointment{
     id: string;
     date: string;
 }
 
+// Cleaning service interface
 export interface ICleaning{
     id: string;
     name: string;
     favorite: boolean;
-    coordinates: ICoordinates;
-    image: string;
+    address: [];
+    images: string;
 }
 
+// Wash type interface
 export interface IWashType{
   id: string;
   name: string;
   image: string;
   price: number;
   description: string;
+}
+
+// User interface
+export interface IUser{
+  id: string;
+  name: string;
+  email: string;
 }

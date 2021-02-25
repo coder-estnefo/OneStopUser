@@ -25,20 +25,20 @@
     </div>
 
 
-    <ion-list>
-        <ion-item-group>
-            <ion-item button *ngFor="let chat of propertyChats" (click)="toMessages(chat)">
-                <ion-avatar slot="start" shape="round">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" alt="" />
-                </ion-avatar>
-                <ion-label>
-                    <h3>Itumeleng Tshabalala</h3>
-                    <p>{{chat.message}}</p>
-                </ion-label>
-                <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>
-            </ion-item>
-        </ion-item-group>
-    </ion-list>
+    <!-- <ion-list> -->
+    <ion-item-group>
+        <ion-item button *ngFor="let chat of propertyChats" (click)="toMessages(chat)">
+            <ion-avatar slot="start" shape="round">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" alt="" />
+            </ion-avatar>
+            <ion-label>
+                <h3>Itumeleng </h3>
+                <p>{{chat.message}}</p>
+            </ion-label>
+            <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>
+        </ion-item>
+    </ion-item-group>
+    <!-- </ion-list> -->
 
     <!-- <ion-list>
         <ion-item-group> -->
@@ -48,7 +48,7 @@
         </ion-avatar>
         <ion-col size="9">
             <ion-label class="ion-text-">
-                <h3>Itumeleng Tshabalala</h3>
+                <h3>Itumeleng </h3>
                 <p>Lorem opsum upem lorme opsem lorem opsem</p>
             </ion-label>
         </ion-col>

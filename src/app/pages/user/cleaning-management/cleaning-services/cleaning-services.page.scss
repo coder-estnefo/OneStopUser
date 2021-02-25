@@ -1,22 +1,10 @@
-ion-content {
-    --background: url("/assets/images/back.jpg") no-repeat center/cover fixed;
-}
-
-.ion-item {
+ion-item {
     --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
     h2 {
         font-weight: bold;
         font-size: 18px;
         padding-top: 8px;
     }
-}
-
-a {
-    text-decoration: none;
-}
-
-.item {
-    --background: transparent;
 }
 
 ion-content {
@@ -44,10 +32,6 @@ ion-searchbar {
 ion-badge {
     padding: 10px;
     font-size: 14px;
-}
-
-.form-container {
-    margin-top: 80px;
 }
 
 .seachbar {

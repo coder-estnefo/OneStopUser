@@ -27,7 +27,7 @@
 //   }
 
 
-//   
+//
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
@@ -60,8 +60,8 @@ export class EventDetailsPage implements OnInit {
 
 
   ngOnInit() {
-    const event_id: string = this.activatedRoute.snapshot.paramMap.get('id');
-    this.getEventById(event_id);
+    // const event_id: string = this.activatedRoute.snapshot.paramMap.get('id');
+    // this.getEventById(event_id);
   }
 
   gotoBookSlot(){
@@ -72,22 +72,22 @@ export class EventDetailsPage implements OnInit {
     this.router.navigate(['prices'])
   }
 
-  getEventById(event_id: string){
-    let id, temp_event;
-    this._cleaningService.getEventById(event_id).subscribe(
-      response => {
-        id = response.payload.id;
-        temp_event = response.payload.data();
-        this.event = {
-          id: id,
-          name: temp_event.name,
-          image: temp_event.image,
-          favorite: temp_event.favorite,
-          coordinates: temp_event.coordinates
-        }
-      }
-    )
-  }
+  // getEventById(event_id: string){
+  //   let id, temp_event;
+  //   this._cleaningService.getEventById(event_id).subscribe(
+  //     response => {
+  //       id = response.payload.id;
+  //       temp_event = response.payload.data();
+  //       this.event = {
+  //         id: id,
+  //         name: temp_event.name,
+  //         image: temp_event.image,
+  //         favorite: temp_event.favorite,
+  //         coordinates: temp_event.coordinates
+  //       }
+  //     }
+  //   )
+  // }
 
 }
 

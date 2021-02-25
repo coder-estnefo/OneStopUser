@@ -29,6 +29,12 @@ export class CarwashService {
     });
   }
 
+  // get favorite carwash
+  getFavoriteCarWash(){
+    return this.firestore.collection('Carwashes', ref => ref.where('favorite', '==', true))
+      .snapshotChanges();
+  }
+
   // Get car wash prices
   getCarwashPricesById(carwash_id: string){
     return this.firestore.collection('Carwashes').doc(carwash_id)
@@ -49,7 +55,7 @@ export class CarwashService {
         phone: appointment.phone,
         date: appointment.date,
         time: appointment.time,
-        email: appointment.email  
+        email: appointment.email
       });
   }
 }

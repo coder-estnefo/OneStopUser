@@ -43,7 +43,7 @@ export class CarWashesPage implements OnInit {
   }
 
   gotoMap(){
-     this.router.navigate(['property-map'])
+     this.router.navigate(['carwash-map'])
   }
 
 }

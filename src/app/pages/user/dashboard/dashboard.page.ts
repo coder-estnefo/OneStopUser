@@ -1,17 +1,17 @@
-import { PropertiesPage } from './../../../../../.history/src/app/pages/user/property-management/properties/properties.page_20210220114955';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { CarwashService } from 'src/app/services/carwash/carwash.service';
-import { PropertiesService } from 'src/app/services/properties/properties.service';
-import { UserService } from 'src/app/services/user/user.service';
-import { ICarWash, IProperty } from 'src/app/structures/interfaces';
 
-export interface IUser{
-  id: string;
-  name: string;
-  email: string;
-}
+// Interfaces
+import { ICarWash, ICleaning, IProperty, IUser } from 'src/app/structures/interfaces';
+
+// Services
+import { UserService } from 'src/app/services/user/user.service';
+import { CarwashService } from 'src/app/services/carwash/carwash.service';
+import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
+import { PropertiesService } from 'src/app/services/properties/properties.service';
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -19,10 +19,14 @@ export interface IUser{
 })
 export class DashboardPage implements OnInit {
 
-  user;
-  
+
+  user: IUser;
   carwashes: ICarWash[] = [];
+  totalCarWashes: number = 0;
+  totalProperties: number = 0;
   properties: IProperty[] = [];
+  totalCleaningServices: number = 0;
+  cleaning_services: ICleaning[] = [];
 
   options = {
     centeredSlides: true,
@@ -35,22 +39,24 @@ export class DashboardPage implements OnInit {
     private fireAuth: AngularFireAuth,
     private _userService: UserService,
     private _carwashService: CarwashService,
-    private _propertyService: PropertiesService
+    private _cleaningService: CleaningService,
+    private _propertyService: PropertiesService,
   ) { }
 
   ngOnInit() {
+    this.getTotalCarwashes();
+    this.getTotalProperties();
+    this.getTotalCleaningServices();
+
     this.fireAuth.onAuthStateChanged(user => {
       if(user){
         this.getUser(user.uid);
       }
     });
-
-    this.getCarWashes();
-    this.getProperties();
   }
 
-  gotoEvents(){
-    this.router.navigateByUrl('events');
+  gotoCleaningServices(){
+    this.router.navigateByUrl('cleaning-services');
   }
 
   gotoProperties(){
@@ -61,17 +67,12 @@ export class DashboardPage implements OnInit {
     this.router.navigateByUrl('car-washes');
   }
 
-   getTempCarWash(carwash_id: string){
-    return this.carwashes.find(carwash => {
-      return carwash.id == carwash_id;
-    });
+  // Check cleaning service duplicates
+  checkCleaningServiceDuplicates(cleaning_id: string){
+    return this.cleaning_services.find(cleaning => {
+      return cleaning.id == cleaning_id;
+    })
   }
-
-  getTempProperty(property_id: string){
-    return this.properties.find(property => {
-      return property.id == property_id;
-    });
-  } 
 
   // Check property duplicates
   checkPropertyDuplicate(property_id: string){
@@ -96,12 +97,39 @@ export class DashboardPage implements OnInit {
     )
   }
 
+  // Get total properties
+  getTotalProperties(){
+    this._propertyService.getProperties().subscribe(
+      responses => {
+        this.totalProperties = responses.length;
+      }
+    );
+  }
+
+  // Get total Carwashes
+  getTotalCarwashes(){
+    this._carwashService.getCarwashes().subscribe(
+      responses => {
+        this.totalCarWashes = responses.length;
+      }
+    )
+  }
+
+  // Get total cleaning services
+  getTotalCleaningServices(){
+    this._cleaningService.getCleaningServices().subscribe(
+      responses => {
+        this.totalCleaningServices = responses.length;
+      }
+    )
+  }
+
   // Set favorite property
   setFavoriteProperty(property_id: string, favorite: boolean){
     let temp_property: IProperty;
     this._propertyService.setFavoriteProperty(property_id, !favorite).then(
       () => {
-        temp_property = this.getTempProperty(property_id);
+        temp_property = this.checkPropertyDuplicate(property_id);
         temp_property.favorite = !favorite;
       }
     )
@@ -112,10 +140,43 @@ export class DashboardPage implements OnInit {
     let temp_carwash: ICarWash;
     this._carwashService.setFavorite(carwash_id, !favorite).then(
       () => {
-        temp_carwash = this.getTempCarWash(carwash_id);
+        temp_carwash = this.checkCarwashDuplicate(carwash_id);
         temp_carwash.favorite = !favorite;
       }
     );
+  }
+
+  // Set favorite cleaning services
+  setFavoriteCleaningService(cleaning_service_id: string, favorite: boolean){
+    let temp_cleaning_service: ICleaning;
+    this._cleaningService.setFavorite(cleaning_service_id, favorite).then(
+      () => {
+        temp_cleaning_service = this.checkCleaningServiceDuplicates(cleaning_service_id);
+        temp_cleaning_service.favorite = !favorite;
+      }
+    );
+  }
+
+  // Get cleaning services
+  getCleaningServices(){
+    let id, cleaning;
+    this._cleaningService.getCleaningServices().subscribe(
+      responses => {
+        responses.forEach(response => {
+          id = response.payload.doc.id;
+          cleaning = response.payload.doc.data();
+          if(this.checkCleaningServiceDuplicates(id) == null){
+            this.cleaning_services.push({
+              id: id,
+              name: cleaning.name,
+              favorite: cleaning.favorite,
+              address: cleaning.address,
+              images: cleaning.images
+            });
+          }
+        });
+      }
+    )
   }
 
   // Get car washes
@@ -148,7 +209,6 @@ export class DashboardPage implements OnInit {
         responses.forEach(response => {
           uid = response.payload.doc.id;
           property = response.payload.doc.data();
-
           if(this.checkPropertyDuplicate(uid) == null){
             this.properties.push({
               id: uid,
@@ -170,5 +230,5 @@ export class DashboardPage implements OnInit {
     )
   }
 
-  
+
 }
