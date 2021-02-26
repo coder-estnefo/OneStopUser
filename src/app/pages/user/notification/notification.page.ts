@@ -26,6 +26,8 @@ export class NotificationPage implements OnInit {
   initApp() {
 
     alert("working");
+
+    // initiate player Id
     this.oneSignal.setExternalUserId(this.userId);
 
     this.oneSignal.startInit(this.app_id, '482944391704');
@@ -55,7 +57,14 @@ export class NotificationPage implements OnInit {
 
   sendNotification(){
 
+
+    //gets the current player ID    (id.userId)
     this.oneSignal.getIds().then(id=>{
+
+      /*
+      please add id.userId to firebase. it is the player_Id
+       
+      */
 
       let notificationObj = {
         contents: {
@@ -63,10 +72,12 @@ export class NotificationPage implements OnInit {
         },
         app_id: this.app_id,
         external_user_id: this.userId,
+        //sets the target user
         include_player_ids: [this.user_id],
-        id
+        
       };
 
+      //sends the notification
 
       this.oneSignal.postNotification(notificationObj).then((success) => {
         // handle received here how you wish.
@@ -77,6 +88,7 @@ export class NotificationPage implements OnInit {
         alert(JSON.stringify(error));
       })
     })
+
   }
 
 
