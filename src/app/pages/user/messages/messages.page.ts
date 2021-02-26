@@ -36,8 +36,16 @@ export class MessagesPage implements OnInit {
       });
        this.chats = this.chats.filter((chat) => {
         return (
-          (chat.from === this.userID && chat.to === this.sendTo) ||
-          (chat.from === this.sendTo && chat.to === this.userID)
+          (
+            chat.from === this.userID && 
+            chat.to === this.sendTo &&
+            chat.id === this.propID
+          ) ||
+          (
+            chat.from === this.sendTo && 
+            chat.to === this.userID &&
+            chat.id === this.propID 
+          )
         )
       });
 
