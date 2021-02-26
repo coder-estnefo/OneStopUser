@@ -8,7 +8,7 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
   styleUrls: ['./messages.page.scss'],
 })
 export class MessagesPage implements OnInit {
-userID;
+  userID;
   propID;
   sendTo;
   chats = [];
@@ -36,8 +36,16 @@ userID;
       });
        this.chats = this.chats.filter((chat) => {
         return (
-          (chat.from === this.userID && chat.to === this.sendTo) ||
-          (chat.from === this.sendTo && chat.to === this.userID)
+          (
+            chat.from === this.userID && 
+            chat.to === this.sendTo &&
+            chat.id === this.propID
+          ) ||
+          (
+            chat.from === this.sendTo && 
+            chat.to === this.userID &&
+            chat.id === this.propID 
+          )
         )
       });
 
