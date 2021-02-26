@@ -57,7 +57,7 @@ export class PropertyDetailsPage implements OnInit {
         temp_property = {
             id: id,
             name: property.name,
-            address: property.address,
+            address: property.location,
             images: property.images,
             price: property.price,
             garages: property.garages,
@@ -75,10 +75,10 @@ export class PropertyDetailsPage implements OnInit {
     )
   }
 
-  startChat(id, ownerID, address) {
+  startChat(id, ownerID, propertyName) {
     const from = this.userID;
     const to = ownerID;
-    const message = 'I am interested in this property: '+ address.streetAddress;
+    const message = 'I am interested in this property: '+ propertyName;
     const date = new Date();
     const time = date.getHours() + ':' + date.getMinutes();
     const senderName = this.userDetails.name;
