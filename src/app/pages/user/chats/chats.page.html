@@ -25,24 +25,24 @@
     </div>
 
 
-    <!-- <ion-list> -->
+    <ion-list>
     <ion-item-group>
         <ion-item button *ngFor="let chat of propertyChats" (click)="toMessages(chat)">
             <ion-avatar slot="start" shape="round">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" alt="" />
             </ion-avatar>
             <ion-label>
-                <h3>Itumeleng </h3>
+                <!-- <h3>Itumeleng </h3> -->
                 <p>{{chat.message}}</p>
             </ion-label>
             <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>
         </ion-item>
     </ion-item-group>
-    <!-- </ion-list> -->
+    </ion-list>
 
     <!-- <ion-list>
         <ion-item-group> -->
-    <ion-item button *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+    <!-- <ion-item button *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
         <ion-avatar slot="start" shape="round">
             <img src="../../../../assets/images/user.png" alt="">
         </ion-avatar>
@@ -58,7 +58,7 @@
                 <ion-badge class="time" shape="round">2</ion-badge>
             </ion-label>
         </ion-col>
-    </ion-item>
+    </ion-item> -->
     <!-- </ion-item-group>
     </ion-list> -->
 
