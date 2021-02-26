@@ -59,7 +59,7 @@ export class NotificationPage implements OnInit {
 
 
     //gets the current player ID    (id.userId)
-    this.oneSignal.getIds().then(id=>{
+    this.oneSignal.getIds().then( /*use this id.userId for user id  */  id=>{
 
       /*
       please add id.userId to firebase. it is the player_Id
