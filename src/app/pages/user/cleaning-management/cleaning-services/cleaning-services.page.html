@@ -21,7 +21,7 @@
 
 <ion-content [fullscreen]="true">
     <div class="ion-padding ion-margin-bottom wrapper">
-        <div class="seachbar ">
+        <div (click)="gotoMap()" class="seachbar ">
             <ion-input clearInput type="text" placeholder="Search Location">
                 <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
                 </ion-icon>
