@@ -63,7 +63,7 @@ export class NotificationPage implements OnInit {
 
       /*
       please add id.userId to firebase. it is the player_Id
-       
+
       */
 
       let notificationObj = {
@@ -74,7 +74,7 @@ export class NotificationPage implements OnInit {
         external_user_id: this.userId,
         //sets the target user
         include_player_ids: [this.user_id],
-        
+
       };
 
       //sends the notification

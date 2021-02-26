@@ -25,11 +25,12 @@ export class UserService {
   }
 
   // Add user
-  addUser(id: string, user): void {
+  addUser(id: string, user, chatId): void {
     const customer = {
       id,
       name: user.name,
-      email: user.email
+      email: user.email,
+      chat_id: chatId
     };
     this.firestore.collection('Users').doc(id).set(customer);
   }

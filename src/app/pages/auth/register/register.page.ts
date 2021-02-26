@@ -43,7 +43,7 @@ export class RegisterPage implements OnInit {
 
 		password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
 
-		});	
+		});
 	}
 
 	validateAllFormFields(formGroup: FormGroup) {
@@ -59,11 +59,12 @@ export class RegisterPage implements OnInit {
 
 	SingUpWithEmailAndPassword(){
 		this.spinner = true;
+    let chatId = "";
 		this.validateAllFormFields(this.register_form);
 		this._authService.signUpEmail(this.register_form.value.email, this.register_form.value.password)
 			.then(
 				response =>{
-					this._userservice.addUser(response.user.uid, this.register_form.value);
+					this._userservice.addUser(response.user.uid, this.register_form.value, chatId);
 					this.spinner = false;
 					this.router.navigateByUrl('login');
 				}
