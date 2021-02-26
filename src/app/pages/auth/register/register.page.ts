@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -13,12 +15,15 @@ export class RegisterPage implements OnInit {
 
   spinner: boolean = false;
 	register_form: FormGroup;
+	app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
+	player_id=''
 
 	constructor(
 		private router: Router,
 		private formBuilder: FormBuilder,
 		private _authService: AuthService,
-		private _userservice: UserService
+		private _userservice: UserService,
+		private oneSignal: OneSignal
 	) { }
 
 	ngOnInit() {
@@ -59,7 +64,7 @@ export class RegisterPage implements OnInit {
 
 	SingUpWithEmailAndPassword(){
 		this.spinner = true;
-    let chatId = "";
+        let chatId = this.player_id;
 		this.validateAllFormFields(this.register_form);
 		this._authService.signUpEmail(this.register_form.value.email, this.register_form.value.password)
 			.then(
@@ -70,4 +75,40 @@ export class RegisterPage implements OnInit {
 				}
 		);
 	}
+
+
+initApp() {
+
+
+    // initiate player Id
+    // this.oneSignal.setExternalUserId(this.userId);
+
+    this.oneSignal.startInit(this.app_id, '482944391704');
+
+	this.oneSignal.getIds().then(id=>{
+      this.player_id=id.userId
+	});
+
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
+
+    this.oneSignal.handleNotificationReceived().subscribe(data => {
+
+      let msg = data.payload.body;
+      let title = data.payload.title;
+
+      // alert(msg + title);
+
+      alert("received");
+    });
+
+    this.oneSignal.handleNotificationOpened().subscribe(data => {
+      let msg = data.notification.payload.body
+      // alert(msg)
+      alert("opened");
+    });
+
+    this.oneSignal.endInit();
+
+  }
+
 }
