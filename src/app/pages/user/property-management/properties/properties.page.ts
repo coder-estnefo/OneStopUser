@@ -14,6 +14,8 @@ export class PropertiesPage implements OnInit {
 
   properties: IProperty[] = [];
 
+  
+
   constructor(
     private router:Router, 
     private userservice:UserService,
@@ -51,7 +53,10 @@ export class PropertiesPage implements OnInit {
           });
         });
       }
-    );
+    );    
   }
+
+
+
 
 }

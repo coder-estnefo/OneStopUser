@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import firebase from 'firebase/app';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-notification',
@@ -11,15 +12,18 @@ export class NotificationPage implements OnInit {
 
   userId = firebase.auth().currentUser.uid;
   app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
-
+   messageId=""
   user_id;
 
   constructor(
-    private oneSignal: OneSignal
-    ) { }
+    private oneSignal: OneSignal,
+    private _userService:UserService
+  ) { }
 
   ngOnInit() {
-    this.initApp()
+
+    // this.initApp()
+
   }
 
 
@@ -56,15 +60,26 @@ export class NotificationPage implements OnInit {
 
 
   sendNotification(){
-
-
     //gets the current player ID    (id.userId)
-    this.oneSignal.getIds().then( /*use this id.userId for user id  */  id=>{
+     let id 
+     let userData 
+     
+     let temp=[] 
+    this._userService.getUser(this.userId ).subscribe(user=>{
 
-      /*
-      please add id.userId to firebase. it is the player_Id
+      id = user.payload.id;
+      userData = user.payload.data();
+       temp.push(userData)
 
-      */
+       temp.forEach(a => {
+        //  console.log(a)
+         alert(a.chat_id)
+         this.messageId=a.chat_id
+         
+      });
+
+      console.log(this.messageId)
+
 
       let notificationObj = {
         contents: {
@@ -72,12 +87,8 @@ export class NotificationPage implements OnInit {
         },
         app_id: this.app_id,
         external_user_id: this.userId,
-        //sets the target user
-        include_player_ids: [this.user_id],
-
+        include_player_ids: [this.messageId],
       };
-
-      //sends the notification
 
       this.oneSignal.postNotification(notificationObj).then((success) => {
         // handle received here how you wish.
@@ -87,9 +98,11 @@ export class NotificationPage implements OnInit {
 
         alert(JSON.stringify(error));
       })
+
+
+      
     })
-
+    
   }
-
 
 }
