@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+import firebase from 'firebase/app';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-messages',
@@ -8,6 +11,14 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
   styleUrls: ['./messages.page.scss'],
 })
 export class MessagesPage implements OnInit {
+/********************* */
+userId = firebase.auth().currentUser.uid;
+app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
+ messageId=""
+user_id;
+/******************* */
+
+
   userID;
   propID;
   sendTo;
@@ -17,7 +28,9 @@ export class MessagesPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private propertiesService: PropertiesService
+    private propertiesService: PropertiesService,
+    private oneSignal: OneSignal,
+    private _userService:UserService
   ) {}
 
   ngOnInit() {
@@ -71,5 +84,55 @@ export class MessagesPage implements OnInit {
       });
     }
   }
+
+
+  sendNotification(){
+    
+     let id 
+     let userData   
+     let temp=[] 
+    this._userService.getUser("please enter the Id of the ownr  firebase id" ).subscribe(user=>{
+
+      id = user.payload.id;
+      userData = user.payload.data();
+       temp.push(userData)
+
+       temp.forEach(a => {
+        //  console.log(a)
+         alert(a.chat_id)
+         this.messageId=a.chat_id
+         
+      });
+
+      console.log(this.messageId)
+
+
+      let notificationObj = {
+        contents: {
+          en: "message body",
+        },
+        app_id: this.app_id,
+        external_user_id: this.userId,
+        include_player_ids: [this.messageId],
+      };
+
+      this.oneSignal.postNotification(notificationObj).then((success) => {
+        // handle received here how you wish.
+         alert("message from "+this.userId+" to " + this.user_id)
+        // alert(JSON.stringify(success));
+      }).catch((error) => {
+
+        alert(JSON.stringify(error));
+      })
+
+
+      
+    })
+    
+  }
+
+
+
+
 
 }
