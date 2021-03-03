@@ -24,9 +24,9 @@
                     <ion-card-content class="ion-text-left">
 
                         <ion-slides [options]="options">
-                            <ion-slide>
+                            <ion-slide *ngFor="let image of carwash.images">
                                 <div class="img-wrapper">
-                                    <ion-img src="{{carwash.image}}"></ion-img>
+                                    <ion-img src="{{image}}"></ion-img>
                                 </div>
                             </ion-slide>
                         </ion-slides>

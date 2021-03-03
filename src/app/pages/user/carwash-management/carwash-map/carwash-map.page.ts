@@ -53,16 +53,16 @@ export class CarwashMapPage implements OnInit {
           this.car_washes.push({
             id: id,
             name: carwash.name,
-            favorite: carwash.favorite,
+            // favorite: carwash.favorite,
             coordinates: carwash.coordinates,
-            image: carwash.image
+            images: carwash.images
           });
-        
+
           var _address;
           var _id,_name ,_img;
 
           this.car_washes.forEach(a => {
-            
+
             _address = "";
            /* a.coordinates.forEach(b => {
               _address = _address + " " + b
@@ -70,7 +70,7 @@ export class CarwashMapPage implements OnInit {
                _address=a.coordinates
               _id=a.id
               _name=a.name
-              _img=a.image
+              _img=a.images
 
             console.log(_address);
             this.convetAddressToCoo(_id,_name,_img,_address);
@@ -154,7 +154,7 @@ export class CarwashMapPage implements OnInit {
       el.style.width = marker.properties.iconSize[0] + 'px';
       el.style.height = marker.properties.iconSize[1] + 'px';
 
-    
+
 
             // Adding the marker to the Map
             new mapboxgl.Marker()
@@ -163,8 +163,8 @@ export class CarwashMapPage implements OnInit {
                 offset: 25
               }).setDOMContent(divElement))
               .addTo(map);
-          
-  
+
+
 
     });
 

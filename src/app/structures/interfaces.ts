@@ -24,9 +24,9 @@ export interface IProperty{
 export interface ICarWash{
     id: string;
     name: string;
-    favorite: boolean;
+    // favorite: boolean;
     coordinates: ICoordinates;
-    image: string;
+    images: [];
 }
 
 // Appointment interface

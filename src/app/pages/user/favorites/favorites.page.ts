@@ -63,7 +63,7 @@ export class FavoritesPage implements OnInit {
     this._carwashService.setFavorite(carwash_id, !favorite).then(
       () => {
         temp_carwash = this.checkCarwashDuplicate(carwash_id);
-        temp_carwash.favorite = !favorite;
+        // temp_carwash.favorite = !favorite;
       }
     );
   }
@@ -92,9 +92,9 @@ export class FavoritesPage implements OnInit {
             this.favoriteCarwashes.push({
               id: id,
               name: carwash.name,
-              favorite: carwash.favorite,
+              // favorite: carwash.favorite,
               coordinates: carwash.coordinates,
-              image: carwash.image
+              images: carwash.images
             });
           }
         });
