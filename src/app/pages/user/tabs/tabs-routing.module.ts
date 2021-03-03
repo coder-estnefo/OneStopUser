@@ -22,7 +22,7 @@ const routes: Routes = [
           loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule)
         },
         {
-          path: 'chats',
+          path: 'chats/:id',
           loadChildren: () => import('../chats/chats.module').then( m => m.ChatsPageModule)
         },
         {

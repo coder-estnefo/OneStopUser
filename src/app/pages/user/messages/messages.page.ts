@@ -12,12 +12,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./messages.page.scss'],
 })
 export class MessagesPage implements OnInit {
-/********************* */
-userId = firebase.auth().currentUser.uid;
-app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
- messageId=""
-user_id;
-/******************* */
+  /********************* */
+  userId = firebase.auth().currentUser.uid;
+  app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
+  messageId = ""
+  user_id;
+  property_Owner_id: string = this.route.snapshot.paramMap.get('id');
+  /******************* */
 
   userID;
   propID;
@@ -30,9 +31,9 @@ user_id;
     private route: ActivatedRoute,
     private propertiesService: PropertiesService,
     private oneSignal: OneSignal,
-    private _userService:UserService,
+    private _userService: UserService,
     private firestore: AngularFirestore
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((param) => {
@@ -48,17 +49,17 @@ user_id;
           ...(chats.payload.doc.data() as Object),
         };
       });
-       this.chats = this.chats.filter((chat) => {
+      this.chats = this.chats.filter((chat) => {
         return (
           (
-            chat.from === this.userID && 
+            chat.from === this.userID &&
             chat.to === this.sendTo &&
             chat.id === this.propID
           ) ||
           (
-            chat.from === this.sendTo && 
+            chat.from === this.sendTo &&
             chat.to === this.userID &&
-            chat.id === this.propID 
+            chat.id === this.propID
           )
         )
       });
@@ -80,23 +81,31 @@ user_id;
         time: time,
         date: date,
       };
+
+      console.log(chat.id)
+
+      // this._userService.getOwner()
+
+
       this.propertiesService.startChat(chat).then(() => {
         this.text = '';
+
+       this.sendNotification();
 
         let ownerData;
         let playerID;
 
-        this.firestore
+        /*this.firestore
           .collection('Owner')
           .doc(chat.to)
           .snapshotChanges()
-          .subscribe((owner)=>{
-            ownerData = {...owner.payload.data() as Object};
+          .subscribe((owner) => {
+            ownerData = { ...owner.payload.data() as Object };
 
             playerID = ownerData.playerID;
-            //alert('playerID' + playerID);
+            alert('playerID' + playerID);
 
-              let notificationObj = {
+            let notificationObj = {
               headings: {
                 en: 'New Message'
               },
@@ -110,35 +119,39 @@ user_id;
 
             this.oneSignal.postNotification(notificationObj).then((success) => {
               // handle received here how you wish.
-               alert("message from "+chat.from+" to " + chat.to)
+              alert("message from " + chat.from + " to " + chat.to)
               // alert(JSON.stringify(success));
             }).catch((error) => {
               alert(JSON.stringify(error));
             })
 
-          })
+          })*/
 
       });
     }
   }
 
 
-  sendNotification(){
-    
-     let id 
-     let userData   
-     let temp=[] 
-    this._userService.getUser("please enter the Id of the ownr  firebase id" ).subscribe(user=>{
 
+
+
+  sendNotification() {
+
+    let id
+    let userData
+    let temp = []
+
+    this._userService.getOwner(this.property_Owner_id).subscribe(user => {
+      
       id = user.payload.id;
       userData = user.payload.data();
-       temp.push(userData)
+      temp.push(userData)
 
-       temp.forEach(a => {
-        //  console.log(a)
-         alert(a.chat_id)
-         this.messageId=a.chat_id
-         
+      temp.forEach(a => {
+         console.log(a)
+        
+        this.messageId = a.playerID
+
       });
 
       console.log(this.messageId)
@@ -151,21 +164,20 @@ user_id;
         app_id: this.app_id,
         external_user_id: this.userId,
         include_player_ids: [this.messageId],
-      };
+      };      
+            this.oneSignal.postNotification(notificationObj).then((success) => {
+              // handle received here how you wish.
+              //  alert("message from "+this.userId+" to " + this.user_id)
+              // alert(JSON.stringify(success));
+              alert("message send");
 
-      this.oneSignal.postNotification(notificationObj).then((success) => {
-        // handle received here how you wish.
-         alert("message from "+this.userId+" to " + this.user_id)
-        // alert(JSON.stringify(success));
-      }).catch((error) => {
-
-        alert(JSON.stringify(error));
-      })
-
-
+            }).catch((error) => {
+      
+              alert(JSON.stringify(error));
+            })
       
     })
-    
+
   }
 
 

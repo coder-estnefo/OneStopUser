@@ -23,6 +23,10 @@ export class UserService {
   getUser(user_id: string) {
     return this.firestore.collection('Users').doc(user_id).snapshotChanges();
   }
+//get owner
+  getOwner(user_id: string) {
+    return this.firestore.collection('Owner').doc(user_id).snapshotChanges();
+  }
 
   // Add user
   addUser(id: string, user, chatId): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
 
 @Component({
@@ -11,14 +11,17 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
 export class ChatsPage implements OnInit {
   userID;
   propertyChats = [];
+  property_Owner_id: string = this.activatedRoute.snapshot.paramMap.get('id');
 
   constructor(
     private router: Router,
+    private activatedRoute:ActivatedRoute,
     private propertiesService: PropertiesService,
     private auth: AngularFireAuth
   ) {}
 
   ngOnInit() {
+
     this.auth.authState.subscribe((user) => {
       if (user) {
         this.userID = user.uid;
@@ -43,7 +46,9 @@ export class ChatsPage implements OnInit {
 
   toMessages(chat) {
     const { id, to, from } = chat;
-    this.router.navigate(['messages'], {
+
+    
+    this.router.navigate(['messages/'+this.property_Owner_id], {
       queryParams: { propertyID: id, userID: from, sendTo: to },
     });
   }

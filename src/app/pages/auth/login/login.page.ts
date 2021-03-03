@@ -16,6 +16,8 @@ export class LoginPage implements OnInit {
 
 	spinner: boolean = false;
 	login_form: FormGroup;
+	 
+	app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
 
 	constructor(
 		private router: Router,
@@ -28,6 +30,8 @@ export class LoginPage implements OnInit {
 
 	ngOnInit() {
 		this.createForm();
+	
+    //    
 	}
 
 	createForm() {
@@ -57,24 +61,10 @@ export class LoginPage implements OnInit {
 
 				let userID = firebase.auth().currentUser.uid;
 
-				this.oneSignal.startInit('7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3', '482944391704');
+				this.initApp(userID)
 
-				this.oneSignal.setExternalUserId(userID);
-
-				this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
-
-				this.oneSignal.handleNotificationReceived().subscribe(() => {
-				alert('notification received')
-				});
-
-				this.oneSignal.handleNotificationOpened().subscribe(() => {
-				alert('notification opened')
-				});
-				
-				this.oneSignal.endInit();
-
-				this.oneSignal.getIds().then(user=>{
-					this.firestore.collection("Users").doc(userID).update({
+				/*this.oneSignal.getIds().then(user=>{
+					this.firestore.collection("Users").doc(this.userID).update({
 						playerID: user.userId
 					})
 					.then(()=>{
@@ -82,13 +72,35 @@ export class LoginPage implements OnInit {
 						this.router.navigate(['tabs-pages/tabs/dashboard']);
 						}
 					)
-				})
+				})*/
+
+				this.spinner = false;
+			    this.router.navigate(['tabs-pages/tabs/dashboard']);
 
 			},
 			error => {
-				console.log(error);
+				alert(error);
 				this.spinner = false;
 			}
 		);
+	}
+
+	initApp(userID) {
+
+		this.oneSignal.startInit(this.app_id, '482944391704');
+		//send player id to firebase
+		this.oneSignal.setExternalUserId(userID);
+
+		this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+
+		this.oneSignal.handleNotificationReceived().subscribe(() => {
+		alert('notification received')
+		});
+
+		this.oneSignal.handleNotificationOpened().subscribe(() => {
+		alert('notification opened')
+		});
+
+		this.oneSignal.endInit();
 	}
 }
