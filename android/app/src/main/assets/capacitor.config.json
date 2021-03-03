@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "OneStopUser",
+  "appId": "com.OneStop.User",
+  "appName": "OneStop User",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
