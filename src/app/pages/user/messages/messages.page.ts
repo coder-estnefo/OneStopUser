@@ -4,6 +4,7 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import firebase from 'firebase/app';
 import { UserService } from 'src/app/services/user/user.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-messages',
@@ -18,7 +19,6 @@ app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
 user_id;
 /******************* */
 
-
   userID;
   propID;
   sendTo;
@@ -30,7 +30,8 @@ user_id;
     private route: ActivatedRoute,
     private propertiesService: PropertiesService,
     private oneSignal: OneSignal,
-    private _userService:UserService
+    private _userService:UserService,
+    private firestore: AngularFirestore
   ) {}
 
   ngOnInit() {
@@ -81,6 +82,42 @@ user_id;
       };
       this.propertiesService.startChat(chat).then(() => {
         this.text = '';
+
+        let ownerData;
+        let playerID;
+
+        this.firestore
+          .collection('Owner')
+          .doc(chat.to)
+          .snapshotChanges()
+          .subscribe((owner)=>{
+            ownerData = {...owner.payload.data() as Object};
+
+            playerID = ownerData.playerID;
+            //alert('playerID' + playerID);
+
+              let notificationObj = {
+              headings: {
+                en: 'New Message'
+              },
+              contents: {
+                en: chat.message,
+              },
+              app_id: this.app_id,
+              external_user_id: chat.to,
+              include_player_ids: [playerID],
+            };
+
+            this.oneSignal.postNotification(notificationObj).then((success) => {
+              // handle received here how you wish.
+               alert("message from "+chat.from+" to " + chat.to)
+              // alert(JSON.stringify(success));
+            }).catch((error) => {
+              alert(JSON.stringify(error));
+            })
+
+          })
+
       });
     }
   }
