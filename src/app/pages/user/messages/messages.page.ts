@@ -171,6 +171,7 @@ export class MessagesPage implements OnInit {
               // alert(JSON.stringify(success));
               alert("message send");
 
+              
             }).catch((error) => {
       
               alert(JSON.stringify(error));
