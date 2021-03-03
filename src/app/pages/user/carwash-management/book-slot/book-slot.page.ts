@@ -15,8 +15,8 @@ export class BookSlotPage implements OnInit {
   spinner: boolean = false;
   slot_form: FormGroup;
   carwash: ICarWash;
-  wash_types: IWashType[] = []; 
-    
+  wash_types: IWashType[] = [];
+
   constructor(
 		private router: Router,
     private formBuilder: FormBuilder,
@@ -59,7 +59,7 @@ export class BookSlotPage implements OnInit {
       color: 'secondary'
     });
     toast.present();
-  } 
+  }
 
   getCarwashById(carwash_id: string){
     let id, temp_carwash;
@@ -70,8 +70,8 @@ export class BookSlotPage implements OnInit {
         this.carwash = {
           id: id,
           name: temp_carwash.name,
-          image: temp_carwash.image,
-          favorite: temp_carwash.favorite,
+          images: temp_carwash.images,
+          // favorite: temp_carwash.favorite,
           coordinates: temp_carwash.coordinates
         }
       }
@@ -98,4 +98,4 @@ export class BookSlotPage implements OnInit {
     )
   }
 
-} 
+}

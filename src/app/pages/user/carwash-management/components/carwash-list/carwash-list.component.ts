@@ -13,7 +13,7 @@ export class CarwashListComponent implements OnInit {
   favourite: boolean = false;
 
   @Input() car_washes: ICarWash[];
-  
+
   constructor(
     private router: Router,
     private _carWashService: CarwashService
@@ -31,7 +31,7 @@ export class CarwashListComponent implements OnInit {
     this._carWashService.setFavorite(carwash_id, !favorite).then(
       () => {
         temp_carwash = this.getTempCarWash(carwash_id);
-        temp_carwash.favorite = !favorite;
+        // temp_carwash.favorite = !favorite;
       }
     );
   }

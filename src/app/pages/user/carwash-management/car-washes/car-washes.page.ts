@@ -23,6 +23,12 @@ export class CarWashesPage implements OnInit {
     this.getCarWashes();
   }
 
+  checkDuplicate(carwash_id: string){
+    return this.car_washes.find(carwash => {
+      return carwash.id == carwash_id;
+    })
+  }
+
   getCarWashes(){
     let id, carwash;
     this._carWashService.getCarwashes().subscribe(
@@ -30,13 +36,15 @@ export class CarWashesPage implements OnInit {
         responses.forEach(response => {
           id = response.payload.doc.id;
           carwash = response.payload.doc.data();
-          this.car_washes.push({
-            id: id,
-            name: carwash.name,
-            favorite: carwash.favorite,
-            coordinates: carwash.coordinates,
-            image: carwash.image
-          });
+          if(this.checkDuplicate(id) == null){
+            this.car_washes.push({
+              id: id,
+              name: carwash.name,
+              // favorite: carwash.favorite,
+              coordinates: carwash.coordinates,
+              images: carwash.images
+            });
+          }
         });
       }
     )

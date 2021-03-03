@@ -51,8 +51,8 @@ export class CarwashDetailsPage implements OnInit {
         this.carwash = {
           id: id,
           name: temp_carwash.name,
-          image: temp_carwash.image,
-          favorite: temp_carwash.favorite,
+          images: temp_carwash.images,
+          // favorite: temp_carwash.favorite,
           coordinates: temp_carwash.coordinates
         }
       }
