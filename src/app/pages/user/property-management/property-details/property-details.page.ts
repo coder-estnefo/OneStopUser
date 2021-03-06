@@ -85,9 +85,12 @@ export class PropertyDetailsPage implements OnInit {
     const chat = { id, message, from, to, time, date , senderName};
 
     console.log(to)
-    this._propertyService.startChat(chat).then(()=>{
-      this.router.navigate(['/tabs-pages/tabs/chats/'+to]);
-    })
+    // this._propertyService.startChat(chat).then(()=>{
+    //   this.router.navigate(['/tabs-pages/tabs/chats/'+to]);
+    // })
+    this.router.navigate(['/messages/'+id], {
+      queryParams: { propertyID: id, userID: from, sendTo: to },
+    });
   }
 
   

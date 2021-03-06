@@ -181,7 +181,52 @@ export class MessagesPage implements OnInit {
 
   }
 
+  date;
+  time;
 
+  questionOne = undefined;
+  questionTwo = undefined;
+  questionThree = undefined;
+
+  questionOneYes() {
+    this.questionOne = true;
+  }
+
+  questionOneNo() {
+    this.questionOne = false;
+  }
+
+  questionTwoYes() {
+    this.questionTwo = true;
+  }
+
+  questionTwoNo() {
+    this.questionTwo = false;
+  }
+
+  cancelAppointment() {
+    this.questionThree = false;
+    this.questionTwoNo();
+  }
+
+  requestAppointment() {
+    this.questionThree = true;
+    
+    let dt = new Date(this.date);
+    let t = new Date(this.time);
+
+    let day = dt.getDate() < 10 ? "0" + dt.getDate().toString(): dt.getDate().toString();
+    let month = dt.getMonth() < 10 ? "0" + dt.getMonth().toString(): dt.getMonth().toString();
+    let year = dt.getFullYear() < 10 ? "0" + dt.getFullYear().toString(): dt.getFullYear().toString();
+    let hours = dt.getHours() < 10 ? "0" + dt.getHours().toString(): dt.getHours().toString();
+    let minutes = dt.getMinutes() < 10 ? "0" + dt.getMinutes().toString(): dt.getMinutes().toString();
+
+    let date = day + "/" + month + "/" + year;
+    let time = hours + ":" + minutes;
+
+    this.text = "Appointment request, Date: " + date + " " + time;
+    this.sendMessage();
+  }
 
 
 
