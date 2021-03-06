@@ -13,14 +13,16 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import {FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 
-import {CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
+import { Calendar } from '@ionic-native/calendar/ngx';
 
 
 
@@ -38,10 +40,15 @@ import {CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    BrowserAnimationsModule 
-  
+    BrowserAnimationsModule
+
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },OneSignal,FormBuilder,FormControl],
+  providers: [{
+    provide: RouteReuseStrategy,
+    useClass: IonicRouteStrategy
+  },
+    OneSignal, FormBuilder, FormControl
+    , Calendar],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
