@@ -5,6 +5,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import firebase from 'firebase/app';
 import { UserService } from 'src/app/services/user/user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Calendar } from '@ionic-native/calendar/ngx';
 
 @Component({
   selector: 'app-messages',
@@ -32,10 +33,15 @@ export class MessagesPage implements OnInit {
     private propertiesService: PropertiesService,
     private oneSignal: OneSignal,
     private _userService: UserService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private calendar: Calendar
   ) { }
 
   ngOnInit() {
+
+     this.calendar.createCalendar('MyCalendar').then(
+      
+    );
     this.route.queryParams.subscribe((param) => {
       this.userID = param.userID;
       this.propID = param.propertyID;
@@ -131,10 +137,6 @@ export class MessagesPage implements OnInit {
     }
   }
 
-
-
-
-
   sendNotification() {
 
     let id
@@ -181,6 +183,7 @@ export class MessagesPage implements OnInit {
 
   }
 
+
   date;
   time;
 
@@ -226,8 +229,20 @@ export class MessagesPage implements OnInit {
 
     this.text = "Appointment request, Date: " + date + " " + time;
     this.sendMessage();
+   this.addToCalender(dt)
   }
 
+  addToCalender(_date){
+
+    let startdate = _date;
+    let enddate = _date;
+    let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
+
+    this.calendar.createEventInteractivelyWithOptions('Appointment', '23 avenue pretoria', 'created event',startdate, enddate, options).then(()=>{
+      alert("Appointment is set");
+    })
+
+  }
 
 
 }
