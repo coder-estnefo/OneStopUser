@@ -99,7 +99,7 @@ export class PropertyDetailsPage implements OnInit {
     const chat = { id, message, from, to, time, date };
 
     this.router.navigate(['/messages/' + ownerID], {
-      queryParams: { propertyID: id, userID: from, sendTo: to },
+      queryParams: { propertyID: id, userID: from, sendTo: to, propertyName: propertyName },
     });
   }
 

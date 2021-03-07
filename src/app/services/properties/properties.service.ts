@@ -62,7 +62,7 @@ export class PropertiesService {
 
   //Chat
   startChat(chat) {
-    const { id, message, from, to, time, date } = chat;
+    const { id, message, from, to, time, date, propertyName } = chat;
     const chatID = this.setChatID(from, to) + id;
     return this.firestore.collection('chats').doc(from).collection('messages').add({
       id,
@@ -72,6 +72,7 @@ export class PropertiesService {
       time,
       date,
       chatID,
+      propertyName,
     }).then(()=> {
       return this.firestore.collection('chats').doc(to).collection('messages').add({
         id,
@@ -81,6 +82,7 @@ export class PropertiesService {
         time,
         date,
         chatID,
+        propertyName
       })
     })
   }

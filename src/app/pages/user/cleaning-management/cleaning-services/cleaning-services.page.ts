@@ -11,7 +11,8 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class CleaningServicesPage implements OnInit {
 
-  cleaning_services: ICleaning[] = [];
+  //cleaning_services: ICleaning[] = [];
+  cleaning_services;
 
   constructor(
     private router:Router,
@@ -31,23 +32,30 @@ export class CleaningServicesPage implements OnInit {
 
   getCleaningServices(){
     let id, cleaning;
-    this._cleaningService.getCleaningServices().subscribe(
-      responses => {
-        responses.forEach(response => {
-          id = response.payload.doc.id;
-          cleaning = response.payload.doc.data();
-          if(this.getTempService(id) == null){
-            this.cleaning_services.push({
-              id: id,
-              name: cleaning.name,
-              favorite: cleaning.favorite,
-              address: cleaning.address,
-              images: cleaning.images
-            });
-          }
-        });
-      }
-    )
+    // this._cleaningService.getCleaningServices().subscribe(
+    //   responses => {
+    //     responses.forEach(response => {
+    //       id = response.payload.doc.id;
+    //       cleaning = response.payload.doc.data();
+    //       if(this.getTempService(id) == null){
+    //         this.cleaning_services.push({
+    //           id: id,
+    //           name: cleaning.name,
+    //           favorite: cleaning.favorite,
+    //           address: cleaning.address,
+    //           images: cleaning.images
+    //         });
+    //       }
+    //     });
+    //   }
+    // )
+    this._cleaningService.getCleaningServices().subscribe((response)=>{
+      this.cleaning_services = response.map((service)=> {
+        return ({
+          ...service.payload.doc.data() as ICleaning
+        })
+      })
+    })
   }
 
   gotoMap(){

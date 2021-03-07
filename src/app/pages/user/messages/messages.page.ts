@@ -24,6 +24,7 @@ export class MessagesPage implements OnInit {
   userID;
   propID;
   sendTo;
+  propertyName;
   chats = [];
 
   text;
@@ -46,6 +47,7 @@ export class MessagesPage implements OnInit {
       this.userID = param.userID;
       this.propID = param.propertyID;
       this.sendTo = param.sendTo;
+      this.propertyName = param.propertyName;
     });
 
     this.propertiesService.getChats(this.userID).subscribe((response) => {
@@ -86,6 +88,7 @@ export class MessagesPage implements OnInit {
         message: this.text,
         time: time,
         date: date,
+        propertyName: this.propertyName,
       };
 
       console.log(chat.id)
@@ -192,7 +195,7 @@ export class MessagesPage implements OnInit {
     let enddate = _date;
     let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
 
-    this.calendar.createEventInteractivelyWithOptions('Appointment', '23 avenue pretoria', 'created event', startdate, enddate, options).then(() => {
+    this.calendar.createEventInteractivelyWithOptions('Appointment', this.propertyName, 'created event', startdate, enddate, options).then(() => {
       alert("Appointment is set");
     })
 
