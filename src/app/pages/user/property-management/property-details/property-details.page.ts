@@ -42,13 +42,12 @@ export class PropertyDetailsPage implements OnInit {
 
     });*/
 
-    console.log(this.userID)
-
+    
     this.userService.getUser(this.userID).subscribe(data => {
       let id, userInfor;
       userInfor = data.payload.data();
       this.userDetails = userInfor;
-      
+
     })
 
     const property_id: string = this.activatedRoute.snapshot.paramMap.get('id');
@@ -91,20 +90,17 @@ export class PropertyDetailsPage implements OnInit {
 
   startChat(id, ownerID, propertyName) {
 
-   const from = this.userID;
-     const to = ownerID;
-     const message = 'I am interested in this property: '+ propertyName;
-     const date = new Date();
-     const time = date.getHours() + ':' + date.getMinutes();
-     // const senderName = this.userDetails.name;
-     const chat = { id, message, from, to, time, date};
- 
-     // this._propertyService.startChat(chat).then(()=>{
-     //   this.router.navigate(['/tabs-pages/tabs/chats/'+to]);
-     // })
-     this.router.navigate(['/messages/'+id], {
-       queryParams: { propertyID: id, userID: from, sendTo: to },
-     });
+    const from = this.userID;
+    const to = ownerID;
+    const message = 'I am interested in this property: ' + propertyName;
+    const date = new Date();
+    const time = date.getHours() + ':' + date.getMinutes();
+    // const senderName = this.userDetails.name;
+    const chat = { id, message, from, to, time, date };
+
+    this.router.navigate(['/messages/' + ownerID], {
+      queryParams: { propertyID: id, userID: from, sendTo: to },
+    });
   }
 
 

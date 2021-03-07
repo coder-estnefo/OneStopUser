@@ -39,8 +39,8 @@ export class MessagesPage implements OnInit {
 
   ngOnInit() {
 
-     this.calendar.createCalendar('MyCalendar').then(
-      
+    this.calendar.createCalendar('MyCalendar').then(
+
     );
     this.route.queryParams.subscribe((param) => {
       this.userID = param.userID;
@@ -96,7 +96,7 @@ export class MessagesPage implements OnInit {
       this.propertiesService.startChat(chat).then(() => {
         this.text = '';
 
-       this.sendNotification();
+        this.sendNotification();
 
         let ownerData;
         let playerID;
@@ -137,53 +137,6 @@ export class MessagesPage implements OnInit {
     }
   }
 
-  sendNotification() {
-
-    let id
-    let userData
-    let temp = []
-
-    this._userService.getOwner(this.property_Owner_id).subscribe(user => {
-      
-      id = user.payload.id;
-      userData = user.payload.data();
-      temp.push(userData)
-
-      temp.forEach(a => {
-         console.log(a)
-        
-        this.messageId = a.playerID
-
-      });
-
-      console.log(this.messageId)
-
-
-      let notificationObj = {
-        contents: {
-          en: "message body",
-        },
-        app_id: this.app_id,
-        external_user_id: this.userId,
-        include_player_ids: [this.messageId],
-      };      
-            this.oneSignal.postNotification(notificationObj).then((success) => {
-              // handle received here how you wish.
-              //  alert("message from "+this.userId+" to " + this.user_id)
-              // alert(JSON.stringify(success));
-              alert("message send");
-
-              
-            }).catch((error) => {
-      
-              alert(JSON.stringify(error));
-            })
-      
-    })
-
-  }
-
-
   date;
   time;
 
@@ -214,35 +167,80 @@ export class MessagesPage implements OnInit {
 
   requestAppointment() {
     this.questionThree = true;
-    
+
     let dt = new Date(this.date);
     let t = new Date(this.time);
 
-    let day = dt.getDate() < 10 ? "0" + dt.getDate().toString(): dt.getDate().toString();
-    let month = dt.getMonth() < 10 ? "0" + dt.getMonth().toString(): dt.getMonth().toString();
-    let year = dt.getFullYear() < 10 ? "0" + dt.getFullYear().toString(): dt.getFullYear().toString();
-    let hours = dt.getHours() < 10 ? "0" + dt.getHours().toString(): dt.getHours().toString();
-    let minutes = dt.getMinutes() < 10 ? "0" + dt.getMinutes().toString(): dt.getMinutes().toString();
+    let day = dt.getDate() < 10 ? "0" + dt.getDate().toString() : dt.getDate().toString();
+    let month = dt.getMonth() < 10 ? "0" + dt.getMonth().toString() : dt.getMonth().toString();
+    let year = dt.getFullYear() < 10 ? "0" + dt.getFullYear().toString() : dt.getFullYear().toString();
+    let hours = dt.getHours() < 10 ? "0" + dt.getHours().toString() : dt.getHours().toString();
+    let minutes = dt.getMinutes() < 10 ? "0" + dt.getMinutes().toString() : dt.getMinutes().toString();
 
     let date = day + "/" + month + "/" + year;
     let time = hours + ":" + minutes;
 
     this.text = "Appointment request, Date: " + date + " " + time;
     this.sendMessage();
-   this.addToCalender(dt)
+    this.addToCalender(dt);
+  
   }
 
-  addToCalender(_date){
+  addToCalender(_date) {
 
     let startdate = _date;
     let enddate = _date;
     let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
 
-    this.calendar.createEventInteractivelyWithOptions('Appointment', '23 avenue pretoria', 'created event',startdate, enddate, options).then(()=>{
+    this.calendar.createEventInteractivelyWithOptions('Appointment', '23 avenue pretoria', 'created event', startdate, enddate, options).then(() => {
       alert("Appointment is set");
     })
 
   }
+
+  sendNotification() {
+    
+    let id
+    let userData
+    let temp = []
+    console.log(this.property_Owner_id)
+    this._userService.getOwner(this.property_Owner_id).subscribe(user => {
+
+      id = user.payload.id;
+      userData = user.payload.data();
+      temp.push(userData)
+
+      temp.forEach(a => {
+        console.log(a)
+       this.messageId = a.playerID
+      });
+
+      console.log( this.messageId)
+      
+
+      let notificationObj = {
+        contents: {
+          en: "message body",
+        },
+        app_id: this.app_id,
+        external_user_id: this.userId,
+        include_player_ids: [this.messageId],
+      };
+     
+     this.oneSignal.postNotification(notificationObj).then((success) => {
+        // handle received here how you wish.
+        alert("message from " + this.userId + " to " + this.user_id)
+        // alert(JSON.stringify(success));
+        alert("message send");
+      }).catch((error) => {
+        alert(error.message);
+        alert(JSON.stringify(error));
+      })
+
+    })
+
+  }
+
 
 
 }
