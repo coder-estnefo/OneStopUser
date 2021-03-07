@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">OneStop User</string>
+    <string name="title_activity_main">OneStop User</string>
+    <string name="package_name">com.OneStop.User</string>
+    <string name="custom_url_scheme">com.OneStop.User</string>
+</resources>
