@@ -52,7 +52,7 @@ export class CarwashDetailsPage implements OnInit {
           id: id,
           name: temp_carwash.name,
           images: temp_carwash.images,
-          // favorite: temp_carwash.favorite,
+          favorite: temp_carwash.favorite,
           coordinates: temp_carwash.coordinates
         }
       }

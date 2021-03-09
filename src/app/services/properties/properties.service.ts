@@ -13,44 +13,44 @@ export class PropertiesService {
   ) { }
 
   // Get properties
-  getProperties(){
+  getProperties() {
     return this.firestore
-    .collection('Properties', ref => ref.where('availability_status', '==', true))
-    .snapshotChanges();
+      .collection('Properties', ref => ref.where('availability_status', '==', true))
+      .snapshotChanges();
   }
 
   // Get property by Id
-  getPropertyById(property_id: string){
+  getPropertyById(property_id: string) {
     return this.firestore.collection('Properties').doc(property_id).snapshotChanges();
   }
 
   // get favorite properties
-  getFavoriteProperties(){
+  getFavoriteProperties() {
     return this.firestore.collection('Properties', ref => ref.where('favorite', '==', true))
       .snapshotChanges();
   }
 
   // Get user appointments
-  getUserAppointments(user_id){
-    
+  getUserAppointments(user_id) {
+
   }
 
   // Set property favorite
-  setFavoriteProperty(product_id: string, favorite: boolean){
+  setFavoriteProperty(product_id: string, favorite: boolean) {
     return this.firestore.collection('Properties').doc(product_id).update({
       favorite: favorite,
     });
   }
 
   // Set appointment
-  setAppointment(property_id, appointment){
+  setAppointment(property_id, appointment) {
     return this.firestore.collection('Properties').doc(property_id)
       .collection('Appointments').add({
         name: appointment.name,
         phone: appointment.phone,
         date: appointment.date,
         time: appointment.time,
-        email: appointment.email  
+        email: appointment.email
       });
   }
 
@@ -75,7 +75,7 @@ export class PropertiesService {
       date,
       chatID,
       propertyName,
-    }).then(()=> {
+    }).then(() => {
       return this.firestore.collection('chats').doc(to).collection('messages').add({
         id,
         message,

@@ -23,10 +23,14 @@
     <div class="ion-padding ion-margin-bottom wrapper">
         <div (click)="gotoMap()" class="seachbar ">
             <ion-input readonly="true" clearInput type="text" placeholder="Search Location">
-                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;"
+                    class="ion-padding-left" slot="start" name="search-outline">
                 </ion-icon>
             </ion-input>
         </div>
     </div>
 
-    <app-carwash-list [car_washes]="car_washes"></app-carwash-list>
+    <app-carwash-list [user]="user" [likes]="likes" [car_washes]="car_washes"
+        (favoriteCarwashEvent)="setFavoriteCarwash($event)"></app-carwash-list>
+
+</ion-content>

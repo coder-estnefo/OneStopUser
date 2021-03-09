@@ -8,11 +8,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class UserService {
 
-   /* ********** Testing Tearz **************** */
+  /* ********** Testing Tearz **************** */
 
-   mapCoodinats={}
-   mode
-    /* ********** End Testing Tearz **************** */
+  mapCoodinats = {}
+  mode
+  /* ********** End Testing Tearz **************** */
 
   constructor(
     private fireAuth: AngularFireAuth,
@@ -23,7 +23,7 @@ export class UserService {
   getUser(user_id: string) {
     return this.firestore.collection('Users').doc(user_id).snapshotChanges();
   }
-//get owner
+  //get owner
   getOwner(user_id: string) {
     return this.firestore.collection('Owner').doc(user_id).snapshotChanges();
   }
@@ -42,13 +42,13 @@ export class UserService {
 
   /* ********** Testing Tearz **************** */
 
-  setMapDetails(_lng,_lat,_names,_mode) {
-    this.mapCoodinats={}
-    this.mapCoodinats={lng:_lng,lat:_lat,names:_names}
-    this.mode=_mode
+  setMapDetails(_lng, _lat, _names, _mode) {
+    this.mapCoodinats = {}
+    this.mapCoodinats = { lng: _lng, lat: _lat, names: _names }
+    this.mode = _mode
   }
 
-  getMapDetails(){
+  getMapDetails() {
     return this.mapCoodinats;
   }
 

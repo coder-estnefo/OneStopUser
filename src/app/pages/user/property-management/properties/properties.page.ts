@@ -13,30 +13,30 @@ import { IProperty } from 'src/app/structures/interfaces';
 export class PropertiesPage implements OnInit {
 
   properties;
-  
+
 
   constructor(
-    private router:Router, 
-    private userservice:UserService,
+    private router: Router,
+    private userservice: UserService,
     private _propertyService: PropertiesService
-    ) { }
+  ) { }
 
-    ngOnInit() {
-      this.getProperties();
-    }
-
-  gotoMap(){
-     this.router.navigate(['property-map'])
+  ngOnInit() {
+    this.getProperties();
   }
-  
-  getProperties(){
+
+  gotoMap() {
+    this.router.navigate(['property-map'])
+  }
+
+  getProperties() {
     this._propertyService.getProperties().subscribe((response) => {
       this.properties = response.map((property) => {
         return ({
           id: property.payload.doc.id,
           ...property.payload.doc.data() as IProperty
         })
-      })  
+      })
     })
   }
 

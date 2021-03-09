@@ -1,11 +1,13 @@
+import { BehaviorSubject } from "rxjs";
+
 // Co-ordinates interface
-export interface ICoordinates{
+export interface ICoordinates {
     latitude: string;
     longitude: string;
 }
 
 // Property interface
-export interface IProperty{
+export interface IProperty {
     id: string;
     name: string;
     address: [];
@@ -21,22 +23,22 @@ export interface IProperty{
 }
 
 // Car Wash Interface
-export interface ICarWash{
+export interface ICarWash {
     id: string;
     name: string;
-    // favorite: boolean;
+    // favorite: BehaviorSubject<boolean>;
     coordinates: ICoordinates;
     images: [];
 }
 
 // Appointment interface
-export interface IAppointment{
+export interface IAppointment {
     id: string;
     date: string;
 }
 
 // Cleaning service interface
-export interface ICleaning{
+export interface ICleaning {
     id: string;
     name: string;
     favorite: boolean;
@@ -45,17 +47,24 @@ export interface ICleaning{
 }
 
 // Wash type interface
-export interface IWashType{
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  description: string;
+export interface IWashType {
+    id: string;
+    name: string;
+    image: string;
+    price: number;
+    description: string;
 }
 
 // User interface
-export interface IUser{
-  id: string;
-  name: string;
-  email: string;
+export interface IUser {
+    id: string;
+    name: string;
+    email: string;
+}
+
+
+// Favorite
+export interface Ifavorite {
+    user_id: string;
+    carwash_id: string;
 }

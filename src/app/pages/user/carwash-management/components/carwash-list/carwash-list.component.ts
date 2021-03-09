@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
-import { ICarWash } from 'src/app/structures/interfaces';
+import { ICarWash, Ifavorite } from 'src/app/structures/interfaces';
 
 @Component({
   selector: 'app-carwash-list',
@@ -12,7 +12,10 @@ export class CarwashListComponent implements OnInit {
 
   favourite: boolean = false;
 
+  @Input() user;
+  @Input() likes: Ifavorite[];
   @Input() car_washes: ICarWash[];
+  @Output() favoriteCarwashEvent = new EventEmitter<ICarWash>();
 
   constructor(
     private router: Router,
@@ -20,23 +23,22 @@ export class CarwashListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // console.log(this.likes)
   }
 
-  gotoCarwashDetails(){
+  gotoCarwashDetails() {
     this.router.navigateByUrl('carwash-details');
   }
 
-  setFavorite(carwash_id: string, favorite: boolean){
-    let temp_carwash: ICarWash;
-    this._carWashService.setFavorite(carwash_id, !favorite).then(
-      () => {
-        temp_carwash = this.getTempCarWash(carwash_id);
-        // temp_carwash.favorite = !favorite;
-      }
-    );
+  setFavoriteCarwash(carwash: ICarWash) {
+    this.favoriteCarwashEvent.emit(carwash);
   }
 
-  getTempCarWash(carwash_id: string){
+  removefavoriteCarwash(carwash: ICarWash) {
+    this.favoriteCarwashEvent.emit(carwash);
+  }
+
+  getTempCarWash(carwash_id: string) {
     return this.car_washes.find(carwash => {
       return carwash.id == carwash_id;
     });

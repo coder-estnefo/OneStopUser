@@ -13,14 +13,30 @@
                                 <ion-card-title class="title">{{carwash.name}}</ion-card-title>
                             </ion-col>
                             <ion-col size="2">
-                                <!-- <ion-buttons slot="">
-                                    <ion-button *ngIf="carwash.favorite" (click)="setFavorite(carwash.id, carwash.favorite)">
+                                <ion-buttons slot="">
+                                    <!-- <ion-button *ngIf="carwash.favorite" (click)="setFavoriteCarwash(carwash)">
                                         <ion-icon slot="icon-only" name="heart" color="primary"></ion-icon>
                                     </ion-button>
-                                    <ion-button *ngIf="!carwash.favorite" (click)="setFavorite(carwash.id, carwash.favorite)">
+                                    <ion-button *ngIf="!carwash.favorite" (click)="setFavoriteCarwash(carwash)">
                                         <ion-icon slot="icon-only" name="heart-outline" color="primary"></ion-icon>
-                                    </ion-button>
-                                </ion-buttons> -->
+                                    </ion-button> -->
+                                    <!-- {{user}} -->
+                                    <!-- <span *ngFor="let like of likes">
+                                        <ion-button *ngIf="like.carwash_id === carwash.id && user === like.user_id"
+                                            (click)="removefavoriteCarwash(carwash)">
+                                            <ion-icon slot="icon-only" name="heart" color="primary"></ion-icon>
+                                        </ion-button>
+                                        <ion-button *ngIf="like.carwash_id != carwash.id"
+                                            (click)="setFavoriteCarwash(carwash)">
+                                            <ion-icon slot="icon-only" name="heart-outline" color="primary"></ion-icon>
+                                        </ion-button>
+                                    </span>
+
+                                    <ion-button *ngIf="likes.length == 0" (click)="setFavoriteCarwash(carwash)">
+                                        <ion-icon slot="icon-only" name="heart-outline" color="primary"></ion-icon>
+                                    </ion-button> -->
+
+                                </ion-buttons>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
