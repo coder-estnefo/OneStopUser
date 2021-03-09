@@ -14,7 +14,9 @@ export class PropertiesService {
 
   // Get properties
   getProperties(){
-    return this.firestore.collection('Properties').snapshotChanges();
+    return this.firestore
+    .collection('Properties', ref => ref.where('availability_status', '==', true))
+    .snapshotChanges();
   }
 
   // Get property by Id
