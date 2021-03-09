@@ -12,8 +12,7 @@ import { IProperty } from 'src/app/structures/interfaces';
 })
 export class PropertiesPage implements OnInit {
 
-  properties: IProperty[] = [];
-
+  properties;
   
 
   constructor(
@@ -31,29 +30,14 @@ export class PropertiesPage implements OnInit {
   }
   
   getProperties(){
-    let uid, property;
-    this._propertyService.getProperties().subscribe(
-      responses => {
-        responses.forEach(response => {
-          uid = response.payload.doc.id;
-          property = response.payload.doc.data();
-          this.properties.push({
-            id: uid,
-            name: property.name,
-            address: property.location,
-            images: property.images,
-            price: property.price,
-            garages: property.garages,
-            bedrooms: property.bedrooms,
-            bathrooms: property.bathrooms,
-            description: property.description,
-            availability_status: property.availability,
-            features: property.features,
-            favorite: property.favorite
-          });
-        });
-      }
-    );    
+    this._propertyService.getProperties().subscribe((response) => {
+      this.properties = response.map((property) => {
+        return ({
+          id: property.payload.doc.id,
+          ...property.payload.doc.data() as IProperty
+        })
+      })  
+    })
   }
 
 
