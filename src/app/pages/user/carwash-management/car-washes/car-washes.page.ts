@@ -104,7 +104,12 @@ export class CarWashesPage implements OnInit {
           ...carWash.payload.doc.data() as ICarWash
         })
       });
+
+      this.car_washes.forEach(element => {
+        console.log(element);
+      });
     })
+
   }
 
   likes: Ifavorite[] = [];

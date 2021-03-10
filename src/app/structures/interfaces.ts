@@ -27,7 +27,7 @@ export interface ICarWash {
     id: string;
     name: string;
     // favorite: BehaviorSubject<boolean>;
-    coordinates: ICoordinates;
+    coordinates:[];
     images: [];
 }
 

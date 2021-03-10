@@ -17,7 +17,7 @@
             <ion-slides class="ion-slides" pager="true" [options]="options">
                 <ion-slide class="ion-slide" *ngFor="let carwash of car_washes">
                     <div class="img-wrapper" routerLink="/carwash-details/{{carwash.id}}">
-                        <ion-img src="{{carwash.image}}"></ion-img>
+                        <ion-img src="{{carwash.images}}"></ion-img>
                     </div>
                 </ion-slide>
             </ion-slides>
