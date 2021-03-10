@@ -42,11 +42,12 @@ export class CarwashMapPage implements OnInit {
 
     this.geoCoder();
     this.controls();
-    this.read();
+    this.getCarWashes();
   }
 
 
-  read() {
+  // Get car
+  getCarWashes() {
     let id, carwash;
 
     this._carWashService.getCarwashes().subscribe(response => {
@@ -91,57 +92,6 @@ export class CarwashMapPage implements OnInit {
 
     })
   }
-
-
-
-
-  // Get car
-  getCarWashes() {
-    let id, carwash;
-    this._carWashService.getCarwashes().subscribe(
-      responses => {
-        responses.forEach(response => {
-          id = response.payload.doc.id;
-          carwash = response.payload.doc.data();
-          this.car_washes.push({
-            id: id,
-            name: carwash.name,
-            coordinates: carwash.location,
-            images: carwash.images
-          });
-
-          // this.car_washes.forEach(z => {
-          //   console.log(z)
-          // });
-
-          var _address;
-          var _id, _name, _img;
-
-          this.car_washes.forEach(a => {
-
-            _address = "";
-            a.coordinates.forEach(b => {
-              _address = _address + " " + b
-            });
-
-            a.images.forEach(img=>{
-              _img =img
-            })
-            _id = a.id
-            _name = a.name
-           
-
-            console.log(_address);
-            console.log("name"+ _name);
-            console.log("img"+ _img);
-            this.convetAddressToCoo(_id, _name, _img, _address);
-          });
-
-        });
-      }
-    )
-  }
-
 
 
 

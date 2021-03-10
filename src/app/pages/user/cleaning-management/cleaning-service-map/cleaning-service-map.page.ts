@@ -35,7 +35,7 @@ export class CleaningServiceMapPage implements OnInit {
 
   ngOnInit() {
 
-    this.getProperties();
+    this.getCleaningServices();
 
     mapboxgl.accessToken = 'pk.eyJ1IjoidGVhcnoiLCJhIjoiY2toa2dqcmM3MWIwNjJ5cDlqazhyYzdteiJ9.jYlNVUpq4tkE1jva-mtyqg';
     this.map = new mapboxgl.Map({
@@ -53,7 +53,7 @@ export class CleaningServiceMapPage implements OnInit {
 
 
   // Get properties
-  getProperties() {
+  getCleaningServices() {
     let uid, servise;
     this._cleaningService.getCleaningServices().subscribe(
       responses => {
@@ -63,31 +63,34 @@ export class CleaningServiceMapPage implements OnInit {
           this.cleaningServise.push({
             id: uid,
             name: servise.name,
-            address:servise.location,
+            address:servise.address,
             images: servise.images,
             favorite:servise.favorite
           })
 
 
+          this.cleaningServise.forEach(e => {
+            console.log(e)
+          });
+    
           var _address;
-          var _id,_name ,_img;
-
+          var _id, _name, _img;
+    
           this.cleaningServise.forEach(a => {
-
-            console.log(a);
-            
-           /* _address = "";
+    
+            _address = "";
             a.address.forEach(b => {
               _address = _address + " " + b
             });
-              _id=a.id
-              _name=a.name
-              _img=a.images
-
-            console.log(_address);*/
-            // this.convetAddressToCoo(_id,_name,_img,_address);
+            _id = a.id
+            _name = a.name
+            _img = a.images
+    
+            console.log(_address);
+                console.log("name"+ _name);
+                console.log("img"+ _img);
+            this.convetAddressToCoo(_id, _name, _img, _address);
           });
-
 
         });
       }
@@ -109,6 +112,7 @@ export class CleaningServiceMapPage implements OnInit {
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl,
+        marker: false,
       }))
   }
 
@@ -129,7 +133,8 @@ export class CleaningServiceMapPage implements OnInit {
 
     viewBtn.addEventListener('click', (e) => {
       // alert( arry3[i]);
-      this.router.navigate(['/property-details/'+id])
+      this.router.navigate(['/service-details/'+id])
+      
     });
 
     // "/property-details/{{property.id}}

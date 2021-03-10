@@ -131,6 +131,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user/cleaning-management/cleaning-services/cleaning-services.module').then( m => m.CleaningServicesPageModule)
   },
   {
+    path: 'cleaning-service-map',
+    loadChildren: () => import('./pages/user/cleaning-management/cleaning-service-map/cleaning-service-map.module').then( m => m.CleaningServiceMapPageModule)
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./pages/user/profile/profile.module').then(m => m.ProfilePageModule)
   },
