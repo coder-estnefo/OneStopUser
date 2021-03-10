@@ -106,12 +106,14 @@ export class PropertyMapPage implements OnInit {
   }
 
   // Search location
-  geoCoder() {
+   geoCoder() {
 
     this.map.addControl(
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl,
+        marker: false,
+        // countries:'+24',
       }))
   }
 
