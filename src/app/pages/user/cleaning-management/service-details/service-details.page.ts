@@ -66,4 +66,6 @@ export class ServiceDetailsPage implements OnInit {
     )
   }
 
+
+
 }
