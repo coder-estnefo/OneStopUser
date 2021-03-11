@@ -35,15 +35,21 @@ export class ServiceDetailsPage implements OnInit {
     this.getCleaningServiceById(cleaning_id);
   }
 
-  gotoBookSlot(){
+  gotoBookSlot() {
     this.router.navigateByUrl('book-slot');
   }
 
-  gotoPrices(){
+  gotoPrices() {
     this.router.navigate(['prices'])
   }
 
-  getCleaningServiceById(cleaning_id: string){
+  goToServiceTypes(id: string) {
+    this.router.navigate(['/service-type/'], {
+      queryParams: { id: id },
+    });
+  }
+
+  getCleaningServiceById(cleaning_id: string) {
     let id, temp_cleaning;
     this._cleaningService.getCleaningServiceById(cleaning_id).subscribe(
       response => {

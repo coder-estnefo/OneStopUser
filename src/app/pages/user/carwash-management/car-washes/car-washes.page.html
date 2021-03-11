@@ -8,10 +8,12 @@
 
         </ion-buttons>
 
-        <ion-label class="ion-text-end">
-            <h2>Car Wash</h2>
-            <p>One Stop.</p>
-        </ion-label>
+        <ion-buttons slot="end">
+            <ion-label class="ion-text-center">
+                <h2>Carwash</h2>
+            </ion-label>
+        </ion-buttons>
+
 
 
     </ion-item>
@@ -30,7 +32,16 @@
         </div>
     </div>
 
-    <app-carwash-list [user]="user" [likes]="likes" [car_washes]="car_washes"
-        (favoriteCarwashEvent)="setFavoriteCarwash($event)"></app-carwash-list>
+    <ion-grid class="ion-padding grid">
+        <ion-row>
+            <ion-col size="12">
+
+                <app-carwash-list [user]="user" [likes]="likes" [car_washes]="car_washes"
+                    (favoriteCarwashEvent)="setFavoriteCarwash($event)"></app-carwash-list>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
 
 </ion-content>

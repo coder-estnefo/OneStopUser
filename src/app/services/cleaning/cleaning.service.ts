@@ -15,31 +15,36 @@ export class CleaningService {
   ) { }
 
   // Get cleaning services
-  getCleaningServices(){
+  getCleaningServices() {
     return this.firestore.collection('Cleaning_Services').snapshotChanges();
   }
 
   // Get Cleaning service by Id
-  getCleaningServiceById(cleaning_id: string){
+  getCleaningServiceById(cleaning_id: string) {
     return this.firestore.collection('Cleaning_Services').doc(cleaning_id).snapshotChanges();
   }
 
   // Set favorite cleaning services
-  setFavorite(cleaning_id, favorite){
+  setFavorite(cleaning_id, favorite) {
     return this.firestore.collection('Cleaning_Services').doc(cleaning_id).update({
       favorite: favorite,
     });
   }
 
   // Get Cleaning service prices
-  getCleaningServicePricesById(cleaning_id: string){
+  getCleaningServicePricesById(cleaning_id: string) {
     return this.firestore.collection('Cleaning_Services').doc(cleaning_id)
       .collection('Prices').snapshotChanges();
   }
 
   // Get favourite car wash
-  getFavoriteCleaningServices(){
+  getFavoriteCleaningServices() {
     return this.firestore.collection('Cleaning_Services', ref => ref.where('favorite', '==', true))
       .snapshotChanges();
+  }
+
+  // Get cleaning service types
+  getServiceTypes(service_id: string) {
+    return this.firestore.collection('Cleaning_Services').doc(service_id).collection('types_of_services').snapshotChanges();
   }
 }

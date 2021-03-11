@@ -165,7 +165,11 @@ const routes: Routes = [
   {
     path: 'messages/:id',
     loadChildren: () => import('./pages/user/messages/messages.module').then( m => m.MessagesPageModule)
+  },  {
+    path: 'service-type',
+    loadChildren: () => import('./pages/user/cleaning-management/service-type/service-type.module').then( m => m.ServiceTypePageModule)
   },
+
 
 
 

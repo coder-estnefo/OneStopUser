@@ -27,7 +27,7 @@ export interface ICarWash {
     id: string;
     name: string;
     // favorite: BehaviorSubject<boolean>;
-    coordinates:[];
+    coordinates: [];
     images: [];
 }
 
@@ -67,4 +67,14 @@ export interface IUser {
 export interface Ifavorite {
     user_id: string;
     carwash_id: string;
+}
+
+// Service Types
+export interface IServiceType {
+    businessID: string;
+    description: string;
+    ownerID: string;
+    price: number;
+    service: string;
+    serviceID: string;
 }

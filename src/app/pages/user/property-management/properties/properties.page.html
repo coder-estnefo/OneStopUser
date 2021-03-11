@@ -8,10 +8,11 @@
 
         </ion-buttons>
 
-        <ion-label class="ion-text-end">
-            <h2>Apartments</h2>
-            <p>One Stop.</p>
-        </ion-label>
+        <ion-buttons slot="end">
+            <ion-label class="ion-text-center">
+                <h2>Apartments</h2>
+            </ion-label>
+        </ion-buttons>
 
     </ion-item>
 
@@ -23,11 +24,18 @@
     <div class="ion-padding ion-margin-bottom wrapper">
         <div (click)="gotoMap()" class="seachbar ">
             <ion-input readonly="true" clearInput type="text" placeholder="Search Location">
-                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
+                <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;"
+                    class="ion-padding-left" slot="start" name="search-outline">
                 </ion-icon>
             </ion-input>
         </div>
     </div>
 
-    <app-property-list [properties]="properties"></app-property-list>
+    <ion-grid class="ion-padding grid">
+        <ion-row>
+            <ion-col size="12">
+                <app-property-list [properties]="properties"></app-property-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

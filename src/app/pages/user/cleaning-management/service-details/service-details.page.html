@@ -45,10 +45,12 @@
 
                             <ion-row>
                                 <ion-col size="6">
-                                    <ion-button class="ion-button" size="small" shape="round" expand="block">Services</ion-button>
+                                    <ion-button (click)="goToServiceTypes(cleaningService.id)" class="ion-button"
+                                        size="small" shape="round" expand="block">Services</ion-button>
                                 </ion-col>
                                 <ion-col size="6">
-                                    <ion-button class="ion-button" size="small" shape="round" expand="block">Chat</ion-button>
+                                    <ion-button class="ion-button" size="small" shape="round" expand="block">Chat
+                                    </ion-button>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>

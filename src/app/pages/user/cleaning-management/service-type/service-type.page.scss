@@ -1,0 +1,36 @@
+ion-item {
+  --background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.96),
+      rgb(237, 243, 243)
+    )
+    repeat-x;
+
+  h2 {
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 8px;
+  }
+}
+
+ion-content {
+  --background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.96),
+      rgb(237, 243, 243)
+    )
+    repeat-x;
+}
+
+.card {
+  margin: 0;
+  margin-right: 50px;
+  width: 100%;
+  border-radius: 20px;
+  // color: white;
+  font-weight: bolder;
+}
+
+ion-checkbox {
+  --border-radius: 100px;
+}

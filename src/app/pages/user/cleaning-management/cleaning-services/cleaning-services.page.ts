@@ -15,8 +15,8 @@ export class CleaningServicesPage implements OnInit {
   cleaning_services;
 
   constructor(
-    private router:Router,
-    private userservice:UserService,
+    private router: Router,
+    private userservice: UserService,
     private _cleaningService: CleaningService
   ) { }
 
@@ -24,33 +24,15 @@ export class CleaningServicesPage implements OnInit {
     this.getCleaningServices();
   }
 
-  getTempService(service_id: string){
+  getTempService(service_id: string) {
     return this.cleaning_services.find(service => {
       return service.id == service_id;
     })
   }
 
-  getCleaningServices(){
-    let id, cleaning;
-    // this._cleaningService.getCleaningServices().subscribe(
-    //   responses => {
-    //     responses.forEach(response => {
-    //       id = response.payload.doc.id;
-    //       cleaning = response.payload.doc.data();
-    //       if(this.getTempService(id) == null){
-    //         this.cleaning_services.push({
-    //           id: id,
-    //           name: cleaning.name,
-    //           favorite: cleaning.favorite,
-    //           address: cleaning.address,
-    //           images: cleaning.images
-    //         });
-    //       }
-    //     });
-    //   }
-    // )
-    this._cleaningService.getCleaningServices().subscribe((response)=>{
-      this.cleaning_services = response.map((service)=> {
+  getCleaningServices() {
+    this._cleaningService.getCleaningServices().subscribe((response) => {
+      this.cleaning_services = response.map((service) => {
         return ({
           ...service.payload.doc.data() as ICleaning
         })
@@ -58,8 +40,8 @@ export class CleaningServicesPage implements OnInit {
     })
   }
 
-  gotoMap(){
-     this.router.navigate(['cleaning-service-map'])
+  gotoMap() {
+    this.router.navigate(['cleaning-service-map'])
   }
 
 }
