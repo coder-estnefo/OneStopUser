@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
 import { ICarWash } from 'src/app/structures/interfaces';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-carwash-details',
@@ -21,6 +22,8 @@ export class CarwashDetailsPage implements OnInit {
   category = {
     slidesPerView: 2.5,
   };
+
+  
 
   constructor(
     private router: Router,
@@ -62,5 +65,7 @@ export class CarwashDetailsPage implements OnInit {
   goToSetAppointment(){
     this.router.navigate(['carwash-appointment'])
   }
+
+ 
 
 }
