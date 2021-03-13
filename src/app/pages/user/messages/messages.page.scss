@@ -1,0 +1,61 @@
+input[type="text"] {
+  margin: 0 10px;
+  padding: 10px;
+  width: 100%;
+  height: 40px;
+  border: 0;
+  border-radius: 17px;
+}
+
+textarea {
+  margin: 5px 10px 5px 5px;
+  padding: 10px;
+  width: 100%;
+  height: 40px;
+  border: 0;
+  border-radius: 17px;
+}
+
+.you {
+  padding: 10px;
+  background-color: #ccc;
+  border-radius: 17px 0 17px 17px;
+}
+
+.receiver {
+  padding: 10px;
+  background-color: #ccc;
+  border-radius: 0 17px 17px;
+}
+.main {
+  height: 100%;
+}
+
+.footer {
+  display: flex;
+  background-color: #ccc;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.message-input {
+  flex-basis: 80%;
+  padding: 2px 4px 2px;
+}
+
+.send {
+  flex-basis: 20%;
+  padding: 2px 2px 2px;
+}
+
+.send-btn {
+  height: 40px;
+}
+
+.dummy {
+  height: 50px;
+  width: 100%;
+}

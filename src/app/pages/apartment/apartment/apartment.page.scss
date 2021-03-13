@@ -1,0 +1,49 @@
+.wrapper {
+  width: 100%;
+  height: 100vh;
+}
+
+.seachbar {
+  margin: auto;
+  width: 80%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: white;
+  border-radius: 5px;
+  color: black;
+  border: 1px solid black;
+
+}
+ion-list{
+  margin-bottom: 50%;
+}
+
+ion-item {
+  width: 100vw;
+}
+
+.ion-card {
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+
+  ion-content {
+    position: relative;
+  }
+
+  ion-slides,
+  ion-slide,
+  ion-card-content,
+  img {
+
+    height: 100%;
+    width: 100%;
+  }
+
+  ion-card-content {
+    padding: 0%;
+  }
+
+
+}

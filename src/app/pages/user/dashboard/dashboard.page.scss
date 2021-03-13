@@ -1,0 +1,103 @@
+ion-item {
+  --background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.96),
+      rgb(237, 243, 243)
+    )
+    repeat-x;
+
+  h2 {
+    font-weight: bolder;
+    font-size: 22px;
+    padding-top: 8px;
+  }
+}
+
+ion-content {
+  --background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.96),
+      rgb(237, 243, 243)
+    )
+    repeat-x;
+}
+
+.card {
+  margin: 0;
+  margin-right: 50px;
+  width: 100%;
+  border-radius: 20px;
+  color: white;
+  font-weight: bolder;
+  height: 150px;
+  // height: 22vh;
+}
+
+.property-dashboard {
+  background-image: linear-gradient(
+      to right,
+      rgba(109, 93, 93, 0),
+      rgb(153, 158, 158)
+    ),
+    url(../../../../assets/images/property_dashboard.png);
+}
+
+.carwash-dashboard {
+  background-image: linear-gradient(
+      to right,
+      rgba(109, 93, 93, 0),
+      rgb(153, 158, 158)
+    ),
+    url(../../../../assets/images/car-dashboard.png);
+}
+
+.cleaning-dashboard {
+  background-image: linear-gradient(
+      to right,
+      rgba(109, 93, 93, 0),
+      rgb(153, 158, 158)
+    ),
+    url(../../../../assets/images/cleaning-dashboard.jpg);
+  width: 100%;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bolder;
+  color: white;
+}
+
+ion-card-content {
+  .img-wrapper {
+    border-radius: 14px;
+    height: 60px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  ion-icon {
+    font-size: x-large;
+    padding-right: 4px;
+  }
+}
+
+ion-card-header {
+  ion-icon {
+    font-size: 60px;
+  }
+  ion-card-title {
+    font-size: 22px;
+    font-weight: bolder;
+    color: white;
+  }
+}
+
+.ion-badge {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.h2 {
+  font-weight: bolder;
+  font-size: 22px;
+  padding-top: 8px;
+}

@@ -1,0 +1,13 @@
+{
+  "appId": "com.OneStop.User",
+  "appName": "OneStop User",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

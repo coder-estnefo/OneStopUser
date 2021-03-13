@@ -1,0 +1,41 @@
+ion-item {
+    // --background: rgba(248, 248, 250, .96);
+    h2 {
+        font-weight: bold;
+        font-size: 18px;
+        padding-top: 8px;
+    }
+}
+
+ion-content {
+    // --background: #f8f8fa;
+}
+
+ion-searchbar {
+    --box-shadow: none;
+    --border-radius: 12px;
+}
+
+.more {
+    font-size: 12px;
+    color: teal;
+}
+
+.title {
+    font-size: 16px;
+}
+
+.wrapper {
+    text-align: center;
+    margin: 0px 30px 0px 30px;
+}
+
+ion-badge {
+    padding: 10px;
+    font-size: 14px;
+}
+
+img {
+    width: 200px;
+    margin-left: 80px;
+}

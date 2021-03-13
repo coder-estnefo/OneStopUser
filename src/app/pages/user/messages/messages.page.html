@@ -1,0 +1,174 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>messages</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="main">
+        <div *ngIf="chats">
+            <ion-list *ngFor="let chat of chats">
+                <ion-item button *ngIf="chat.from === userID; else to">
+                    <ion-avatar slot="end">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                    </ion-avatar>
+                    <ion-label class="you ion-text-wrap">
+                        <ion-text>You</ion-text>
+                        <p>
+                            {{chat.message}}
+                            <br />
+                            <!-- <ion-text class="ion-text-right">{{chat.time}}</ion-text> -->
+                        </p>
+                    </ion-label>
+                </ion-item>
+        
+                <ng-template #to>
+                    <ion-item button>
+                        <ion-avatar slot="start">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                        </ion-avatar>
+                        <ion-label class="receiver ion-text-wrap">
+                            <p>
+                                {{chat.message}}
+                                <br />
+                                <ion-text class="ion-text-right">{{chat.time}}</ion-text>
+                            </p>
+                        </ion-label>
+                    </ion-item>
+                </ng-template>
+            </ion-list>
+        </div>
+
+
+        <ion-list>
+            <ion-item button>
+                <ion-avatar slot="start">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="receiver ion-text-wrap">
+                    <p>
+                        Hello, this property is still on the market.
+                        <br />
+                    </p>
+                </ion-label>
+            </ion-item>
+        
+            <ion-item button>
+                <ion-avatar slot="start">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="receiver ion-text-wrap">
+                    <p>
+                        Are you still interested ?
+                        <br />
+                        <ion-button shape="round" (click)="questionOneNo()">No</ion-button>
+                        <ion-button shape="round" (click)="questionOneYes()">Yes</ion-button>
+                    </p>
+                </ion-label>
+            </ion-item>
+        
+        
+            <ion-item button *ngIf="questionOne === true">
+                <ion-avatar slot="end">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="you ion-text-wrap">
+                    <p>
+                        Yes
+                    </p>
+                </ion-label>
+            </ion-item>
+        
+            <ion-item button *ngIf="questionOne === false">
+                <ion-avatar slot="end">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="you ion-text-wrap">
+                    <p>
+                        No
+                    </p>
+                </ion-label>
+            </ion-item>
+        
+            <ion-item button *ngIf="questionOne === true">
+                <ion-avatar slot="start">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="receiver ion-text-wrap">
+                    <p>
+                        Would you like to make an appointment ?
+                        <br />
+                        <ion-button shape="round" (click)="questionTwoNo()">No</ion-button>
+                        <ion-button shape="round" (click)="questionTwoYes()">Yes</ion-button>
+                    </p>
+                </ion-label>
+            </ion-item>
+        
+            <ion-item button *ngIf="questionTwo === true">
+                <ion-avatar slot="end">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="you ion-text-wrap">
+                    <p>
+                        Yes
+                    </p>
+                </ion-label>
+            </ion-item>
+        
+            <ion-item button *ngIf="questionTwo === false">
+                <ion-avatar slot="end">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="you ion-text-wrap">
+                    <p>
+                        No
+                    </p>
+                </ion-label>
+            </ion-item>
+        
+            <ion-item button *ngIf="questionTwo === true">
+                <ion-avatar slot="start">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="receiver ion-text-wrap">
+        
+                    <h2>Make appointment for viewing</h2>
+                    <ion-item>
+                        <ion-label>MM DD YY</ion-label>
+                        <ion-datetime displayFormat="DD MM YY" pickerFormat="DD MM YY" placeholder="Select Date"
+                            [(ngModel)]="date" required>
+                        </ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>HH:mm</ion-label>
+                        <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="time" required>
+                        </ion-datetime>
+                    </ion-item>
+                    <br />
+                    <ion-button shape="round" (click)="cancelAppointment()">Cancel</ion-button>
+                    <ion-button shape="round" (click)="requestAppointment()">Request Appointment</ion-button>
+        
+                </ion-label>
+            </ion-item>
+        
+        </ion-list>
+
+    </div>
+
+    <div class="dummy"></div>
+
+    <!-- <div class="footer">
+        <div class="message-input">
+            <textarea [(ngModel)]="text"></textarea>
+        </div>
+        <div class="send">
+            <ion-button shape="round" color="primary" (click)="sendMessage()" class="send-btn">
+                <ion-icon name="send-outline"></ion-icon>
+            </ion-button>
+        </div>
+    </div> -->
+
+</ion-content>

@@ -1,0 +1,17 @@
+ion-tabs {
+    box-shadow: none;
+}
+
+ion-tab-bar {
+    --border: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243)) no-repeat;
+    --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243)) no-repeat;
+}
+
+ion-tab-button {
+    --box-shadow: none;
+    --background: transparent;
+}
+
+ion-badge {
+    font-size: 12px;
+}

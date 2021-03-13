@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Cleaning service map</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div id='map' style='width: 100%; height: 90vh;'></div>
+    <!-- <img src="../../../../../assets/icon/apartment1/outside/2.jfif"> -->
+    <div class="slider ion-padding">
+
+        <ion-content>
+            <ion-slides class="ion-slides" pager="true" [options]="options">
+                <ion-slide class="ion-slide" *ngFor="let service of cleaningServise">
+                    <div class="img-wrapper" routerLink="/service-details/{{service.id}}">
+                        <ion-img src="{{service.images}}"></ion-img>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+        </ion-content>
+
+    </div>
+
+</ion-content>

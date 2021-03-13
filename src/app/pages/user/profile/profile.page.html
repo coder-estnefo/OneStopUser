@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+
+    <ion-item lines="none" class="ion-item">
+
+        <ion-buttons slot="start">
+
+            <ion-back-button defaultHref="/tabs-pages/tabs/dashboard"></ion-back-button>
+
+        </ion-buttons>
+
+        <ion-label class="ion-text-end">
+            <h2>Profile</h2>
+            <p>One Stop.</p>
+        </ion-label>
+
+
+    </ion-item>
+
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+    <div class="ion-padding" *ngIf="user_details">
+        <div class="form-container" *ngIf="user_details">
+
+            <ion-item-divider lines="none">
+                Name
+            </ion-item-divider>
+
+            <ion-item lines="none">
+                <ion-icon name="person-outline" class="ion-padding"></ion-icon>
+                <ion-label>
+                    <p>{{user_details.name}}</p>
+                </ion-label>
+                <ion-note slot="end" color="">
+                    <a routerLink="">edit</a>
+                </ion-note>
+            </ion-item>
+
+            <ion-item-divider>
+                Email
+            </ion-item-divider>
+
+            <ion-item lines="none">
+                <ion-icon name="mail-outline" class="ion-padding"></ion-icon>
+                <ion-label>
+                    <p>{{user_details.email}}</p>
+                </ion-label>
+                <ion-note slot="end" color="">
+                    <a routerLink="">edit</a>
+                </ion-note>
+            </ion-item>
+
+            <ion-item-divider>
+                Phone
+            </ion-item-divider>
+
+            <ion-item lines="none">
+                <ion-icon name="call-outline" class="ion-padding"></ion-icon>
+                <ion-label>
+                    <p>{{user_details.name}}</p>
+                </ion-label>
+                <ion-note slot="end" color="">
+                    <a routerLink="">edit</a>
+                </ion-note>
+            </ion-item>
+
+        </div>
+    </div>
+</ion-content>
