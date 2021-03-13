@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
 
 	spinner: boolean = false;
 	login_form: FormGroup;
+	userInfor=[]
 	 
 	app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
 
@@ -61,6 +62,36 @@ export class LoginPage implements OnInit {
 
 				let userID = firebase.auth().currentUser.uid;
 
+
+
+				this.firestore.collection("Users").get().subscribe(response => {
+
+					response.forEach(fireData => {
+						let id = fireData.id;
+						console.log(id)
+						this.userInfor.push(id)
+
+					})
+
+
+
+					var existItem = this.userInfor.find(x => x == userID);
+
+					console.log(userID + "  " + existItem)
+
+					if (existItem) {
+
+						this.spinner = false;
+						this.router.navigate(['tabs-pages/tabs/dashboard']);
+					} else {
+						alert("user does not exist");
+						this.spinner = false;
+						this._authService.signOut()
+					}
+				})
+
+
+
 				this.initApp(userID)
 
 				/*this.oneSignal.getIds().then(user=>{
@@ -73,9 +104,6 @@ export class LoginPage implements OnInit {
 						}
 					)
 				})*/
-
-				this.spinner = false;
-			    this.router.navigate(['tabs-pages/tabs/dashboard']);
 
 			},
 			error => {
