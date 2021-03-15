@@ -169,6 +169,10 @@ const routes: Routes = [
     path: 'service-type',
     loadChildren: () => import('./pages/user/cleaning-management/service-type/service-type.module').then( m => m.ServiceTypePageModule)
   },
+  {
+    path: 'menu',
+    loadChildren: () => import('./pages/menu/menu/menu.module').then( m => m.MenuPageModule)
+  },
 
 
 

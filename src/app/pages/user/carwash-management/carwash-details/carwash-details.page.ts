@@ -23,7 +23,6 @@ export class CarwashDetailsPage implements OnInit {
     slidesPerView: 2.5,
   };
 
-  
 
   constructor(
     private router: Router,
@@ -37,15 +36,15 @@ export class CarwashDetailsPage implements OnInit {
     this.getCarwashById(carwash_id);
   }
 
-  gotoBookSlot(){
+  gotoBookSlot() {
     this.router.navigateByUrl('book-slot');
   }
 
-  gotoPrices(){
+  gotoPrices() {
     this.router.navigate(['prices'])
   }
 
-  getCarwashById(carwash_id: string){
+  getCarwashById(carwash_id: string) {
     let id, temp_carwash;
     this._carwashService.getCarwashById(carwash_id).subscribe(
       response => {
@@ -62,10 +61,10 @@ export class CarwashDetailsPage implements OnInit {
     )
   }
 
-  goToSetAppointment(){
+  goToSetAppointment() {
     this.router.navigate(['carwash-appointment'])
   }
 
- 
+
 
 }
