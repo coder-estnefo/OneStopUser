@@ -3,10 +3,143 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-icon style="size: 50px;" name="alert-circle-outline"></ion-icon>
+        </ion-buttons>
     </ion-item>
 </ion-header>
 
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Car Model</ion-card-title>
+            <ion-item>
+                <ion-label>Select</ion-label>
+                <ion-select value="03">
+                    <ion-select-option value="01">Sedan</ion-select-option>
+                    <ion-select-option value="02">Coupe</ion-select-option>
+                    <ion-select-option value="03">Station wagon</ion-select-option>
+                    <ion-select-option value="04">HatchBack</ion-select-option>
+                    <ion-select-option value="05">Minivan</ion-select-option>
+                    <ion-select-option value="06">Bus</ion-select-option>
+                    <ion-select-option value="07">Truck</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+        </ion-card-header>
+        <ion-slides autoplay="1000" loop="true" speed="200" pager="true" [options]="slideOpts">
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_130935.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_130948.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_130958.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_131007.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_131015.jpg">
+            </ion-slide>
+        </ion-slides>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        ion-col
+                    </ion-col>
+                    <ion-col>
+                        ion-col
+                    </ion-col>
+                    <ion-col>
+                        ion-col
+                    </ion-col>
+                    <ion-col>
+                        ion-col
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-list lines="none">
+                    <ion-item>
+                        <ion-icon name="location-outline"></ion-icon>
+                    </ion-item>
+                    <ion-title>Collect</ion-title>
+                </ion-list>
+
+            </ion-col>
+
+            <ion-col>
+                <ion-list>
+                    <ion-item lines="none">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </ion-item>
+                    <ion-title>Wash At home</ion-title>
+                </ion-list>
+
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                ion-col
+            </ion-col>
+            <ion-col>
+                ion-col
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+
+        <ion-grid>
+            <ion-row>
+
+                <ion-col>
+                    <ion-list lines="none">
+                        <ion-item>
+                            <ion-card-title slot="start">price:</ion-card-title>
+                            <label>{{'R'+5645}}</label>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+
+                <ion-col>
+                    <ion-list>
+                        <ion-item slot="end" lines="none">
+                            <ion-buttons>
+                                <ion-button class="ion-button" size="small" shape="round" expand="block" routerLink="/carwash-appointment/{{carwash.id}}">Request</ion-button>
+                            </ion-buttons>
+                        </ion-item>
+
+                    </ion-list>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
+    </ion-toolbar>
+
+</ion-footer>
+
+
+<!--
 <ion-content [fullscreen]="true">
+
+
 
 
 
@@ -41,7 +174,7 @@
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Done</ng-template>
-            <!-- <p>You are now done.</p> -->
+            <!-- <p>You are now done.</p> --
             <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="sendRequest()">Send</button>
@@ -50,4 +183,4 @@
     </mat-vertical-stepper>
 
 
-</ion-content>
+</ion-content>-->
