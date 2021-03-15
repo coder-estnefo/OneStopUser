@@ -1,8 +1,8 @@
 ion-item {
   --background: linear-gradient(
-      to left,
-      rgba(255, 255, 255, 0.96),
-      rgb(237, 243, 243)
+      to right,
+      rgb(180, 233, 227),
+      rgb(255, 255, 255)
     )
     repeat-x;
 
@@ -14,12 +14,17 @@ ion-item {
 }
 
 ion-content {
-  --background: linear-gradient(
-      to left,
-      rgba(255, 255, 255, 0.96),
-      rgb(237, 243, 243)
-    )
-    repeat-x;
+  // --background: linear-gradient(
+  //     to right,
+  //     rgb(180, 233, 227),
+  //     rgb(255, 255, 255)
+  //   )
+  //   repeat-x;
+}
+
+ion-footer {
+  // background: linear-gradient(to right, rgb(180, 233, 227), rgb(255, 255, 255))
+  //   repeat-x;
 }
 
 .card {
@@ -31,6 +36,36 @@ ion-content {
   font-weight: bolder;
 }
 
+ion-card-content {
+  .img-wrapper {
+    border-radius: 14px;
+    // height: 200px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  ion-icon {
+    color: #f2994a;
+    padding-right: 4px;
+  }
+
+  ion-card-subtitle:last-of-type {
+    padding-top: 6px;
+  }
+}
+
+ion-card-header {
+  ion-icon {
+    font-size: 60px;
+  }
+
+  ion-card-title {
+    font-size: 22px;
+    font-weight: bolder;
+  }
+}
+
 ion-checkbox {
-  --border-radius: 100px;
+  // padding-top: 10px;
+  --border-radius: 14px;
 }

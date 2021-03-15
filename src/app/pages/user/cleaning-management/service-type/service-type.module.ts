@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,9 @@ import { ServiceTypePage } from './service-type.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ServiceTypePageRoutingModule
+    ServiceTypePageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [ServiceTypePage]
 })
-export class ServiceTypePageModule {}
+export class ServiceTypePageModule { }

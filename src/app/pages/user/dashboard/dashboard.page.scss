@@ -34,30 +34,15 @@ ion-content {
 }
 
 .property-dashboard {
-  background-image: linear-gradient(
-      to right,
-      rgba(109, 93, 93, 0),
-      rgb(153, 158, 158)
-    ),
-    url(../../../../assets/images/property_dashboard.png);
+  background-image: url(../../../../assets/images/property_dashboard.png);
 }
 
 .carwash-dashboard {
-  background-image: linear-gradient(
-      to right,
-      rgba(109, 93, 93, 0),
-      rgb(153, 158, 158)
-    ),
-    url(../../../../assets/images/car-dashboard.png);
+  background-image: url(../../../../assets/images/car-dashboard.png);
 }
 
 .cleaning-dashboard {
-  background-image: linear-gradient(
-      to right,
-      rgba(109, 93, 93, 0),
-      rgb(153, 158, 158)
-    ),
-    url(../../../../assets/images/cleaning-dashboard.jpg);
+  background-image: url(../../../../assets/images/cleaning-dashboard.jpg);
   width: 100%;
 }
 
