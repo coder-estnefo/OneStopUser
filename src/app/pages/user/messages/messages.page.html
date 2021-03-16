@@ -136,6 +136,15 @@
                 <ion-label class="receiver ion-text-wrap">
         
                     <h2>Make appointment for viewing</h2>
+
+                    <ol>
+                        <span *ngFor="let day of viewingDates.days">
+                            <li *ngIf="day.checked === true">
+                                {{day.name}} {{day.from}} - {{day.to}}
+                            </li>
+                        </span>
+                    </ol>
+
                     <ion-item>
                         <ion-label>MM DD YY</ion-label>
                         <ion-datetime displayFormat="DD MM YY" pickerFormat="DD MM YY" placeholder="Select Date"
@@ -148,9 +157,10 @@
                         </ion-datetime>
                     </ion-item>
                     <br />
+                    
                     <ion-button shape="round" (click)="cancelAppointment()">Cancel</ion-button>
                     <ion-button shape="round" (click)="requestAppointment()">Request Appointment</ion-button>
-        
+
                 </ion-label>
             </ion-item>
         
