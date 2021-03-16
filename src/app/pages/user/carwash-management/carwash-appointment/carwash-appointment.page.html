@@ -4,7 +4,7 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-icon style="size: 50px;" name="alert-circle-outline"></ion-icon>
+            <ion-icon style="width: 20px; height: 20px; " name="alert-circle-outline"></ion-icon>
         </ion-buttons>
     </ion-item>
 </ion-header>
@@ -47,82 +47,84 @@
         </ion-slides>
     </ion-card>
 
-    <ion-card>
-        <ion-card-header>
+    <!-- <ion-card> -->
+    <!-- <ion-card-header> -->
 
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        ion-col
-                    </ion-col>
-                    <ion-col>
-                        ion-col
-                    </ion-col>
-                    <ion-col>
-                        ion-col
-                    </ion-col>
-                    <ion-col>
-                        ion-col
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-header>
-    </ion-card>
+    <ion-grid>
+        <ion-row id="row">
+            <ion-col color="tertiary">
+                <ion-card>
+                    <img src="../../../../../assets/images/interior.png">
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card>
+                    <img src="../../../../../assets/images/exteria.png">
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card>
+                    <img src="../../../../../assets/images/fullWash.png">
+                </ion-card>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+    <!-- </ion-card-header> -->
+    <!-- </ion-card> -->
 
     <ion-grid>
         <ion-row>
             <ion-col>
-                <ion-list lines="none">
-                    <ion-item>
-                        <ion-icon name="location-outline"></ion-icon>
-                    </ion-item>
-                    <ion-title>Collect</ion-title>
-                </ion-list>
+                <ion-card>
+                    <ion-list lines="none">
+                        <div style="width: 100; margin: auto; text-align: center;">
+                            <ion-icon style="width: 30px; height: 30px; " name="location-outline"></ion-icon>
+                            <ion-title>Collect</ion-title>
+                        </div>
 
+                    </ion-list>
+                </ion-card>
             </ion-col>
 
             <ion-col>
-                <ion-list>
-                    <ion-item lines="none">
-                        <ion-icon name="home-outline"></ion-icon>
-                    </ion-item>
-                    <ion-title>Wash At home</ion-title>
-                </ion-list>
-
+                <ion-card>
+                    <ion-list>
+                        <div style="width: 100; margin: auto; text-align: center;">
+                            <ion-icon style="width: 30px; height: 30px; " name="home-outline"></ion-icon>
+                            <ion-title>Wash home</ion-title>
+                        </div>
+                    </ion-list>
+                </ion-card>
             </ion-col>
         </ion-row>
-        <ion-row>
-            <ion-col>
-                ion-col
-            </ion-col>
-            <ion-col>
-                ion-col
-            </ion-col>
-        </ion-row>
+
     </ion-grid>
 </ion-content>
-
+<ion-progress-bar value="0.25" buffer="0.5"></ion-progress-bar>
 <ion-footer>
     <ion-toolbar>
+
+
 
         <ion-grid>
             <ion-row>
 
                 <ion-col>
-                    <ion-list lines="none">
-                        <ion-item>
-                            <ion-card-title slot="start">price:</ion-card-title>
-                            <label>{{'R'+5645}}</label>
-                        </ion-item>
-                    </ion-list>
+                    <ion-card style="box-shadow: none !important;">
+                        <div class="price ion-left-padding">
+                            <h2><b>price</b></h2>
+                            <p style="font-size: 20px;">{{'R'+5645}}</p>
+                        </div>
+                    </ion-card>
                 </ion-col>
 
-                <ion-col>
+                <ion-col style="margin-left: 5%;">
                     <ion-list>
                         <ion-item slot="end" lines="none">
-                            <ion-buttons>
-                                <ion-button class="ion-button" size="small" shape="round" expand="block" routerLink="/carwash-appointment/{{carwash.id}}">Request</ion-button>
-                            </ion-buttons>
+
+                            <ion-button class="ion-button" color="tertiary" size="small" shape="round" expand="block">Request</ion-button>
+
                         </ion-item>
 
                     </ion-list>
