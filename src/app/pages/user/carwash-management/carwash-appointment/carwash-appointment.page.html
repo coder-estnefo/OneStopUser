@@ -53,16 +53,27 @@
     <ion-grid>
         <ion-row id="row">
             <ion-col color="tertiary">
+                <div style="width:100%; margin: auto; text-align: center;">
+                    Interior
+                </div>
                 <ion-card>
                     <img src="../../../../../assets/images/interior.png">
                 </ion-card>
             </ion-col>
             <ion-col>
+                <div style="width:100%; margin: auto; text-align: center;">
+                    Exterior
+                </div>
                 <ion-card>
                     <img src="../../../../../assets/images/exteria.png">
                 </ion-card>
+
+
             </ion-col>
             <ion-col>
+                <div style="width:100%; margin: auto; text-align: center;">
+                    Full wash
+                </div>
                 <ion-card>
                     <img src="../../../../../assets/images/fullWash.png">
                 </ion-card>
@@ -70,8 +81,7 @@
 
         </ion-row>
     </ion-grid>
-    <!-- </ion-card-header> -->
-    <!-- </ion-card> -->
+
 
     <ion-grid>
         <ion-row>
@@ -105,37 +115,22 @@
 <ion-footer>
     <ion-toolbar>
 
+        <div style="margin-left: 5%; margin-top: 5%;">
+            <h2><b>Price:</b> {{'R'+5645}}</h2>
+            <!-- <p style="font-size: 20px;">{{'R'+5645}}</p> -->
+        </div>
 
 
-        <ion-grid>
-            <ion-row>
-
-                <ion-col>
-                    <ion-card style="box-shadow: none !important;">
-                        <div class="price ion-left-padding">
-                            <h2><b>price</b></h2>
-                            <p style="font-size: 20px;">{{'R'+5645}}</p>
-                        </div>
-                    </ion-card>
-                </ion-col>
-
-                <ion-col style="margin-left: 5%;">
-                    <ion-list>
-                        <ion-item slot="end" lines="none">
-
-                            <ion-button class="ion-button" color="tertiary" size="small" shape="round" expand="block">Request</ion-button>
-
-                        </ion-item>
-
-                    </ion-list>
-                </ion-col>
-
-            </ion-row>
-        </ion-grid>
+        <ion-item slot="end" lines="none">
+            <ion-button class="ion-button" color="tertiary" size="small" shape="round" expand="block">Request</ion-button>
+        </ion-item>
 
     </ion-toolbar>
 
 </ion-footer>
+
+
+
 
 
 <!--
