@@ -162,10 +162,15 @@ const routes: Routes = [
     path: 'carwash-appointment/:id',
     loadChildren: () => import('./pages/user/carwash-management/carwash-appointment/carwash-appointment.module').then( m => m.CarwashAppointmentPageModule)
   },
+   {
+    path: 'carwash-appointment',
+    loadChildren: () => import('./pages/user/carwash-management/carwash-appointment/carwash-appointment.module').then( m => m.CarwashAppointmentPageModule)
+  },
   {
     path: 'messages/:id',
     loadChildren: () => import('./pages/user/messages/messages.module').then( m => m.MessagesPageModule)
-  },  {
+  },
+  {
     path: 'service-type',
     loadChildren: () => import('./pages/user/cleaning-management/service-type/service-type.module').then( m => m.ServiceTypePageModule)
   },
