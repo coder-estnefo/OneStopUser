@@ -45,10 +45,10 @@ export class ChatsPage implements OnInit {
   }
 
   toMessages(chat) {
-    const { id, to, from } = chat;
+    const { id, to, from, propertyName } = chat;
     
     this.router.navigate(['messages/'+this.property_Owner_id], {
-      queryParams: { propertyID: id, userID: from, sendTo: to },
+      queryParams: { propertyID: id, userID: from, sendTo: to , propertyName},
     });
   }
 

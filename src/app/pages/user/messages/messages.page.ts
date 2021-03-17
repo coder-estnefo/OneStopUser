@@ -73,7 +73,6 @@ export class MessagesPage implements OnInit {
         .getViewingDates(this.sendTo)
         .subscribe((response) => {
           this.viewingDates = response.payload.data();
-          console.log(this.viewingDates)
         });
     });
   }
@@ -81,7 +80,8 @@ export class MessagesPage implements OnInit {
   sendMessage() {
     if (this.text) {
       const date = new Date();
-      const time = date.getHours() + ':' + date.getMinutes();
+      const time = this.formatTime(date);
+      const appointment = this.dateSelected + ' ' + this.time;
       const chat = {
         id: this.propID,
         from: this.userID,
@@ -90,6 +90,7 @@ export class MessagesPage implements OnInit {
         time: time,
         date: date,
         propertyName: this.propertyName,
+        appointmentDate: appointment
       };
 
       console.log(chat.id);
@@ -145,6 +146,8 @@ export class MessagesPage implements OnInit {
   questionOne = undefined;
   questionTwo = undefined;
   questionThree = undefined;
+  questionFour = undefined;
+  dateSelected;
 
   questionOneYes() {
     this.questionOne = true;
@@ -170,21 +173,40 @@ export class MessagesPage implements OnInit {
   requestAppointment() {
     this.questionThree = true;
 
-    let dt = new Date(this.date);
-    let t = new Date(this.time);
+    // let dt = new Date(this.date);
+    // let t = new Date(this.time);
 
+    // let date = this.formatDate(dt);
+    // let time = this.formatTime(t);
+
+    this.text = 'Appointment request, Date: ' + this.dateSelected + ' ' + this.time;
+    this.sendMessage();
+    //this.addToCalender(dt);
+  }
+
+  formatDate(dt) {
     let day =
       dt.getDate() < 10
         ? '0' + dt.getDate().toString()
         : dt.getDate().toString();
     let month =
       dt.getMonth() < 10
-        ? '0' + dt.getMonth().toString()
+        ? '0' + (dt.getMonth() + 1).toString()
         : dt.getMonth().toString();
     let year =
       dt.getFullYear() < 10
         ? '0' + dt.getFullYear().toString()
         : dt.getFullYear().toString();
+
+    return day + '/' + month + '/' + year;
+  }
+
+  formatTime(d) {
+    let dt = new Date(d);
+    let day =
+      dt.getDate() < 10
+        ? '0' + dt.getDate().toString()
+        : dt.getDate().toString();
     let hours =
       dt.getHours() < 10
         ? '0' + dt.getHours().toString()
@@ -194,12 +216,21 @@ export class MessagesPage implements OnInit {
         ? '0' + dt.getMinutes().toString()
         : dt.getMinutes().toString();
 
-    let date = day + '/' + month + '/' + year;
-    let time = hours + ':' + minutes;
+    return  hours + ':' + minutes;
+  }
 
-    this.text = 'Appointment request, Date: ' + date + ' ' + time;
-    this.sendMessage();
-    this.addToCalender(dt);
+  selectDay(day) {
+    let today = new Date();
+    let newDate = new Date(today);
+    newDate.setDate(today.getDate() + (day.day - today.getDay() + 7) % 7 + 1);
+    this.questionThree = true;
+    this.dateSelected = this.formatDate(newDate);
+  }
+
+  setTime() {
+    this.questionFour = true;
+    let newTime = this.formatTime(this.time);
+    this.time = newTime;
   }
 
   addToCalender(_date) {
