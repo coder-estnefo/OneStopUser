@@ -37,7 +37,7 @@ ion-content {
 ion-card-content {
     .img-wrapper {
         border-radius: 14px;
-        //   height: 200px;
+        height: 200px;
         overflow: hidden;
         margin-bottom: 8px;
     }
@@ -67,4 +67,12 @@ ion-card-header {
 .ion-badge {
     font-size: 12px;
     font-weight: bold;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: inherit;
 }

@@ -27,7 +27,7 @@
                         <ion-slides pager="true" [options]="options">
                             <ion-slide *ngFor="let img of property.images">
                                 <div class="img-wrapper">
-                                    <ion-img src="{{img}}" routerLink="/img-details/{{img.id}}"></ion-img>
+                                    <ion-img class="image" src="{{img}}" routerLink="/img-details/{{img.id}}"></ion-img>
                                 </div>
                             </ion-slide>
                         </ion-slides>
