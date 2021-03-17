@@ -4,7 +4,7 @@
 <ion-card class="card" *ngFor="let carwash of car_washes">
     <ion-card-content class="ion-text-left">
         <div class="img-wrapper" routerLink="/carwash-details/{{carwash.id}}">
-            <ion-img src="{{carwash.images}}"></ion-img>
+            <ion-img class="image" src="{{carwash.images}}"></ion-img>
         </div>
 
         <ion-grid>
