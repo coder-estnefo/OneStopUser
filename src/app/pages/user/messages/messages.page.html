@@ -137,15 +137,19 @@
         
                     <h2>Make appointment for viewing</h2>
 
+                    <P>You can view the property on the following days:</P>
+
                     <ol>
                         <span *ngFor="let day of viewingDates.days">
                             <li *ngIf="day.checked === true">
-                                {{day.name}} {{day.from}} - {{day.to}}
+                                <ion-button shape="round" expand="full" (click)="selectDay(day)">
+                                    {{day.name}} {{day.from}} - {{day.to}}
+                                </ion-button>
                             </li>
                         </span>
                     </ol>
 
-                    <ion-item>
+                    <!-- <ion-item>
                         <ion-label>MM DD YY</ion-label>
                         <ion-datetime displayFormat="DD MM YY" pickerFormat="DD MM YY" placeholder="Select Date"
                             [(ngModel)]="date" required>
@@ -156,11 +160,66 @@
                         <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="time" required>
                         </ion-datetime>
                     </ion-item>
-                    <br />
-                    
-                    <ion-button shape="round" (click)="cancelAppointment()">Cancel</ion-button>
-                    <ion-button shape="round" (click)="requestAppointment()">Request Appointment</ion-button>
+                    <br /> -->
 
+                </ion-label>
+            </ion-item>
+
+            <ion-item button *ngIf="questionThree === true">
+                <ion-avatar slot="end">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="you ion-text-wrap">
+                    <p>
+                        {{dateSelected}}
+                    </p>
+                </ion-label>
+            </ion-item>
+
+            <ion-item button *ngIf="questionThree === true">
+                <ion-avatar slot="start">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="receiver ion-text-wrap">
+                    <p>
+                        At what time would you like to see this property ?
+                        <br />
+                        <ion-item>
+                            <ion-label><ion-icon name="time-outline"></ion-icon></ion-label>
+                            <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="time" min="09:00" max="16:00" required>
+                            </ion-datetime>
+                        </ion-item>
+                        <ion-button shape="round" (click)="cancelAppointment()">Cancel</ion-button>
+                        <ion-button shape="round" (click)="setTime()">Continue</ion-button>
+                    </p>
+                </ion-label>
+            </ion-item>
+
+            <ion-item button *ngIf="questionFour === true">
+                <ion-avatar slot="end">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="you ion-text-wrap">
+                    <p>
+                        {{time}}
+                    </p>
+                </ion-label>
+            </ion-item>
+
+            <ion-item button *ngIf="questionFour === true">
+                <ion-avatar slot="start">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+                </ion-avatar>
+                <ion-label class="receiver ion-text-wrap">
+                    <p>
+                        Request appointment for:<br>
+                        Date: {{dateSelected}}<br>
+                        Time: {{time}}
+                        <br />
+                        
+                        <ion-button shape="round" expand="full" (click)="requestAppointment()">Request Appointment</ion-button>
+                        <ion-button shape="round" expand="full" (click)="cancelAppointment()">Cancel</ion-button>
+                    </p>
                 </ion-label>
             </ion-item>
         

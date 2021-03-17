@@ -1,7 +1,7 @@
 <ion-card class="card" *ngFor="let service of cleaning_services">
     <ion-card-content class="ion-text-left">
         <div class="img-wrapper" routerLink="/service-details/{{service.id}}">
-            <ion-img src="{{service.images}}"></ion-img>
+            <ion-img class="image" src="{{service.images}}"></ion-img>
         </div>
         <ion-grid>
             <ion-row>
