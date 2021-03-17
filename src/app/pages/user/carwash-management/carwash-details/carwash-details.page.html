@@ -35,6 +35,15 @@
 
                             <ion-row>
                                 <ion-col size="6">
+                                    Description:
+                                </ion-col>
+                                <ion-col size="6">
+                                    {{carwash.description}}
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row>
+                                <ion-col size="6">
                                     Location:
                                 </ion-col>
                                 <ion-col size="6">
@@ -44,10 +53,12 @@
 
                             <ion-row>
                                 <ion-col size="6">
-                                    <ion-button class="ion-button" size="small" shape="round" expand="block" routerLink="/prices/{{carwash.id}}">Prices</ion-button>
+                                    <ion-button class="ion-button" size="small" shape="round" expand="block"
+                                        routerLink="/prices/{{carwash.id}}">Prices</ion-button>
                                 </ion-col>
                                 <ion-col size="6">
-                                    <ion-button class="ion-buttons" size="small" shape="round" expand="block" routerLink="/carwash-appointment/{{carwash.id}}">Request</ion-button>
+                                    <ion-button class="ion-buttons" size="small" shape="round" expand="block"
+                                        routerLink="/carwash-appointment/{{carwash.id}}">Request</ion-button>
                                 </ion-col>
                             </ion-row>
 

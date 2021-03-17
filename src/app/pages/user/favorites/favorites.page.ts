@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
+import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
 import { ICarWash, ICleaning, IProperty } from 'src/app/structures/interfaces';
-
+import firebase from 'firebase/app';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
@@ -11,12 +13,11 @@ import { ICarWash, ICleaning, IProperty } from 'src/app/structures/interfaces';
 })
 export class FavoritesPage implements OnInit {
 
-  carwashes: ICarWash[] = [];
-  properties: IProperty[] = [];
-  cleaningServices: ICleaning[] = [];
+  spinner;
+  user_id = firebase.auth().currentUser.uid;
 
   favoriteCarwashes: ICarWash[] = [];
-  favoritesProperties: IProperty[] =[];
+  favoritesProperties: IProperty[] = [];
   favoriteCleaningService: ICleaning[] = [];
 
   options = {
@@ -26,130 +27,82 @@ export class FavoritesPage implements OnInit {
   };
 
   constructor(
-    private _carwashService: CarwashService,
-    private _propertyService: PropertiesService,
-    private _cleaningService: CleaningService
+    private router: Router,
+    private _favoriteService: FavoritesService
   ) { }
 
   ngOnInit() {
-    this.getFavoriteCarwashes();
-    this.getFavoriteProperties();
+    this.getfavoriteCarwashes();
+    this.getfavoriteProperties();
+    this.getfavoriteCleaningServices();
   }
 
-  // Check Carwash duplicates
-  checkCarwashDuplicate(carwash_id: string){
-    return this.favoriteCarwashes.find(carwash => {
-      return carwash.id == carwash_id;
-    })
+  gotoAddFavorites() {
+    this.router.navigateByUrl('add-favorites');
   }
 
-  // Check property duplicates
-  checkPropertyDuplicate(property_id: string){
-    return this.favoritesProperties.find(property => {
-      return property.id == property_id;
-    })
+  deleteFavoriteCarwash(carwash_id: string) {
+    this._favoriteService.deleteFavoriteCarwash(this.user_id, carwash_id).then(
+      response => {
+
+      }
+    )
   }
 
-  // Check cleaning service duplicates
-  checkCleaningServiceDuplicates(cleaning_id: string){
-    return this.cleaningServices.find(cleaning => {
-      return cleaning.id == cleaning_id;
-    })
+
+  deletefavoriteProperty(property_id) {
+    this._favoriteService.deleteFavoriteProperty(this.user_id, property_id).then(
+      response => {
+
+      }
+    )
   }
 
-  // Set favorite carwash
-  setFavoriteCarwash(carwash_id: string, favorite: boolean){
-    let temp_carwash: ICarWash;
-    this._carwashService.setFavorite(carwash_id, !favorite).then(
-      () => {
-        temp_carwash = this.checkCarwashDuplicate(carwash_id);
-        // temp_carwash.favorite = !favorite;
+  deletefavoriteCleaningService(service_id: string) {
+    this._favoriteService.deleteFavoriteCleaning(this.user_id, service_id).then(
+      response => {
+
+      }
+    )
+  }
+
+  getfavoriteCarwashes() {
+    this._favoriteService.getFavoriteCarwashes(this.user_id).subscribe(
+      response => {
+        this.favoriteCarwashes = response.map((carWash) => {
+          return ({
+            id: carWash.payload.doc.id,
+            ...carWash.payload.doc.data() as ICarWash
+          })
+        });
+      }
+    )
+  }
+
+  getfavoriteProperties() {
+    this._favoriteService.getFavoriteProperties(this.user_id).subscribe(
+      response => {
+        this.favoritesProperties = response.map((property) => {
+          return ({
+            id: property.payload.doc.id,
+            ...property.payload.doc.data() as IProperty
+          })
+        });
       }
     );
   }
 
-  // Set favorite property
-  setFavoriteProperty(property_id: string, favorite: boolean){
-    let temp_property: IProperty;
-    this._propertyService.setFavoriteProperty(property_id, !favorite).then(
-      () => {
-        temp_property = this.checkPropertyDuplicate(property_id);
-        temp_property.favorite = !favorite;
-        this.getFavoriteProperties();
-      }
-    )
-  }
-
-  // Get favorite car wash
-  getFavoriteCarwashes(){
-    let id, carwash;
-    this._carwashService.getFavoriteCarWash().subscribe(
-      responses => {
-        responses.forEach(response => {
-          id = response.payload.doc.id;
-          carwash = response.payload.doc.data();
-          if(this.checkCarwashDuplicate(id) == null){
-            this.favoriteCarwashes.push({
-              id: id,
-              name: carwash.name,
-              // favorite: carwash.favorite,
-              coordinates: carwash.coordinates,
-              images: carwash.images
-            });
-          }
+  getfavoriteCleaningServices() {
+    this._favoriteService.getFavoriteCleaningServices(this.user_id).subscribe(
+      response => {
+        this.favoriteCleaningService = response.map((service) => {
+          return ({
+            id: service.payload.doc.id,
+            ...service.payload.doc.data() as ICleaning
+          })
         });
       }
     )
   }
 
-  // Get favourite cleaning services
-  getFavoriteCleaningServices(){
-    let id, cleaningService;
-    this._cleaningService.getCleaningServices().subscribe(
-      responses => {
-        responses.forEach(response => {
-          id = response.payload.doc.id;
-          cleaningService = response.payload.doc.data();
-          if(this.checkCleaningServiceDuplicates(id) == null){
-            this.cleaningServices.push({
-              id: id,
-              name: cleaningService.name,
-              favorite: cleaningService.favorite,
-              address: cleaningService.address,
-              images: cleaningService.images
-            });
-          }
-        });
-      }
-    )
-  }
-
-  // Get favorite properties
-  getFavoriteProperties(){
-    let uid, property;
-    this._propertyService.getFavoriteProperties().subscribe(
-      responses => {
-        responses.forEach(response => {
-          uid = response.payload.doc.id;
-          property = response.payload.doc.data();
-          if(this.checkPropertyDuplicate(uid) == null){
-            this.favoritesProperties.push({
-              id: uid,
-              name: property.name,
-              address: property.location,
-              images: property.images,
-              price: property.price,
-              garages: property.garages,
-              bedrooms: property.bedrooms,
-              bathrooms: property.bathrooms,
-              description: property.description,
-              availability_status: property.availability,
-              features: property.features,
-              favorite: property.favorite
-            });
-          }
-        });
-      }
-    )
-  }
 }

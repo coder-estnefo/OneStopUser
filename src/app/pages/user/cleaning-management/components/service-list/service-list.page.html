@@ -5,18 +5,9 @@
         </div>
         <ion-grid>
             <ion-row>
-                <ion-col size="10" class="ion-margin-top">
+                <ion-col size="12" class="ion-margin-top">
                     <ion-card-title class="title">{{service.name}}</ion-card-title>
-                </ion-col>
-                <ion-col size="2">
-                    <ion-buttons slot="">
-                        <ion-button *ngIf="service.favorite" (click)="setFavorite(service.id, service.favorite)">
-                            <ion-icon slot="icon-only" name="heart" color="primary"></ion-icon>
-                        </ion-button>
-                        <ion-button *ngIf="!service.favorite" (click)="setFavorite(service.id, service.favorite)">
-                            <ion-icon slot="icon-only" name="heart-outline" color="primary"></ion-icon>
-                        </ion-button>
-                    </ion-buttons>
+                    <ion-card-subtitle>{{service.address}}</ion-card-subtitle>
                 </ion-col>
             </ion-row>
         </ion-grid>

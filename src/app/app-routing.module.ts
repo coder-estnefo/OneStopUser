@@ -173,6 +173,10 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () => import('./pages/menu/menu/menu.module').then( m => m.MenuPageModule)
   },
+  {
+    path: 'add-favorites',
+    loadChildren: () => import('./pages/user/add-favorites/add-favorites.module').then( m => m.AddFavoritesPageModule)
+  },
 
 
 

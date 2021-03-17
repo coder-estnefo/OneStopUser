@@ -5,20 +5,19 @@
                 <h2>Favorites</h2>
             </ion-label>
         </ion-buttons>
-
-        <!-- <ion-buttons slot="end">
-            <ion-button routerLink="/notification">
-                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        <ion-buttons slot="end">
+            <ion-button routerLink="#">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                <!-- <ion-badge color="primary" style="position: absolute; right: -5px; top: -5px;">0</ion-badge> -->
             </ion-button>
-        </ion-buttons> -->
-
+        </ion-buttons>
     </ion-item>
 </ion-header>
 
 
 <ion-content>
     <div
-        *ngIf="favoritesProperties.length > 0 || favoriteCarwashes.length > 0 || favoriteCleaningService.length > 0; else empty">
+        *ngIf="favoriteCarwashes.length > 0 || favoritesProperties.length > 0 || favoriteCleaningService.length > 0; else empty">
         <div class="ion-padding wrapper">
             <div class="seachbar ">
                 <ion-input clearInput type="text" placeholder="Search">
@@ -29,17 +28,22 @@
             </div>
         </div>
 
-        <div class="ion-padding">
+        <div class="ion-padding" *ngIf="favoritesProperties.length > 0">
             <ion-row>
-                <ion-col size="6">
+                <ion-col size="9">
                     <ion-badge color="light" class="ion-margin-end">
                         Apartments
+                    </ion-badge>
+                </ion-col>
+                <ion-col size="3">
+                    <ion-badge color="light" class="ion-margin-end">
+                        <a routerLink="/add-favorites">Add More</a>
                     </ion-badge>
                 </ion-col>
             </ion-row>
         </div>
 
-        <ion-grid class="ion-no-padding">
+        <ion-grid class="ion-no-padding" *ngIf="favoritesProperties.length > 0">
             <ion-row>
                 <ion-col size="12">
                     <ion-slides [options]="options">
@@ -61,14 +65,8 @@
                                             </ion-col>
                                             <ion-col size="2">
                                                 <ion-buttons slot="">
-                                                    <ion-button *ngIf="favorite.favorite"
-                                                        (click)="setFavoriteProperty(favorite.id, favorite.favorite)">
+                                                    <ion-button (click)="deletefavoriteProperty(favorite.id)">
                                                         <ion-icon slot="icon-only" name="heart" color="primary">
-                                                        </ion-icon>
-                                                    </ion-button>
-                                                    <ion-button *ngIf="!favorite.favorite"
-                                                        (click)="setFavoriteProperty(favorite.id, favorite.favorite)">
-                                                        <ion-icon slot="icon-only" name="heart-outline" color="primary">
                                                         </ion-icon>
                                                     </ion-button>
                                                 </ion-buttons>
@@ -83,17 +81,22 @@
             </ion-row>
         </ion-grid>
 
-        <div class="ion-padding">
+        <div class="ion-padding" *ngIf="favoriteCarwashes.length > 0">
             <ion-row>
-                <ion-col size="6">
+                <ion-col size="9">
                     <ion-badge color="light" class="ion-margin-end">
                         Carwashes
+                    </ion-badge>
+                </ion-col>
+                <ion-col size=3>
+                    <ion-badge color="light" class="ion-margin-end">
+                        <a routerLink="/add-favorites">Add More</a>
                     </ion-badge>
                 </ion-col>
             </ion-row>
         </div>
 
-        <ion-grid class="ion-no-padding">
+        <ion-grid class="ion-no-padding" *ngIf="favoriteCarwashes.length > 0">
             <ion-row>
                 <ion-col size="12">
                     <ion-slides [options]="options">
@@ -104,7 +107,7 @@
                                         <ion-row>
                                             <ion-col>
                                                 <div class="img-wrapper">
-                                                    <ion-img src="{{carwash.image}}"
+                                                    <ion-img src="{{carwash.images}}"
                                                         routerLink="/carwash-details/{{carwash.id}}"></ion-img>
                                                 </div>
                                             </ion-col>
@@ -115,14 +118,8 @@
                                             </ion-col>
                                             <ion-col size="2">
                                                 <ion-buttons slot="">
-                                                    <ion-button *ngIf="carwash.favorite"
-                                                        (click)="setFavoriteCarwash(carwash.id, carwash.favorite)">
+                                                    <ion-button (click)="deleteFavoriteCarwash(carwash.id)">
                                                         <ion-icon slot="icon-only" name="heart" color="primary">
-                                                        </ion-icon>
-                                                    </ion-button>
-                                                    <ion-button *ngIf="!carwash.favorite"
-                                                        (click)="setFavoriteCarwash(carwash.id, carwash.favorite)">
-                                                        <ion-icon slot="icon-only" name="heart-outline" color="primary">
                                                         </ion-icon>
                                                     </ion-button>
                                                 </ion-buttons>
@@ -138,46 +135,45 @@
         </ion-grid>
 
 
-        <div class="ion-padding">
+        <div class="ion-padding" *ngIf="favoriteCleaningService.length > 0">
             <ion-row>
-                <ion-col size="6">
+                <ion-col size="9">
                     <ion-badge color="light" class="ion-margin-end">
                         Cleaning Services
+                    </ion-badge>
+                </ion-col>
+                <ion-col size="3">
+                    <ion-badge color="light" class="ion-margin-end">
+                        <a routerLink="/add-favorites">Add More</a>
                     </ion-badge>
                 </ion-col>
             </ion-row>
         </div>
 
-        <ion-grid class="ion-no-padding">
+        <ion-grid class="ion-no-padding" *ngIf="favoriteCleaningService.length > 0">
             <ion-row>
                 <ion-col size="12">
                     <ion-slides [options]="options">
-                        <ion-slide *ngFor="let cleaningService of favoriteCleaningService">
+                        <ion-slide *ngFor="let service of favoriteCleaningService">
                             <ion-card class="card">
                                 <ion-card-content class="ion-text-left">
                                     <ion-grid>
                                         <ion-row>
                                             <ion-col>
                                                 <div class="img-wrapper">
-                                                    <ion-img src="{{cleaningService.images}}"
-                                                        routerLink="/carwash-details/{{cleaningService.id}}"></ion-img>
+                                                    <ion-img src="{{service.images}}"
+                                                        routerLink="/carwash-details/{{service.id}}"></ion-img>
                                                 </div>
                                             </ion-col>
                                         </ion-row>
                                         <ion-row>
                                             <ion-col size="10" class="ion-margin-top">
-                                                <ion-card-title class="title">{{cleaningService.name}}</ion-card-title>
+                                                <ion-card-title class="title">{{service.name}}</ion-card-title>
                                             </ion-col>
                                             <ion-col size="2">
                                                 <ion-buttons slot="">
-                                                    <ion-button *ngIf="cleaningService.favorite"
-                                                        (click)="setFavoriteCarwash(cleaningService.id, cleaningService.favorite)">
+                                                    <ion-button (click)="deletefavoriteCleaningService(service.id)">
                                                         <ion-icon slot="icon-only" name="heart" color="primary">
-                                                        </ion-icon>
-                                                    </ion-button>
-                                                    <ion-button *ngIf="!cleaningService.favorite"
-                                                        (click)="setFavoriteCarwash(cleaningService.id, cleaningService.favorite)">
-                                                        <ion-icon slot="icon-only" name="heart-outline" color="primary">
                                                         </ion-icon>
                                                     </ion-button>
                                                 </ion-buttons>
@@ -217,7 +213,9 @@
                     <h1 class="ion-text-center top-message">No favorites found.</h1>
                 </ion-label>
                 <ion-label class="">
-                    <h3 class="ion-text-center bottom-message">Add your favorite apartments, carwashes and cleaning
+                    <h3 class="ion-text-center bottom-message"><a routerLink="/add-favorites" color="primary">Add
+                            favorite </a>
+                        apartments, carwashes and cleaning
                         services. </h3>
                 </ion-label>
             </ion-card-content>
