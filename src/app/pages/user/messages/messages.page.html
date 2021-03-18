@@ -184,13 +184,27 @@
                     <p>
                         At what time would you like to see this property ?
                         <br />
-                        <ion-item>
+                        <ion-item class="time-box">
                             <ion-label><ion-icon name="time-outline"></ion-icon></ion-label>
                             <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="time" min="09:00" max="16:00" required>
                             </ion-datetime>
                         </ion-item>
-                        <ion-button shape="round" (click)="cancelAppointment()">Cancel</ion-button>
-                        <ion-button shape="round" (click)="setTime()">Continue</ion-button>
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button shape="round" expand="block" (click)="cancelAppointment()">
+                                        Cancel
+                                    </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button shape="round" expand="block" (click)="setTime()">
+                                        Continue
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                        
                     </p>
                 </ion-label>
             </ion-item>
