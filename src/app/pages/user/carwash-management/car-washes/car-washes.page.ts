@@ -35,62 +35,9 @@ export class CarWashesPage implements OnInit {
     this.fireAuth.onAuthStateChanged(user => {
       if (user) {
         this.carWashes();
-        this.getLikes();
       }
     });
   }
-
-  checkDuplicate(carwash_id: string) {
-    return this.car_washes.find(carwash => {
-      return carwash.id == carwash_id;
-    })
-  }
-
-  setFavoriteCarwash(carwash: ICarWash) {
-    // if(!carwash.favorite){
-    this._favoritesService.setFavoriteCarwash(this.user, carwash.id).then(
-      response => {
-        // carwash.favorite.next(!carwash.favorite);
-      }
-    );
-  }
-
-  removefavoriteCarwash(carwash: ICarWash) {
-    this._favoritesService.removeFavoriteCarwash(this.user, carwash.id).then(
-      response => {
-        // carwash.favorite.next(!carwash.favorite);
-      }
-    )
-  }
-
-  // getFavoriteCarwashById(carwash_id: string, data){
-  //   let favorite_carwash: Ifavorite;
-  //   this._favoritesService.getFavoriteCarwashById(this.user.id, carwash_id).subscribe((response) => {
-  //     favorite_carwash = response.payload.data() as Ifavorite;
-  //     if(favorite_carwash != undefined){
-  //       if(this.checkDuplicate(favorite_carwash.carwash_id) == undefined){
-  //         this.car_washes.push({
-  //           id: carwash_id,
-  //           name: data.name,
-  //           images: data.images,
-  //           favorite: true,
-  //           coordinates: data.coordinates
-  //         })
-  //       }
-  //     }
-  //     else{
-  //       if(this.checkDuplicate(carwash_id) == undefined){
-  //         this.car_washes.push({
-  //           id: carwash_id,
-  //           name: data.name,
-  //           images: data.images,
-  //           favorite: false,
-  //           coordinates: data.coordinates
-  //         })
-  //       }
-  //     }
-  //   });
-  // }
 
   gotoMap() {
     this.router.navigate(['carwash-map'])
@@ -104,24 +51,6 @@ export class CarWashesPage implements OnInit {
           ...carWash.payload.doc.data() as ICarWash
         })
       });
-
-      this.car_washes.forEach(element => {
-        console.log(element);
-      });
-    })
-
-  }
-
-  likes: Ifavorite[] = [];
-
-  getLikes() {
-    this._favoritesService.getFavoriteCarwashByUserId(this.user).subscribe((response) => {
-      this.likes = response.map((like) => {
-        return ({
-          id: like.payload.doc.id,
-          ...like.payload.doc.data() as Ifavorite
-        })
-      })
     })
   }
 

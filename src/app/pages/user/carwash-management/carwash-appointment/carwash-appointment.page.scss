@@ -14,3 +14,21 @@ ion-item {
 .mat-form-field {
     margin-top: 16px;
 }
+
+#row {
+    .col {
+        ion-card {
+            border: 1px solid;
+            padding: 10px;
+            box-shadow: 5px 10px #888888;
+        }
+    }
+    .col:hover {}
+    .col:active {
+        ion-card {
+            border: 1px solid;
+            padding: 10px;
+            box-shadow: 5px 10px #e27f7f;
+        }
+    }
+}

@@ -10,7 +10,7 @@ export interface ICoordinates {
 export interface IProperty {
     id: string;
     name: string;
-    address: [];
+    location: [];
     images: [];
     price: number;
     garages: number;
@@ -18,17 +18,19 @@ export interface IProperty {
     bathrooms: number;
     description: string;
     availability_status: boolean;
-    features: [];
     favorite: boolean;
+    ownerID: string;
+    propertyID: string;
 }
 
 // Car Wash Interface
 export interface ICarWash {
     id: string;
     name: string;
-    // favorite: BehaviorSubject<boolean>;
-    coordinates: [];
+    location: [];
     images: [];
+    ownerID: string;
+    description: string;
 }
 
 // Appointment interface
@@ -43,7 +45,8 @@ export interface ICleaning {
     name: string;
     favorite: boolean;
     address: [];
-    images: string;
+    images: [];
+    ownerID: string;
 }
 
 // Wash type interface

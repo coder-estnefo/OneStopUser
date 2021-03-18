@@ -15,8 +15,8 @@ import { Calendar } from '@ionic-native/calendar/ngx';
 export class MessagesPage implements OnInit {
   /********************* */
   userId = firebase.auth().currentUser.uid;
-  app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
-  messageId = ""
+  app_id = '7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3';
+  messageId = '';
   user_id;
   property_Owner_id: string = this.route.snapshot.paramMap.get('id');
   /******************* */
@@ -28,6 +28,7 @@ export class MessagesPage implements OnInit {
   chats = [];
 
   text;
+  viewingDates;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,13 +37,10 @@ export class MessagesPage implements OnInit {
     private _userService: UserService,
     private firestore: AngularFirestore,
     private calendar: Calendar
-  ) { }
+  ) {}
 
   ngOnInit() {
-
-    this.calendar.createCalendar('MyCalendar').then(
-
-    );
+    this.calendar.createCalendar('MyCalendar').then();
     this.route.queryParams.subscribe((param) => {
       this.userID = param.userID;
       this.propID = param.propertyID;
@@ -59,28 +57,31 @@ export class MessagesPage implements OnInit {
       });
       this.chats = this.chats.filter((chat) => {
         return (
-          (
-            chat.from === this.userID &&
+          (chat.from === this.userID &&
             chat.to === this.sendTo &&
-            chat.id === this.propID
-          ) ||
-          (
-            chat.from === this.sendTo &&
+            chat.id === this.propID) ||
+          (chat.from === this.sendTo &&
             chat.to === this.userID &&
-            chat.id === this.propID
-          )
-        )
+            chat.id === this.propID)
+        );
       });
 
       const temp_chats = this.chats.sort((a, b) => a.date - b.date);
       this.chats = temp_chats;
+
+      this.propertiesService
+        .getViewingDates(this.sendTo)
+        .subscribe((response) => {
+          this.viewingDates = response.payload.data();
+        });
     });
   }
 
   sendMessage() {
     if (this.text) {
       const date = new Date();
-      const time = date.getHours() + ':' + date.getMinutes();
+      const time = this.formatTime(date);
+      const appointment = this.dateSelected + ' ' + this.time;
       const chat = {
         id: this.propID,
         from: this.userID,
@@ -89,12 +90,12 @@ export class MessagesPage implements OnInit {
         time: time,
         date: date,
         propertyName: this.propertyName,
+        appointmentDate: appointment
       };
 
-      console.log(chat.id)
+      console.log(chat.id);
 
       // this._userService.getOwner()
-
 
       this.propertiesService.startChat(chat).then(() => {
         this.text = '';
@@ -135,7 +136,6 @@ export class MessagesPage implements OnInit {
             })
 
           })*/
-
       });
     }
   }
@@ -146,6 +146,8 @@ export class MessagesPage implements OnInit {
   questionOne = undefined;
   questionTwo = undefined;
   questionThree = undefined;
+  questionFour = undefined;
+  dateSelected;
 
   questionOneYes() {
     this.questionOne = true;
@@ -171,79 +173,127 @@ export class MessagesPage implements OnInit {
   requestAppointment() {
     this.questionThree = true;
 
-    let dt = new Date(this.date);
-    let t = new Date(this.time);
+    // let dt = new Date(this.date);
+    // let t = new Date(this.time);
 
-    let day = dt.getDate() < 10 ? "0" + dt.getDate().toString() : dt.getDate().toString();
-    let month = dt.getMonth() < 10 ? "0" + dt.getMonth().toString() : dt.getMonth().toString();
-    let year = dt.getFullYear() < 10 ? "0" + dt.getFullYear().toString() : dt.getFullYear().toString();
-    let hours = dt.getHours() < 10 ? "0" + dt.getHours().toString() : dt.getHours().toString();
-    let minutes = dt.getMinutes() < 10 ? "0" + dt.getMinutes().toString() : dt.getMinutes().toString();
+    // let date = this.formatDate(dt);
+    // let time = this.formatTime(t);
 
-    let date = day + "/" + month + "/" + year;
-    let time = hours + ":" + minutes;
-
-    this.text = "Appointment request, Date: " + date + " " + time;
+    this.text = 'Appointment request, Date: ' + this.dateSelected + ' ' + this.time;
     this.sendMessage();
-    this.addToCalender(dt);
-  
+    //this.addToCalender(dt);
+  }
+
+  formatDate(dt) {
+    let day =
+      dt.getDate() < 10
+        ? '0' + dt.getDate().toString()
+        : dt.getDate().toString();
+    let month =
+      dt.getMonth() < 10
+        ? '0' + (dt.getMonth() + 1).toString()
+        : dt.getMonth().toString();
+    let year =
+      dt.getFullYear() < 10
+        ? '0' + dt.getFullYear().toString()
+        : dt.getFullYear().toString();
+
+    return day + '/' + month + '/' + year;
+  }
+
+  formatTime(d) {
+    let dt = new Date(d);
+    let day =
+      dt.getDate() < 10
+        ? '0' + dt.getDate().toString()
+        : dt.getDate().toString();
+    let hours =
+      dt.getHours() < 10
+        ? '0' + dt.getHours().toString()
+        : dt.getHours().toString();
+    let minutes =
+      dt.getMinutes() < 10
+        ? '0' + dt.getMinutes().toString()
+        : dt.getMinutes().toString();
+
+    return  hours + ':' + minutes;
+  }
+
+  selectDay(day) {
+    let today = new Date();
+    let newDate = new Date(today);
+    newDate.setDate(today.getDate() + (day.day - today.getDay() + 7) % 7 + 1);
+    this.questionThree = true;
+    this.dateSelected = this.formatDate(newDate);
+  }
+
+  setTime() {
+    this.questionFour = true;
+    let newTime = this.formatTime(this.time);
+    this.time = newTime;
   }
 
   addToCalender(_date) {
-
     let startdate = _date;
     let enddate = _date;
-    let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
+    let options = {
+      calendername: 'MyCalendar',
+      url: 'http://ionicacademy.com',
+      firstReminderMinute: 15,
+    };
 
-    this.calendar.createEventInteractivelyWithOptions('Appointment', this.propertyName, 'created event', startdate, enddate, options).then(() => {
-      alert("Appointment is set");
-    })
-
+    this.calendar
+      .createEventInteractivelyWithOptions(
+        'Appointment',
+        this.propertyName,
+        'created event',
+        startdate,
+        enddate,
+        options
+      )
+      .then(() => {
+        alert('Appointment is set');
+      });
   }
 
   sendNotification() {
-    
-    let id
-    let userData
-    let temp = []
-    console.log(this.property_Owner_id)
-    this._userService.getOwner(this.property_Owner_id).subscribe(user => {
-
+    let id;
+    let userData;
+    let temp = [];
+    console.log(this.property_Owner_id);
+    this._userService.getOwner(this.property_Owner_id).subscribe((user) => {
       id = user.payload.id;
       userData = user.payload.data();
-      temp.push(userData)
+      temp.push(userData);
 
-      temp.forEach(a => {
-        console.log(a)
-       this.messageId = a.playerID
+      temp.forEach((a) => {
+        console.log(a);
+        this.messageId = a.playerID;
       });
 
-      console.log( this.messageId)
-      
+      console.log(this.messageId);
 
       let notificationObj = {
         contents: {
-          en: "message body",
+          en: 'message body',
         },
         app_id: this.app_id,
         external_user_id: this.userId,
         include_player_ids: [this.messageId],
       };
-     
-     this.oneSignal.postNotification(notificationObj).then((success) => {
-        // handle received here how you wish.
-        alert("message from " + this.userId + " to " + this.user_id)
-        // alert(JSON.stringify(success));
-        alert("message send");
-      }).catch((error) => {
-        alert(error.message);
-        alert(JSON.stringify(error));
-      })
 
-    })
-
+      this.oneSignal
+        .postNotification(notificationObj)
+        .then((success) => {
+          // handle received here how you wish.
+          alert('message from ' + this.userId + ' to ' + this.user_id);
+          // alert(JSON.stringify(success));
+          alert('message send');
+        })
+        .catch((error) => {
+          alert(error.message);
+          alert(JSON.stringify(error));
+        });
+    });
   }
-
-
-
 }

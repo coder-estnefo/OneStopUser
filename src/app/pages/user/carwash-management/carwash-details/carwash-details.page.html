@@ -25,13 +25,22 @@
 
                         <ion-slides [options]="options">
                             <ion-slide *ngFor="let image of carwash.images">
-                                <div class="img-wrapper">
+                                <div class="image" class="img-wrapper">
                                     <ion-img src="{{image}}"></ion-img>
                                 </div>
                             </ion-slide>
                         </ion-slides>
 
                         <ion-grid class="ion-no-margin">
+
+                            <ion-row>
+                                <ion-col size="6">
+                                    Description:
+                                </ion-col>
+                                <ion-col size="6">
+                                    {{carwash.description}}
+                                </ion-col>
+                            </ion-row>
 
                             <ion-row>
                                 <ion-col size="6">
@@ -44,12 +53,15 @@
 
                             <ion-row>
                                 <ion-col size="6">
-                                    <ion-button class="ion-button" size="small" shape="round" expand="block" routerLink="/prices/{{carwash.id}}">Prices</ion-button>
+                                    <ion-button class="ion-button" size="small" shape="round" expand="block"
+                                        routerLink="/prices/{{carwash.id}}">Prices</ion-button>
                                 </ion-col>
                                 <ion-col size="6">
-                                    <ion-button class="ion-button" size="small" shape="round" expand="block" routerLink="/carwash-appointment/{{carwash.id}}">Request</ion-button>
+                                    <ion-button class="ion-buttons" size="small" shape="round" expand="block"
+                                        routerLink="/carwash-appointment/{{carwash.id}}">Request</ion-button>
                                 </ion-col>
                             </ion-row>
+
                         </ion-grid>
                     </ion-card-content>
                 </ion-card>
@@ -60,9 +72,7 @@
     <div class="ion-padding">
         <ion-row>
             <ion-col size="6">
-                <ion-badge color="light" class="ion-margin-end">
-                    One Stop.
-                </ion-badge>
+
             </ion-col>
             <ion-col size="6" class="ion-text-end">
                 <ion-badge color="light">

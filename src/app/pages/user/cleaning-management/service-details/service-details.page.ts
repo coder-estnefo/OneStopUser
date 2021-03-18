@@ -56,14 +56,13 @@ export class ServiceDetailsPage implements OnInit {
         id = response.payload.id;
         temp_cleaning = response.payload.data();
         this.cleaningService = {
-          id: id,
-          name: temp_cleaning.name,
-          images: temp_cleaning.images,
-          favorite: temp_cleaning.favorite,
-          address: temp_cleaning.address
+          id: response.payload.id,
+          ...response.payload.data() as ICleaning
         }
       }
     )
   }
+
+
 
 }

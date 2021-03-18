@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
 import { ICarWash } from 'src/app/structures/interfaces';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-carwash-details',
@@ -22,6 +23,7 @@ export class CarwashDetailsPage implements OnInit {
     slidesPerView: 2.5,
   };
 
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -34,33 +36,30 @@ export class CarwashDetailsPage implements OnInit {
     this.getCarwashById(carwash_id);
   }
 
-  gotoBookSlot(){
+  gotoBookSlot() {
     this.router.navigateByUrl('book-slot');
   }
 
-  gotoPrices(){
+  gotoPrices() {
     this.router.navigate(['prices'])
   }
 
-  getCarwashById(carwash_id: string){
+  getCarwashById(carwash_id: string) {
     let id, temp_carwash;
     this._carwashService.getCarwashById(carwash_id).subscribe(
       response => {
-        id = response.payload.id;
-        temp_carwash = response.payload.data();
         this.carwash = {
-          id: id,
-          name: temp_carwash.name,
-          images: temp_carwash.images,
-          // favorite: temp_carwash.favorite,
-          coordinates: temp_carwash.coordinates
+          id: response.payload.id,
+          ...response.payload.data() as ICarWash
         }
       }
     )
   }
 
-  goToSetAppointment(){
+  goToSetAppointment() {
     this.router.navigate(['carwash-appointment'])
   }
+
+
 
 }

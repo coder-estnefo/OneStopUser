@@ -3,10 +3,147 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-icon style="width: 20px; height: 20px; " name="alert-circle-outline"></ion-icon>
+        </ion-buttons>
     </ion-item>
 </ion-header>
 
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Car Model</ion-card-title>
+            <ion-item>
+                <ion-label>Select</ion-label>
+                <ion-select value="03">
+                    <ion-select-option value="01">Sedan</ion-select-option>
+                    <ion-select-option value="02">Coupe</ion-select-option>
+                    <ion-select-option value="03">Station wagon</ion-select-option>
+                    <ion-select-option value="04">HatchBack</ion-select-option>
+                    <ion-select-option value="05">Minivan</ion-select-option>
+                    <ion-select-option value="06">Bus</ion-select-option>
+                    <ion-select-option value="07">Truck</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+        </ion-card-header>
+        <ion-slides autoplay="1000" loop="true" speed="200" pager="true" [options]="slideOpts">
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_130935.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_130948.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_130958.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_131007.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../../../../../assets/images/20210214_131015.jpg">
+            </ion-slide>
+        </ion-slides>
+    </ion-card>
+
+    <!-- <ion-card> -->
+    <!-- <ion-card-header> -->
+
+    <ion-grid>
+        <ion-row id="row">
+
+            <ion-col color="tertiary">
+                <div class="col">
+                    <div style="width:100%; margin: auto; text-align: center;">
+                        Interior
+                    </div>
+                    <ion-card>
+                        <img src="../../../../../assets/images/interior.png">
+                    </ion-card>
+                </div>
+            </ion-col>
+
+            <ion-col>
+                <div class="col">
+                    <div style="width:100%; margin: auto; text-align: center;">
+                        Exterior
+                    </div>
+                    <ion-card>
+                        <img src="../../../../../assets/images/exteria.png">
+                    </ion-card>
+                </div>
+            </ion-col>
+            <ion-col>
+
+                <div class="col">
+                    <div style="width:100%; margin: auto; text-align: center;">
+                        Full wash
+                    </div>
+                    <ion-card>
+                        <img src="../../../../../assets/images/fullWash.png">
+                    </ion-card>
+                </div>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card>
+                    <ion-list lines="none">
+                        <div style="width: 100; margin: auto; text-align: center;">
+                            <ion-icon style="width: 30px; height: 30px; " name="location-outline"></ion-icon>
+                            <ion-title>Collect</ion-title>
+                        </div>
+
+                    </ion-list>
+                </ion-card>
+            </ion-col>
+
+            <ion-col>
+                <ion-card>
+                    <ion-list>
+                        <div style="width: 100; margin: auto; text-align: center;">
+                            <ion-icon style="width: 30px; height: 30px; " name="home-outline"></ion-icon>
+                            <ion-title>Wash home</ion-title>
+                        </div>
+                    </ion-list>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>
+<ion-progress-bar value="0.25" buffer="0.5"></ion-progress-bar>
+<ion-footer>
+    <ion-toolbar>
+
+        <div style="margin-left: 5%; margin-top: 5%;">
+            <h2><b>Price:</b> {{'R'+5645}}</h2>
+            <!-- <p style="font-size: 20px;">{{'R'+5645}}</p> -->
+        </div>
+
+
+        <ion-item slot="end" lines="none">
+            <ion-button class="ion-button" color="tertiary" size="small" shape="round" expand="block">Request</ion-button>
+        </ion-item>
+
+    </ion-toolbar>
+
+</ion-footer>
+
+
+
+
+
+<!--
 <ion-content [fullscreen]="true">
+
+
 
 
 
@@ -41,7 +178,7 @@
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Done</ng-template>
-            <!-- <p>You are now done.</p> -->
+            <!-- <p>You are now done.</p> --
             <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="sendRequest()">Send</button>
@@ -50,4 +187,4 @@
     </mat-vertical-stepper>
 
 
-</ion-content>
+</ion-content>-->
