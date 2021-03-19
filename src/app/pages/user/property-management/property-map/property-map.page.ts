@@ -64,43 +64,45 @@ export class PropertyMapPage implements OnInit {
           })
         })
 
-        // responses.forEach(response => {
-        //   uid = response.payload.doc.id;
-        //   property = response.payload.doc.data();
-        //   this.properties.push({
-        //     id: uid,
-        //     name: property.name,
-        //     address: property.location,
-        //     images: property.images,
-        //     price: property.price,
-        //     garages: property.garages,
-        //     bedrooms: property.bedrooms,
-        //     bathrooms: property.bathrooms,
-        //     description: property.description,
-        //     availability_status: property.availability,
-        //     features: property.features,
-        //     favorite: property.favorite
-        //   })
+        responses.forEach(response => {
+          uid = response.payload.doc.id;
+          property = response.payload.doc.data();
+          this.properties.push({
+            id: uid,
+            name: property.name,
+            location: property.location,
+            images: property.images,
+            price: property.price,
+            garages: property.garages,
+            bedrooms: property.bedrooms,
+            bathrooms: property.bathrooms,
+            description: property.description,
+            availability_status: property.availability,
+            //features: property.features,
+            favorite: property.favorite,
+            ownerID: property.ownerID,
+            propertyID: property.propertyID
+          })
 
-        //   var _address;
-        //   var _id,_name ,_img;
+          var _address;
+          var _id,_name ,_img;
 
-        //   this.properties.forEach(a => {
+          this.properties.forEach(a => {
 
-        //     _address = "";
-        //     a.address.forEach(b => {
-        //       _address = _address + " " + b
-        //     });
-        //       _id=a.id
-        //       _name=a.name
-        //       _img=a.images
+            _address = "";
+            a.location.forEach(b => {
+              _address = _address + " " + b
+            });
+              _id=a.id
+              _name=a.name
+              _img=a.images
 
-        //     console.log(_address);
-        //     this.convetAddressToCoo(_id,_name,_img,_address);
-        //   });
+            console.log(_address);
+            this.convetAddressToCoo(_id,_name,_img,_address);
+          });
 
 
-        // });
+        });
 
 
       }

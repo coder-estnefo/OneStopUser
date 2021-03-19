@@ -57,42 +57,43 @@ export class CleaningServiceMapPage implements OnInit {
     let uid, servise;
     this._cleaningService.getCleaningServices().subscribe(
       responses => {
-        // responses.forEach(response => {
-        //   uid = response.payload.doc.id;
-        //   servise = response.payload.doc.data();
-        //   this.cleaningServise.push({
-        //     id: uid,
-        //     name: servise.name,
-        //     address:servise.address,
-        //     images: servise.images,
-        //     favorite:servise.favorite
-        //   })
+        responses.forEach(response => {
+          uid = response.payload.doc.id;
+          servise = response.payload.doc.data();
+          this.cleaningServise.push({
+            id: uid,
+            name: servise.name,
+            address:servise.address,
+            images: servise.images,
+            favorite:servise.favorite,
+            ownerID: servise.ownerID
+          })
 
 
-        //   this.cleaningServise.forEach(e => {
-        //     console.log(e)
-        //   });
+          this.cleaningServise.forEach(e => {
+            console.log(e)
+          });
 
-        //   var _address;
-        //   var _id, _name, _img;
+          var _address;
+          var _id, _name, _img;
 
-        //   this.cleaningServise.forEach(a => {
+          this.cleaningServise.forEach(a => {
 
-        //     _address = "";
-        //     a.address.forEach(b => {
-        //       _address = _address + " " + b
-        //     });
-        //     _id = a.id
-        //     _name = a.name
-        //     _img = a.images
+            _address = "";
+            a.address.forEach(b => {
+              _address = _address + " " + b
+            });
+            _id = a.id
+            _name = a.name
+            _img = a.images
 
-        //     console.log(_address);
-        //         console.log("name"+ _name);
-        //         console.log("img"+ _img);
-        //     this.convetAddressToCoo(_id, _name, _img, _address);
-        //   });
+            console.log(_address);
+                console.log("name"+ _name);
+                console.log("img"+ _img);
+            this.convetAddressToCoo(_id, _name, _img, _address);
+          });
 
-        // });
+        });
         this.cleaningServise = responses.map(service => {
           return ({
             id: service.payload.doc.id,
