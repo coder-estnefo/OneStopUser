@@ -51,45 +51,51 @@ export class CarwashMapPage implements OnInit {
     let id, carwash;
 
     this._carWashService.getCarwashes().subscribe(response => {
-      response.forEach(data => {
-        id = data.payload.doc.id;
-        carwash = data.payload.doc.data();
-        this.infor.push(carwash);
-        this.car_washes.push({
-          id: id,
-          name: carwash.name,
-          coordinates: carwash.location,
-          images: carwash.images
-        });
-      })
+      // response.forEach(data => {
+      //   id = data.payload.doc.id;
+      //   carwash = data.payload.doc.data();
+      //   this.infor.push(carwash);
+      //   this.car_washes.push({
+      //     id: id,
+      //     name: carwash.name,
+      //     coordinates: carwash.location,
+      //     images: carwash.images
+      //   });
+      // })
 
-      // this.infor.forEach(e => {
+      // // this.infor.forEach(e => {
+      // //   console.log(e)
+      // // });
+
+      // this.car_washes.forEach(e => {
       //   console.log(e)
       // });
 
-      this.car_washes.forEach(e => {
-        console.log(e)
-      });
+      // var _address;
+      // var _id, _name, _img;
 
-      var _address;
-      var _id, _name, _img;
+      // this.car_washes.forEach(a => {
 
-      this.car_washes.forEach(a => {
+      //   _address = "";
+      //   a.coordinates.forEach(b => {
+      //     _address = _address + " " + b
+      //   });
+      //   _id = a.id
+      //   _name = a.name
+      //   _img = a.images
 
-        _address = "";
-        a.coordinates.forEach(b => {
-          _address = _address + " " + b
-        });
-        _id = a.id
-        _name = a.name
-        _img = a.images
+      //   console.log(_address);
+      //       console.log("name"+ _name);
+      //       console.log("img"+ _img);
+      //   this.convetAddressToCoo(_id, _name, _img, _address);
+      // });
 
-        console.log(_address);
-            console.log("name"+ _name);
-            console.log("img"+ _img);
-        this.convetAddressToCoo(_id, _name, _img, _address);
-      });
-
+        this.car_washes = response.map(carwash => {
+          return ({
+            id: carwash.payload.doc.id,
+            ...carwash.payload.doc.data() as ICarWash
+          })
+        })
     })
   }
 

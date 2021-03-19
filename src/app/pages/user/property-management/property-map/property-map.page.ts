@@ -56,43 +56,53 @@ export class PropertyMapPage implements OnInit {
     let uid, property;
     this._propertyService.getProperties().subscribe(
       responses => {
-        responses.forEach(response => {
-          uid = response.payload.doc.id;
-          property = response.payload.doc.data();
-          this.properties.push({
-            id: uid,
-            name: property.name,
-            address: property.location,
-            images: property.images,
-            price: property.price,
-            garages: property.garages,
-            bedrooms: property.bedrooms,
-            bathrooms: property.bathrooms,
-            description: property.description,
-            availability_status: property.availability,
-            features: property.features,
-            favorite: property.favorite
+
+        this.properties = responses.map(prop => {
+          return ({
+            id: prop.payload.doc.id,
+            ...prop.payload.doc.data() as IProperty
           })
+        })
 
-          var _address;
-          var _id,_name ,_img;
+        // responses.forEach(response => {
+        //   uid = response.payload.doc.id;
+        //   property = response.payload.doc.data();
+        //   this.properties.push({
+        //     id: uid,
+        //     name: property.name,
+        //     address: property.location,
+        //     images: property.images,
+        //     price: property.price,
+        //     garages: property.garages,
+        //     bedrooms: property.bedrooms,
+        //     bathrooms: property.bathrooms,
+        //     description: property.description,
+        //     availability_status: property.availability,
+        //     features: property.features,
+        //     favorite: property.favorite
+        //   })
 
-          this.properties.forEach(a => {
-            
-            _address = "";
-            a.address.forEach(b => {
-              _address = _address + " " + b
-            });
-              _id=a.id
-              _name=a.name
-              _img=a.images
+        //   var _address;
+        //   var _id,_name ,_img;
 
-            console.log(_address);
-            this.convetAddressToCoo(_id,_name,_img,_address);
-          });
+        //   this.properties.forEach(a => {
+
+        //     _address = "";
+        //     a.address.forEach(b => {
+        //       _address = _address + " " + b
+        //     });
+        //       _id=a.id
+        //       _name=a.name
+        //       _img=a.images
+
+        //     console.log(_address);
+        //     this.convetAddressToCoo(_id,_name,_img,_address);
+        //   });
 
 
-        });
+        // });
+
+
       }
     )
   }

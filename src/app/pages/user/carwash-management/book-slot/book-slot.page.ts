@@ -65,15 +65,10 @@ export class BookSlotPage implements OnInit {
     let id, temp_carwash;
     this._carwashService.getCarwashById(carwash_id).subscribe(
       response => {
-        id = response.payload.id;
-        temp_carwash = response.payload.data();
-        this.carwash = {
-          id: id,
-          name: temp_carwash.name,
-          images: temp_carwash.images,
-          // favorite: temp_carwash.favorite,
-          coordinates: temp_carwash.coordinates
-        }
+       this.carwash = {
+         id: response.payload.id,
+         ...response.payload.data() as ICarWash
+       }
       }
     )
   }
