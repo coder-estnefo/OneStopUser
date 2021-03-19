@@ -15,16 +15,3 @@ ion-tab-button {
 ion-badge {
     font-size: 12px;
 }
-
-ion-icon {
-    border: none;
-    background: none;
-    font-size: 24px;
-    color: #8bc34a;
-    cursor: pointer;
-    transition:.5s;
-    &:hover{
-      color: #4CAF50  ;
-      transform: rotate(22deg)
-    }
-  }
