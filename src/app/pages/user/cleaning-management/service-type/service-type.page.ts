@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 import { IServiceType } from 'src/app/structures/interfaces';
 
@@ -10,12 +10,21 @@ import { IServiceType } from 'src/app/structures/interfaces';
 })
 export class ServiceTypePage implements OnInit {
 
+  requestList = [];
+
   id: string;
   services: IServiceType[] = [];
 
+   sliderConfig = {
+    slidesPerView: 1.2,
+    spaceBetween: 10,
+    centeredSlides: true
+  };
+
   constructor(
     private activatedRouter: ActivatedRoute,
-    private _cleaningService: CleaningService
+    private _cleaningService: CleaningService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -25,6 +34,8 @@ export class ServiceTypePage implements OnInit {
     });
 
     this.getServiceTypes(this.id);
+
+    this.requestList = this._cleaningService.getUserServices();
   }
 
 
@@ -37,5 +48,15 @@ export class ServiceTypePage implements OnInit {
         });
       });
     });
+  }
+
+  addService(service) {
+    this._cleaningService.addUserService(service);
+  }
+
+  requestService() {
+    this.router.navigate(['request-service'], {queryParams: {
+      id: this.id
+    }})
   }
 }

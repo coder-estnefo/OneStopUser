@@ -47,4 +47,28 @@ export class CleaningService {
   getServiceTypes(service_id: string) {
     return this.firestore.collection('Cleaning_Services').doc(service_id).collection('types_of_services').snapshotChanges();
   }
+
+  requestList = [];
+  addUserService(service) {
+    let isFound = false;
+    if (this.requestList.length > 0) {
+      for (let current_item in this.requestList) {
+        if (this.requestList[current_item]["id"] == service.id) {
+          this.requestList.splice(this.requestList.indexOf(service), 1);
+          isFound = true;
+          break;
+        }
+      }
+
+      if (isFound == false) {
+        this.requestList.push(service);
+      }
+    } else {
+      this.requestList.push(service);
+    }
+  }
+
+  getUserServices() {
+    return this.requestList;
+  }
 }

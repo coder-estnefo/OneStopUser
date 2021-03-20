@@ -181,7 +181,15 @@ const routes: Routes = [
   {
     path: 'add-favorites',
     loadChildren: () => import('./pages/user/add-favorites/add-favorites.module').then( m => m.AddFavoritesPageModule)
+  },  {
+    path: 'request-service',
+    loadChildren: () => import('./pages/user/cleaning-management/request-service/request-service.module').then( m => m.RequestServicePageModule)
   },
+  {
+    path: 'payment-modal',
+    loadChildren: () => import('./pages/user/cleaning-management/payment-modal/payment-modal.module').then( m => m.PaymentModalPageModule)
+  },
+
 
 
 
