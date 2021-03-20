@@ -16,14 +16,13 @@
             <ion-card-title>Car Model</ion-card-title>
             <ion-item>
                 <ion-label>Select</ion-label>
-                <ion-select value="03">
+                <ion-select (ionChange)=getval($event.target.value)>
                     <ion-select-option value="01">Sedan</ion-select-option>
-                    <ion-select-option value="02">Coupe</ion-select-option>
-                    <ion-select-option value="03">Station wagon</ion-select-option>
-                    <ion-select-option value="04">HatchBack</ion-select-option>
-                    <ion-select-option value="05">Minivan</ion-select-option>
-                    <ion-select-option value="06">Bus</ion-select-option>
-                    <ion-select-option value="07">Truck</ion-select-option>
+                    <ion-select-option value="02">Station wagon</ion-select-option>
+                    <ion-select-option value="03">HatchBack</ion-select-option>
+                    <ion-select-option value="04">Minivan</ion-select-option>
+                    <ion-select-option value="05">Bus</ion-select-option>
+                    <ion-select-option value="06">Truck</ion-select-option>
                 </ion-select>
             </ion-item>
 
@@ -54,35 +53,71 @@
         <ion-row id="row">
 
             <ion-col color="tertiary">
-                <div class="col">
-                    <div style="width:100%; margin: auto; text-align: center;">
-                        Interior
+                <div (click)="selectInterior()">
+                    <div class="col" *ngIf="interior==='active'">
+                        <div style="width:100%; margin: auto; text-align: center;">
+                            Interior
+                        </div>
+                        <ion-card class="active">
+                            <img src="../../../../../assets/images/interior.png">
+                        </ion-card>
                     </div>
-                    <ion-card>
-                        <img src="../../../../../assets/images/interior.png">
-                    </ion-card>
+
+                    <div class="col" *ngIf="interior==='diactive'">
+                        <div style="width:100%; margin: auto; text-align: center;">
+                            Interior
+                        </div>
+                        <ion-card class="diactivate">
+                            <img src="../../../../../assets/images/interior.png">
+                        </ion-card>
+                    </div>
                 </div>
             </ion-col>
 
             <ion-col>
-                <div class="col">
-                    <div style="width:100%; margin: auto; text-align: center;">
-                        Exterior
+
+                <div (click)="selectExterior()">
+                    <div class="col" *ngIf="exterior==='active'">
+                        <div style="width:100%; margin: auto; text-align: center;">
+                            Exterior
+                        </div>
+                        <ion-card class="active">
+                            <img src="../../../../../assets/images/exteria.png">
+                        </ion-card>
                     </div>
-                    <ion-card>
-                        <img src="../../../../../assets/images/exteria.png">
-                    </ion-card>
+
+                    <div class="col" *ngIf="exterior==='diactive'">
+                        <div style="width:100%; margin: auto; text-align: center;">
+                            Exterior
+                        </div>
+                        <ion-card class="diactivate">
+                            <img src="../../../../../assets/images/exteria.png">
+                        </ion-card>
+                    </div>
+
                 </div>
+
             </ion-col>
             <ion-col>
-
-                <div class="col">
-                    <div style="width:100%; margin: auto; text-align: center;">
-                        Full wash
+                <div (click)="selectFullWash()">
+                    <div class="col" *ngIf="fullWash==='active'">
+                        <div style="width:100%; margin: auto; text-align: center;">
+                            Full wash
+                        </div>
+                        <ion-card class="active">
+                            <img src="../../../../../assets/images/fullWash.png">
+                        </ion-card>
                     </div>
-                    <ion-card>
-                        <img src="../../../../../assets/images/fullWash.png">
-                    </ion-card>
+
+                    <div class="col" *ngIf="fullWash==='diactive'">
+                        <div style="width:100%; margin: auto; text-align: center;">
+                            Full wash
+                        </div>
+                        <ion-card class="diactivate">
+                            <img src="../../../../../assets/images/fullWash.png">
+                        </ion-card>
+                    </div>
+
                 </div>
             </ion-col>
 
@@ -96,7 +131,7 @@
                 <ion-card>
                     <ion-list lines="none">
                         <div style="width: 100; margin: auto; text-align: center;">
-                            <ion-icon style="width: 30px; height: 30px; " name="location-outline"></ion-icon>
+                            <ion-icon style="width: 30px; height: 30px; color: #3981d0;" name="location-outline"></ion-icon>
                             <ion-title>Collect</ion-title>
                         </div>
 
@@ -108,7 +143,7 @@
                 <ion-card>
                     <ion-list>
                         <div style="width: 100; margin: auto; text-align: center;">
-                            <ion-icon style="width: 30px; height: 30px; " name="home-outline"></ion-icon>
+                            <ion-icon style="width: 30px; height: 30px; color: #3981d0;; " name="home-outline"></ion-icon>
                             <ion-title>Wash home</ion-title>
                         </div>
                     </ion-list>
@@ -118,18 +153,18 @@
 
     </ion-grid>
 </ion-content>
-<ion-progress-bar value="0.25" buffer="0.5"></ion-progress-bar>
+<ion-progress-bar value={{progressVall}} buffer="0.5"></ion-progress-bar>
 <ion-footer>
     <ion-toolbar>
 
         <div style="margin-left: 5%; margin-top: 5%;">
-            <h2><b>Price:</b> {{'R'+5645}}</h2>
+            <h2><b>Price:</b> {{totalPrice}}</h2>
             <!-- <p style="font-size: 20px;">{{'R'+5645}}</p> -->
         </div>
 
 
         <ion-item slot="end" lines="none">
-            <ion-button class="ion-button" color="tertiary" size="small" shape="round" expand="block">Request</ion-button>
+            <ion-button style="color:#83d7ee; " size="small " shape="round " expand="block " (click)="sendRequest() ">Request</ion-button>
         </ion-item>
 
     </ion-toolbar>
@@ -141,20 +176,20 @@
 
 
 <!--
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true ">
 
 
 
 
 
-    <mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-vertical-stepper [linear]="isLinear " #stepper>
 
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="firstFormGroup ">
+            <form [formGroup]="firstFormGroup ">
                 <ng-template matStepLabel>Fill in Car model</ng-template>
                 <mat-form-field>
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="model" formControlName="firstCtrl" required>
+                    <input matInput placeholder="model " formControlName="firstCtrl " required>
                 </mat-form-field>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
@@ -163,12 +198,12 @@
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup">
+        <mat-step [stepControl]="secondFormGroup ">
+            <form [formGroup]="secondFormGroup ">
                 <ng-template matStepLabel>Fill out your address</ng-template>
                 <mat-form-field>
                     <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                    <input matInput formControlName="secondCtrl " placeholder="Ex. 1 Main St, New York, NY " required>
                 </mat-form-field>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
@@ -181,7 +216,7 @@
             <!-- <p>You are now done.</p> --
             <div>
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="sendRequest()">Send</button>
+                <button mat-button (click)="sendRequest() ">Send</button>
             </div>
         </mat-step>
     </mat-vertical-stepper>

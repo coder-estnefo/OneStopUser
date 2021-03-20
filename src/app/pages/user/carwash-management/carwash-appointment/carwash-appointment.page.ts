@@ -15,13 +15,28 @@ export class CarwashAppointmentPage implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  carwash_id = this.activatedRoute.snapshot.paramMap.get('id');
-  userID = firebase.auth().currentUser.uid;
-  carwash = [];
+  progressVall = 0.2;
+  selectorVal;
+  totalPrice = 0;
+  washPrice=0;
+  CarModelPrice=0;
+
+  fullWash = 'diactive'
+  exterior = 'diactive'
+  interior = 'diactive'
+
+  // carwash_id = this.activatedRoute.snapshot.paramMap.get('id');
+  // userID = firebase.auth().currentUser.uid;
+  // carwash = [];
+
+
 
 
   slideOpts = {
     grabCursor: true,
+    autoplay: 1000,
+    loop: true,
+    speed: 200,
     cubeEffect: {
       shadow: true,
       slideShadows: true,
@@ -29,11 +44,11 @@ export class CarwashAppointmentPage implements OnInit {
       shadowScale: 0.94,
     },
     on: {
-      beforeInit: function() {
+      beforeInit: function () {
         const swiper = this;
         swiper.classNames.push(`${swiper.params.containerModifierClass}cube`);
         swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
-  
+
         const overwriteParams = {
           slidesPerView: 1,
           slidesPerColumn: 1,
@@ -44,11 +59,11 @@ export class CarwashAppointmentPage implements OnInit {
           centeredSlides: false,
           virtualTranslate: true,
         };
-  
+
         this.params = Object.assign(this.params, overwriteParams);
         this.originalParams = Object.assign(this.originalParams, overwriteParams);
       },
-      setTranslate: function() {
+      setTranslate: function () {
         const swiper = this;
         const {
           $el, $wrapperEl, slides, width: swiperWidth, height: swiperHeight, rtlTranslate: rtl, size: swiperSize,
@@ -74,7 +89,7 @@ export class CarwashAppointmentPage implements OnInit {
             }
           }
         }
-  
+
         for (let i = 0; i < slides.length; i += 1) {
           const $slideEl = slides.eq(i);
           let slideIndex = i;
@@ -107,13 +122,13 @@ export class CarwashAppointmentPage implements OnInit {
           if (rtl) {
             tx = -tx;
           }
-  
-           if (!isHorizontal) {
+
+          if (!isHorizontal) {
             ty = tx;
             tx = 0;
           }
-  
-           const transform$$1 = `rotateX(${isHorizontal ? 0 : -slideAngle}deg) rotateY(${isHorizontal ? slideAngle : 0}deg) translate3d(${tx}px, ${ty}px, ${tz}px)`;
+
+          const transform$$1 = `rotateX(${isHorizontal ? 0 : -slideAngle}deg) rotateY(${isHorizontal ? slideAngle : 0}deg) translate3d(${tx}px, ${ty}px, ${tz}px)`;
           if (progress <= 1 && progress > -1) {
             wrapperRotate = (slideIndex * 90) + (progress * 90);
             if (rtl) wrapperRotate = (-slideIndex * 90) - (progress * 90);
@@ -141,8 +156,8 @@ export class CarwashAppointmentPage implements OnInit {
           '-ms-transform-origin': `50% 50% -${swiperSize / 2}px`,
           'transform-origin': `50% 50% -${swiperSize / 2}px`,
         });
-  
-         if (params.shadow) {
+
+        if (params.shadow) {
           if (isHorizontal) {
             $cubeShadowEl.transform(`translate3d(0px, ${(swiperWidth / 2) + params.shadowOffset}px, ${-swiperWidth / 2}px) rotateX(90deg) rotateZ(0deg) scale(${params.shadowScale})`);
           } else {
@@ -157,12 +172,12 @@ export class CarwashAppointmentPage implements OnInit {
             $cubeShadowEl.transform(`scale3d(${scale1}, 1, ${scale2}) translate3d(0px, ${(swiperHeight / 2) + offset$$1}px, ${-swiperHeight / 2 / scale2}px) rotateX(-90deg)`);
           }
         }
-  
+
         const zFactor = (swiper.browser.isSafari || swiper.browser.isUiWebView) ? (-swiperSize / 2) : 0;
         $wrapperEl
           .transform(`translate3d(0px,0,${zFactor}px) rotateX(${swiper.isHorizontal() ? 0 : wrapperRotate}deg) rotateY(${swiper.isHorizontal() ? -wrapperRotate : 0}deg)`);
       },
-      setTransition: function(duration) {
+      setTransition: function (duration) {
         const swiper = this;
         const { $el, slides } = swiper;
         slides
@@ -186,6 +201,9 @@ export class CarwashAppointmentPage implements OnInit {
     private _carwashService: CarwashService,) { }
 
   ngOnInit() {
+
+
+
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -195,41 +213,156 @@ export class CarwashAppointmentPage implements OnInit {
 
   }
 
+  selectInterior() {
 
-  sendRequest() {
+    this.totalPrice = this.totalPrice - this.washPrice;
+    if (this.interior == "active") {
+      this.interior = 'diactive'
+      this.washPrice = this.washPrice - 25
+      this.progressVall = this.progressVall - 0.5
 
-    let id, temp_carwash;
-    this._carwashService.getCarwashById(this.carwash_id).subscribe(
-      response => {
-        id = response.payload.id;
-        temp_carwash = response.payload.data();
-        this.carwash.push(temp_carwash)
-
-        this.carwash.forEach(data => {
-          console.log(data)
-          this.startChat(id,data.ownerID, data.name)
-        })
+    }
+    else {
+      this.interior = 'active';
+      this.washPrice = 25;
+      if (this.progressVall < 0.4) {
+        this.progressVall = this.progressVall + 0.5;
       }
 
-    )
+    }
+
+    this.fullWash = "diactive"
+    this.exterior = "diactive"
+
+    this.totalPrice = this.totalPrice + this.washPrice;
   }
 
-  //  this.router.navigate(['tabs-pages/tabs/dashboard'])
+  selectExterior() {
 
-  startChat(id, ownerID, carWashName) {
+    this.totalPrice = this.totalPrice - this.washPrice;
+    if (this.exterior == "active") {
+      this.exterior = 'diactive'
+      this.washPrice = this.washPrice - 35
+      this.progressVall = this.progressVall - 0.5
+    }
+    else {
+      this.exterior = 'active';
+      this.washPrice = 35;
+      if (this.progressVall < 0.4) {
+        this.progressVall = this.progressVall + 0.5;
+      }
+    }
 
-    const from = this.userID;
-    const to = ownerID;
-    const message = 'I am interested in this property: ' + carWashName;
-    const date = new Date();
-    const time = date.getHours() + ':' + date.getMinutes();
-    // const senderName = this.userDetails.name;
-    const chat = { id, message, from, to, time, date };
+    this.fullWash = "diactive"
+    this.interior = "diactive"
 
-    this.router.navigate(['/messages/' + ownerID], {
-      queryParams: { propertyID: id, userID: from, sendTo: to, propertyName: carWashName },
-    });
+    this.totalPrice = this.totalPrice + this.washPrice;
 
   }
-   
+
+
+  selectFullWash() {
+
+    this.totalPrice = this.totalPrice - this.washPrice;
+    if (this.fullWash == "active") {
+      this.fullWash = 'diactive'
+      this.washPrice = this.washPrice - 50
+      this.progressVall = this.progressVall - 0.5
+    }
+    else {
+      this.fullWash = 'active';
+      this.washPrice = 50;
+      if (this.progressVall < 0.4) {
+        this.progressVall = this.progressVall + 0.5;
+      }
+    }
+    this.interior = "diactive"
+    this.exterior = "diactive"
+
+    this.totalPrice = this.totalPrice + this.washPrice;
+
+  }
+
+  getval(val) {
+    // console.log(val)
+    switch (val) {
+      case '01':
+        this.totalPrice = this.totalPrice - this.CarModelPrice;
+        this.CarModelPrice = 30;
+        this.totalPrice = this.totalPrice + this.CarModelPrice;
+
+        break;
+      case '02':
+        this.totalPrice = this.totalPrice - this.CarModelPrice;
+        this.CarModelPrice = 25;
+        this.totalPrice = this.totalPrice + this.CarModelPrice;
+        
+        break;
+      case '03':
+        this.totalPrice = this.totalPrice - this.CarModelPrice;
+        this.CarModelPrice = 40;
+        this.totalPrice = this.totalPrice + this.CarModelPrice;
+        
+        break;
+      case '04':
+        this.totalPrice = this.totalPrice - this.CarModelPrice;
+        this.CarModelPrice = 45;
+        this.totalPrice = this.totalPrice + this.CarModelPrice;
+        
+        break;
+      case '05':
+        this.totalPrice = this.totalPrice - this.CarModelPrice;
+        this.CarModelPrice = 55;
+        this.totalPrice = this.totalPrice + this.CarModelPrice;
+        
+        break;
+      case '06':
+        this.totalPrice = this.totalPrice - this.CarModelPrice;
+        this.CarModelPrice = 55;
+        this.totalPrice = this.totalPrice + this.CarModelPrice;
+        
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  /*
+    sendRequest() {
+  
+      let id, temp_carwash;
+      this._carwashService.getCarwashById(this.carwash_id).subscribe(
+        response => {
+          id = response.payload.id;
+          temp_carwash = response.payload.data();
+          this.carwash.push(temp_carwash)
+  
+          this.carwash.forEach(data => {
+            console.log(data)
+            this.startChat(id,data.ownerID, data.name)
+          })
+        }
+  
+      )
+    }
+  
+    //  this.router.navigate(['tabs-pages/tabs/dashboard'])
+  
+    startChat(id, ownerID, carWashName) {
+  
+      const from = this.userID;
+      const to = ownerID;
+      const message = 'I am interested in this property: ' + carWashName;
+      const date = new Date();
+      const time = date.getHours() + ':' + date.getMinutes();
+      // const senderName = this.userDetails.name;
+      const chat = { id, message, from, to, time, date };
+  
+      this.router.navigate(['/messages/' + ownerID], {
+        queryParams: { propertyID: id, userID: from, sendTo: to, propertyName: carWashName },
+      });
+  
+    }
+     */
 }
