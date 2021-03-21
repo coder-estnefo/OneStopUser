@@ -15,7 +15,8 @@ export class CarwashAppointmentPage implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  progressVall = 0.2;
+  progressVall = 0;
+  progressContro=0;
   selectorVal;
   totalPrice = 0;
   washPrice=0;
@@ -25,9 +26,9 @@ export class CarwashAppointmentPage implements OnInit {
   exterior = 'diactive'
   interior = 'diactive'
 
-  // carwash_id = this.activatedRoute.snapshot.paramMap.get('id');
-  // userID = firebase.auth().currentUser.uid;
-  // carwash = [];
+  carwash_id = this.activatedRoute.snapshot.paramMap.get('id');
+  userID = firebase.auth().currentUser.uid;
+  carwash = [];
 
 
 
@@ -285,6 +286,8 @@ export class CarwashAppointmentPage implements OnInit {
 
   getval(val) {
     // console.log(val)
+    this.progressVall = this.progressVall - this.progressContro;
+    this.progressContro=0.2;
     switch (val) {
       case '01':
         this.totalPrice = this.totalPrice - this.CarModelPrice;
@@ -326,9 +329,10 @@ export class CarwashAppointmentPage implements OnInit {
       default:
         break;
     }
+    this.progressVall = this.progressVall + this.progressContro;
   }
 
-  /*
+  
     sendRequest() {
   
       let id, temp_carwash;
@@ -364,5 +368,5 @@ export class CarwashAppointmentPage implements OnInit {
       });
   
     }
-     */
+     
 }

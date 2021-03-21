@@ -21,13 +21,13 @@ ion-item {
     margin-right: 50px;
     margin-bottom: 20px;
     width: 100%;
-    border-radius: 14px;
+    border-radius: 10px;
     --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
 }
 
 .category {
     width: 100%;
-    border-radius: 14px;
+    border-radius: 10px;
 }
 
 ion-content {
@@ -36,7 +36,7 @@ ion-content {
 
 ion-card-content {
     .img-wrapper {
-        border-radius: 14px;
+        border-radius: 10px;
         height: 200px;
         overflow: hidden;
         margin-bottom: 8px;

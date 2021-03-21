@@ -131,7 +131,7 @@
                 <ion-card>
                     <ion-list lines="none">
                         <div style="width: 100; margin: auto; text-align: center;">
-                            <ion-icon style="width: 30px; height: 30px; color: #3981d0;" name="location-outline"></ion-icon>
+                            <ion-icon style="width: 30px; height: 30px; " color="secondary" name="location-outline"></ion-icon>
                             <ion-title>Collect</ion-title>
                         </div>
 
@@ -143,7 +143,7 @@
                 <ion-card>
                     <ion-list>
                         <div style="width: 100; margin: auto; text-align: center;">
-                            <ion-icon style="width: 30px; height: 30px; color: #3981d0;; " name="home-outline"></ion-icon>
+                            <ion-icon style="width: 30px; height: 30px; " color="secondary" name="home-outline"></ion-icon>
                             <ion-title>Wash home</ion-title>
                         </div>
                     </ion-list>
@@ -153,7 +153,7 @@
 
     </ion-grid>
 </ion-content>
-<ion-progress-bar value={{progressVall}} buffer="0.5"></ion-progress-bar>
+<ion-progress-bar color="secondary" value={{progressVall}} buffer="0.5"></ion-progress-bar>
 <ion-footer>
     <ion-toolbar>
 
@@ -164,7 +164,8 @@
 
 
         <ion-item slot="end" lines="none">
-            <ion-button style="color:#83d7ee; " size="small " shape="round " expand="block " (click)="sendRequest() ">Request</ion-button>
+            <!-- <ion-button style="color:#83d7ee; " size="small " shape="round " expand="block " (click)="sendRequest() ">Request</ion-button> -->
+            <ion-button shape="round " expand="block " size="small" color="secondary" (click)="sendRequest() ">Request</ion-button>
         </ion-item>
 
     </ion-toolbar>
