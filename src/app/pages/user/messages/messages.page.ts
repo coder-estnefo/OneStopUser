@@ -142,6 +142,8 @@ export class MessagesPage implements OnInit {
 
   date;
   time;
+  minTime;
+  maxTime;
 
   questionOne = undefined;
   questionTwo = undefined;
@@ -225,6 +227,8 @@ export class MessagesPage implements OnInit {
     newDate.setDate(today.getDate() + (day.day - today.getDay() + 7) % 7 + 1);
     this.questionThree = true;
     this.dateSelected = this.formatDate(newDate);
+    this.minTime = day.from;
+    this.maxTime = day.to;
   }
 
   setTime() {
