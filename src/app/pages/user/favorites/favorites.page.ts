@@ -6,6 +6,7 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
 import { ICarWash, ICleaning, IProperty } from 'src/app/structures/interfaces';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { query } from '@angular/animations';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
@@ -37,8 +38,10 @@ export class FavoritesPage implements OnInit {
     this.getfavoriteCleaningServices();
   }
 
-  gotoAddFavorites() {
-    this.router.navigateByUrl('add-favorites');
+  gotoAddFavorites(type) {
+    this.router.navigate(['/add-favorites'], {
+      queryParams: type,
+    })
   }
 
   deleteFavoriteCarwash(carwash_id: string) {

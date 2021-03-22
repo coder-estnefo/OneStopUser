@@ -16,13 +16,11 @@
 
 
 <ion-content>
-    <div
-        *ngIf="favoriteCarwashes.length > 0 || favoritesProperties.length > 0 || favoriteCleaningService.length > 0; else empty">
+    <div *ngIf="favoriteCarwashes.length > 0 || favoritesProperties.length > 0 || favoriteCleaningService.length > 0; else empty">
         <div class="ion-padding wrapper">
             <div class="seachbar ">
                 <ion-input clearInput type="text" placeholder="Search">
-                    <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;"
-                        class="ion-padding-left" slot="start" name="search-outline">
+                    <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;" class="ion-padding-left" slot="start" name="search-outline">
                     </ion-icon>
                 </ion-input>
             </div>
@@ -37,7 +35,7 @@
                 </ion-col>
                 <ion-col size="3">
                     <ion-badge color="light" class="ion-margin-end">
-                        <a routerLink="/add-favorites">Add More</a>
+                        <a (click)="gotoAddFavorites('apartments')">Add More</a>
                     </ion-badge>
                 </ion-col>
             </ion-row>
@@ -54,8 +52,7 @@
                                         <ion-row>
                                             <ion-col>
                                                 <div class="img-wrapper">
-                                                    <ion-img routerLink="/property-details/{{favorite.id}}"
-                                                        src="{{favorite.images}}"></ion-img>
+                                                    <ion-img routerLink="/property-details/{{favorite.id}}" src="{{favorite.images}}"></ion-img>
                                                 </div>
                                             </ion-col>
                                         </ion-row>
@@ -90,7 +87,7 @@
                 </ion-col>
                 <ion-col size=3>
                     <ion-badge color="light" class="ion-margin-end">
-                        <a routerLink="/add-favorites">Add More</a>
+                        <a (click)="gotoAddFavorites('carwashes')">Add More</a>
                     </ion-badge>
                 </ion-col>
             </ion-row>
@@ -107,8 +104,7 @@
                                         <ion-row>
                                             <ion-col>
                                                 <div class="img-wrapper">
-                                                    <ion-img src="{{carwash.images}}"
-                                                        routerLink="/carwash-details/{{carwash.id}}"></ion-img>
+                                                    <ion-img src="{{carwash.images}}" routerLink="/carwash-details/{{carwash.id}}"></ion-img>
                                                 </div>
                                             </ion-col>
                                         </ion-row>
@@ -144,7 +140,7 @@
                 </ion-col>
                 <ion-col size="3">
                     <ion-badge color="light" class="ion-margin-end">
-                        <a routerLink="/add-favorites">Add More</a>
+                        <a (click)="gotoAddFavorites('cleaning-services')">Add More</a>
                     </ion-badge>
                 </ion-col>
             </ion-row>
@@ -161,8 +157,7 @@
                                         <ion-row>
                                             <ion-col>
                                                 <div class="img-wrapper">
-                                                    <ion-img src="{{service.images}}"
-                                                        routerLink="/carwash-details/{{service.id}}"></ion-img>
+                                                    <ion-img src="{{service.images}}" routerLink="/carwash-details/{{service.id}}"></ion-img>
                                                 </div>
                                             </ion-col>
                                         </ion-row>
@@ -214,9 +209,7 @@
                 </ion-label>
                 <ion-label class="">
                     <h3 class="ion-text-center bottom-message"><a routerLink="/add-favorites" color="primary">Add
-                            favorite </a>
-                        apartments, carwashes and cleaning
-                        services. </h3>
+                            favorite </a> apartments, carwashes and cleaning services. </h3>
                 </ion-label>
             </ion-card-content>
         </ion-card>
