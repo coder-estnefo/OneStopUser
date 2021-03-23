@@ -7,13 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
   <div class="main">
     <div *ngIf="chats">
-      <ion-list *ngFor="let chat of chats">
+      <ion-list *ngFor="let chat of chats" class="item-background-color">
         <ion-item button *ngIf="chat.from === userID; else to">
           <ion-avatar slot="end">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+            <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
           </ion-avatar>
           <ion-label class="you ion-text-wrap">
             <ion-text>You</ion-text>
@@ -28,7 +28,7 @@
         <ng-template #to>
           <ion-item button>
             <ion-avatar slot="start">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+              <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
             </ion-avatar>
             <ion-label class="receiver ion-text-wrap">
               <p>
@@ -43,195 +43,139 @@
     </div>
   
   
-    <ion-list>
+    <ion-list class="item-background-color">
       <ion-item button>
         <ion-avatar slot="start">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
         </ion-avatar>
         <ion-label class="receiver ion-text-wrap">
           <p>
-            Hello, you have requested the following services:<br>
-            <ion-text *ngFor="let service of requestedServices">
-              {{service.service}} - R {{service.price}}<br>
-            </ion-text>
+            Hello, you have requested the following services:
           </p>
-        </ion-label>
-      </ion-item>
-  
-      <ion-item button>
-        <ion-avatar slot="start">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="receiver ion-text-wrap">
-          <p>
-            Enter your address:
-            <ion-item>
-              <ion-label position="floating">Address</ion-label>
-              <ion-textarea [(ngModel)]="address" ></ion-textarea>
-            </ion-item>
-            <br />
-            <ion-button shape="round" (click)="questionOneNo()">Cancel</ion-button>
-            <ion-button shape="round" (click)="questionOneYes()">Continue</ion-button>
-          </p>
-        </ion-label>
-      </ion-item>
-  
-  
-      <ion-item button *ngIf="questionOne === true">
-        <ion-avatar slot="end">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="you ion-text-wrap">
-          <p>
-            {{address}}
-          </p>
-        </ion-label>
-      </ion-item>
-  
-      <ion-item button *ngIf="questionOne === false">
-        <ion-avatar slot="end">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="you ion-text-wrap">
-          <p>
-            Cancel
-          </p>
-        </ion-label>
-      </ion-item>
-  
-      <ion-item button *ngIf="questionOne === true">
-        <ion-avatar slot="start">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="receiver ion-text-wrap">
-          <p>
-            Make payment
-            <br />
-            <ion-button shape="round" (click)="cancelPayment()">Cancel</ion-button>
-            <ion-button shape="round" (click)="payNow()">Pay Now</ion-button>
-          </p>
-        </ion-label>
-      </ion-item>
-  
-      <!-- <ion-item button *ngIf="questionTwo === true">
-        <ion-avatar slot="end">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="you ion-text-wrap">
-          <p>
-            Yes
-          </p>
-        </ion-label>
-      </ion-item>
-  
-      <ion-item button *ngIf="questionTwo === false">
-        <ion-avatar slot="end">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="you ion-text-wrap">
-          <p>
-            No
-          </p>
-        </ion-label>
-      </ion-item>
-  
-      <ion-item button *ngIf="questionTwo === true">
-        <ion-avatar slot="start">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="receiver ion-text-wrap">
-  
-          <h2>Make appointment for viewing</h2>
-  
-          <P>You can view the property on the following days:</P>
-  
           <ol>
-            <span *ngFor="let day of viewingDates.days">
+            <li *ngFor="let service of requestedServices">
+              <ion-text class="list">
+                {{service.service}} - R {{service.price}}
+              </ion-text>
+            </li>
+          </ol>
+          <p>
+            Total: R {{totalPrice}} <br />
+            Location: <br><ion-icon name="location-outline"></ion-icon> {{address}}
+          </p>
+        </ion-label>
+      </ion-item>
+  
+      <ion-item button>
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+        </ion-avatar>
+        <ion-label class="receiver ion-text-wrap">
+          <p>
+            Select the date
+          </p>
+          <ol *ngIf="cleaningDays">
+            <span *ngFor="let day of cleaningDays.days">
               <li *ngIf="day.checked === true">
-                <ion-button shape="round" expand="full" (click)="selectDay(day)">
+                <ion-button shape="round" color="light" expand="full" (click)="selectDay(day)">
                   {{day.name}} {{day.from}} - {{day.to}}
                 </ion-button>
               </li>
             </span>
           </ol>
-  
         </ion-label>
       </ion-item>
   
-      <ion-item button *ngIf="questionThree === true">
+  
+      <ion-item button *ngIf="dateOk === true">
         <ion-avatar slot="end">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
         </ion-avatar>
         <ion-label class="you ion-text-wrap">
           <p>
-            {{dateSelected}}
+            {{selectedDate}}
           </p>
         </ion-label>
       </ion-item>
   
-      <ion-item button *ngIf="questionThree === true">
+      <ion-item button *ngIf="dateOk === true">
         <ion-avatar slot="start">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
         </ion-avatar>
         <ion-label class="receiver ion-text-wrap">
           <p>
-            At what time would you like to see this property ?
+            Select the time
             <br />
             <ion-item class="time-box">
               <ion-label>
                 <ion-icon name="time-outline"></ion-icon>
               </ion-label>
-              <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="time" min="09:00" max="16:00"
+              <ion-datetime 
+                displayFormat="HH:mm" 
+                placeholder="Select Time" 
+                [(ngModel)]="selectedTime" 
+                [min]="minTime" 
+                [max]="maxTime"
                 required>
               </ion-datetime>
             </ion-item>
-  
+            
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-button shape="round" expand="block" (click)="cancelAppointment()">
+                  <ion-button shape="round" color="light" expand="block">
                     Cancel
                   </ion-button>
                 </ion-col>
                 <ion-col>
-                  <ion-button shape="round" expand="block" (click)="setTime()">
+                  <ion-button shape="round" color="light" expand="block" (click)="setTime()">
                     Continue
                   </ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>
-  
           </p>
         </ion-label>
       </ion-item>
-  
-      <ion-item button *ngIf="questionFour === true">
+
+      <ion-item button *ngIf="timeOk === true">
         <ion-avatar slot="end">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
+          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
         </ion-avatar>
         <ion-label class="you ion-text-wrap">
           <p>
-            {{time}}
+            {{selectedTime}}
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item button *ngIf="timeOk === true">
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+        </ion-avatar>
+        <ion-label class="receiver ion-text-wrap">
+          <p>
+            Make payment<br />
+            Total: R {{totalPrice}}
+            <br />
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-button shape="round" color="light" expand="block">
+                    Cancel
+                  </ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button shape="round" color="light" expand="block" (click)="payNow()">
+                    Pay
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </p>
         </ion-label>
       </ion-item>
   
-      <ion-item button *ngIf="questionFour === true">
-        <ion-avatar slot="start">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" />
-        </ion-avatar>
-        <ion-label class="receiver ion-text-wrap">
-          <p>
-            Request appointment for:<br>
-            Date: {{dateSelected}}<br>
-            Time: {{time}}
-            <br />
-  
-            <ion-button shape="round" expand="full" (click)="requestAppointment()">Request Appointment</ion-button>
-            <ion-button shape="round" expand="full" (click)="cancelAppointment()">Cancel</ion-button>
-          </p>
-        </ion-label>
-      </ion-item> -->
   
     </ion-list>
   
