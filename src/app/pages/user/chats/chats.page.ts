@@ -41,7 +41,20 @@ export class ChatsPage implements OnInit {
 
       const temp_chats = this.propertyChats.sort((a, b) => b.date - a.date);
       this.propertyChats = temp_chats;
-      console.log(this.propertyChats)
+      console.log(this.propertyChats);
+
+      const result = [];
+      const map = new Map();
+      for (const item of this.propertyChats) {
+          if(!map.has(item.chatID)){
+              map.set(item.chatID, true);    // set any value to Map
+              result.push({
+                ...item
+              });
+            }
+        }
+        this.propertyChats = result;
+        console.log(result)
     });
   }
 
@@ -62,6 +75,30 @@ export class ChatsPage implements OnInit {
       });
     }
   
+  }
+
+  formatDate(dt) {
+    dt = new Date(dt);
+    let day =
+      dt.getDate() < 10
+        ? '0' + dt.getDate().toString()
+        : dt.getDate().toString();
+    let month =
+      dt.getMonth() < 10
+        ? '0' + (dt.getMonth() + 1).toString()
+        : dt.getMonth().toString();
+    let year =
+      dt.getFullYear() < 10
+        ? '0' + dt.getFullYear().toString()
+        : dt.getFullYear().toString();
+
+    return day + '/' + month + '/' + year;
+  }
+
+  go(dt) {
+    let date = new Date(dt.seconds * 1000).toLocaleString('en-ZA');
+    let newDate = this.formatDate(date);
+    return newDate;
   }
 
 }

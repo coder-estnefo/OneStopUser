@@ -17,13 +17,13 @@
 
 <ion-content>
     <div class="ion-padding wrapper">
-        <div class="seachbar ">
+        <!-- <div class="seachbar ">
             <ion-input clearInput type="text" placeholder="Search">
                 <ion-icon style="color: gray; margin-left: 10px;margin-right: 10px; font-size: 20px;"
                     class="ion-padding-left" slot="start" name="search-outline">
                 </ion-icon>
             </ion-input>
-        </div>
+        </div> -->
     </div>
 
 
@@ -34,10 +34,11 @@
             <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
         </ion-avatar>
         <ion-label>
-            <!-- <h3>Itumeleng </h3> -->
+            <h3 *ngIf="chat.propertyName !=undefined">{{chat.propertyName}}</h3>
+            <h3 *ngIf="chat.cleaningName !=undefined">{{chat.cleaningName}}</h3>
             <p>{{chat.message}}</p>
         </ion-label>
-        <ion-badge color="primary" shape="round" slot="end">{{chat.time}}</ion-badge>
+        <ion-badge color="primary" shape="round" slot="end">{{go(chat.date)}}</ion-badge>
     </ion-item>
     <!-- </ion-item-group>
     </ion-list> -->
