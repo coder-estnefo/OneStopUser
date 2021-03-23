@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { PaymentModalPage } from '../payment-modal/payment-modal.page'
 
 @Component({
@@ -35,11 +36,20 @@ export class RequestServicePage implements OnInit {
   chats;
   text;
 
+  userDetails;
+  noPic;
+  picUrl;
+
+  ownerDetails;
+  ownerNoPic;
+  ownerPicUrl;
+
   constructor(
     private cleaningService: CleaningService,
     public modalController: ModalController,
     private route: ActivatedRoute,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -69,6 +79,9 @@ export class RequestServicePage implements OnInit {
         this.chats = temp_chats;
         console.log(this.chats)
       });
+
+      this.getUserDetails(this.userID);
+    this.getOwnerDetails(this.sendTo);
     });
 
     this.route.queryParams.subscribe((param) => {
@@ -196,6 +209,28 @@ export class RequestServicePage implements OnInit {
         : dt.getMinutes().toString();
 
     return  hours + ':' + minutes;
+  }
+
+  getUserDetails(userID) {
+    this.userService.getUser(this.userID).subscribe((response) => {
+      this.userDetails = response.payload.data();
+      if (this.userDetails.profilePic != undefined || this.userDetails.profilePic != null) {
+        this.picUrl = this.userDetails.profilePic;
+      } else {
+        this.noPic = true;
+      }
+    })
+  }
+
+  getOwnerDetails(ownerID) {
+    this.userService.getOwner(ownerID).subscribe((response) => {
+      this.ownerDetails = response.payload.data();
+      if (this.ownerDetails.profilePic != undefined || this.ownerDetails.profilePic != null) {
+        this.ownerPicUrl = this.ownerDetails.profilePic;
+      } else {
+        this.ownerNoPic = true;
+      }
+    })
   }
 
 }

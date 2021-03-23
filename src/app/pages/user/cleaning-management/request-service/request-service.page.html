@@ -13,7 +13,10 @@
       <ion-list *ngFor="let chat of chats" class="item-background-color">
         <ion-item button *ngIf="chat.from === userID; else to">
           <ion-avatar slot="end">
-            <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+            <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon"></ion-icon>
+            <ng-template #pic>
+              <ion-img [src]="picUrl" class="user-icon"></ion-img>
+            </ng-template>
           </ion-avatar>
           <ion-label class="you ion-text-wrap">
             <ion-text>You</ion-text>
@@ -28,7 +31,10 @@
         <ng-template #to>
           <ion-item button>
             <ion-avatar slot="start">
-              <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+              <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
+              <ng-template #OwnerPic>
+                <ion-img [src]="ownerPicUrl" class="user-icon"></ion-img>
+              </ng-template>
             </ion-avatar>
             <ion-label class="receiver ion-text-wrap">
               <p>
@@ -46,7 +52,10 @@
     <ion-list class="item-background-color">
       <ion-item button>
         <ion-avatar slot="start">
-          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+          <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
+          <ng-template #OwnerPic>
+            <ion-img [src]="ownerPicUrl" class="user-icon"></ion-img>
+          </ng-template>
         </ion-avatar>
         <ion-label class="receiver ion-text-wrap">
           <p>
@@ -68,7 +77,10 @@
   
       <ion-item button>
         <ion-avatar slot="start">
-          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+          <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
+          <ng-template #OwnerPic>
+            <ion-img [src]="ownerPicUrl" class="user-icon"></ion-img>
+          </ng-template>
         </ion-avatar>
         <ion-label class="receiver ion-text-wrap">
           <p>
@@ -89,7 +101,10 @@
   
       <ion-item button *ngIf="dateOk === true">
         <ion-avatar slot="end">
-          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+          <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon"></ion-icon>
+          <ng-template #pic>
+            <ion-img [src]="picUrl" class="user-icon"></ion-img>
+          </ng-template>
         </ion-avatar>
         <ion-label class="you ion-text-wrap">
           <p>
@@ -100,7 +115,10 @@
   
       <ion-item button *ngIf="dateOk === true">
         <ion-avatar slot="start">
-          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+          <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
+          <ng-template #OwnerPic>
+            <ion-img [src]="ownerPicUrl" class="user-icon"></ion-img>
+          </ng-template>
         </ion-avatar>
         <ion-label class="receiver ion-text-wrap">
           <p>
@@ -140,7 +158,10 @@
 
       <ion-item button *ngIf="timeOk === true">
         <ion-avatar slot="end">
-          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+          <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon"></ion-icon>
+          <ng-template #pic>
+            <ion-img [src]="picUrl" class="user-icon"></ion-img>
+          </ng-template>
         </ion-avatar>
         <ion-label class="you ion-text-wrap">
           <p>
@@ -151,7 +172,10 @@
 
       <ion-item button *ngIf="timeOk === true">
         <ion-avatar slot="start">
-          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+          <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
+          <ng-template #OwnerPic>
+            <ion-img [src]="ownerPicUrl" class="user-icon"></ion-img>
+          </ng-template>
         </ion-avatar>
         <ion-label class="receiver ion-text-wrap">
           <p>

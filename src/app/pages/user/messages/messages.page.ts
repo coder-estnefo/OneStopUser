@@ -30,6 +30,14 @@ export class MessagesPage implements OnInit {
   text;
   viewingDates;
 
+  userDetails;
+  noPic;
+  picUrl;
+
+  ownerDetails;
+  ownerNoPic;
+  ownerPicUrl;
+
   constructor(
     private route: ActivatedRoute,
     private propertiesService: PropertiesService,
@@ -75,6 +83,9 @@ export class MessagesPage implements OnInit {
           this.viewingDates = response.payload.data();
         });
     });
+
+    this.getUserDetails(this.userID);
+    this.getOwnerDetails(this.sendTo);
   }
 
   sendMessage() {
@@ -300,5 +311,28 @@ export class MessagesPage implements OnInit {
           alert(JSON.stringify(error));
         });
     });
+  }
+
+  getUserDetails(userID) {
+    this._userService.getUser(this.userID).subscribe((response) => {
+      this.userDetails = response.payload.data();
+      if (this.userDetails.profilePic != undefined || this.userDetails.profilePic != null) {
+        this.picUrl = this.userDetails.profilePic;
+      } else {
+        this.noPic = true;
+      }
+    })
+  }
+
+  getOwnerDetails(ownerID) {
+    this._userService.getOwner(ownerID).subscribe((response) => {
+      this.ownerDetails = response.payload.data();
+      if (this.ownerDetails.profilePic != undefined || this.ownerDetails.profilePic != null) {
+        this.ownerPicUrl = this.ownerDetails.profilePic;
+      } else {
+        this.ownerNoPic = true;
+      }
+      console.log(this.ownerDetails)
+    })
   }
 }
