@@ -1,98 +1,111 @@
-$box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12);
-
+$box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+0 2px 2px 0 rgba(0, 0, 0, 0.14),
+0 1px 5px 0 rgba(0, 0, 0, 0.12);
 input[type="text"] {
-  margin: 0 10px;
-  padding: 10px;
-  width: 100%;
-  height: 40px;
-  border: 0;
-  border-radius: 17px;
+    margin: 0 10px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 17px;
 }
 
 textarea {
-  margin: 5px 10px 5px 5px;
-  padding: 10px;
-  width: 100%;
-  height: 40px;
-  border: 0;
-  border-radius: 17px;
+    margin: 5px 10px 5px 5px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 17px;
 }
 
 .item-background-color {
-  --ion-item-background: #f4f5f8;
+    --ion-item-background: #f4f5f8;
 }
 
 .you {
-  padding: 10px;
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 17px 0 17px 17px;
-  box-shadow: $box-shadow;
+    padding: 10px;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 17px 0 17px 17px;
+    box-shadow: $box-shadow;
 }
 
 .receiver {
-  padding: 10px;
-  background-color: hsl(180, 100%, 45%);
-  /*background-color: hsl(217, 59%, 50%);*/
-  border-radius: 0 17px 17px;
-  box-shadow: $box-shadow;
+    padding: 10px;
+    background-color: hsl(180, 100%, 45%);
+    /*background-color: hsl(217, 59%, 50%);*/
+    border-radius: 0 17px 17px;
+    box-shadow: $box-shadow;
 }
 
 .receiver p {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: hsl(0, 0%, 100%);
-  font-size: 20px;
-  line-height: 20px;
-  font-weight: 500;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: hsl(0, 0%, 100%);
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
 }
 
 .you p {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
-  font-size: 20px;
-  font-weight: 500;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .user-icon {
-  font-size: 40px;
-  color: #ccc;
+    font-size: 40px;
+    color: #ccc;
 }
 
 .main {
-  height: 100%;
+    height: 100%;
 }
 
 .footer {
-  display: flex;
-  background-color: #ccc;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
+    display: flex;
+    background-color: #ccc;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .message-input {
-  flex-basis: 80%;
-  padding: 2px 4px 2px;
+    flex-basis: 80%;
+    padding: 2px 4px 2px;
 }
 
 .send {
-  flex-basis: 20%;
-  padding: 2px 2px 2px;
+    flex-basis: 20%;
+    padding: 2px 2px 2px;
 }
 
 .send-btn {
-  height: 40px;
+    height: 40px;
 }
 
 .dummy {
-  height: 50px;
-  width: 100%;
+    height: 50px;
+    width: 100%;
 }
 
 .time-box {
-  border-radius: 17px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    border-radius: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ion-item {
+    --background: linear-gradient( to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243)) no-repeat;
+    h2 {
+        font-weight: bolder;
+        font-size: 18px;
+        padding-top: 12px;
+    }
+    h3 {
+        font-weight: bold;
+        font-size: 14px;
+    }
 }
