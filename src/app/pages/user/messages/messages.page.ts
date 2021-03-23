@@ -98,9 +98,8 @@ export class MessagesPage implements OnInit {
       // this._userService.getOwner()
 
       this.propertiesService.startChat(chat).then(() => {
-        this.text = '';
-
         this.sendNotification();
+        this.text = '';
 
         let ownerData;
         let playerID;
@@ -237,27 +236,29 @@ export class MessagesPage implements OnInit {
     this.time = newTime;
   }
 
-  addToCalender(_date) {
-    let startdate = _date;
-    let enddate = _date;
-    let options = {
-      calendername: 'MyCalendar',
-      url: 'http://ionicacademy.com',
-      firstReminderMinute: 15,
+  addToCalender(chat) {
+    console.log(chat);
+    let dt = chat.appointmentDate;
+    let dd = dt.slice(0,2);
+    let mm = dt.slice(3,5);
+    let yyyy = dt.slice(6,10);
+    let time = dt.slice(11);
+    let newDate = yyyy + "/" + mm + "/" + dd +" " + time;
+    let startdate = new Date(newDate);
+    let newDateEnd = new Date(newDate);
+    let enddate = new Date(newDateEnd.setMinutes(newDateEnd.getMinutes() + 30));
+
+    let options = { 
+      calendername: "Viewing Appointment", 
+      url: '', 
+      firstReminderMinute: 15 
     };
 
     this.calendar
-      .createEventInteractivelyWithOptions(
-        'Appointment',
-        this.propertyName,
-        'created event',
-        startdate,
-        enddate,
-        options
-      )
-      .then(() => {
-        alert('Appointment is set');
-      });
+      .createEventInteractivelyWithOptions('Viewing appointment', chat.propertyName, '',startdate, enddate, options)
+      .then(()=>{
+        alert("Event is set");
+      })
   }
 
   sendNotification() {
@@ -279,7 +280,7 @@ export class MessagesPage implements OnInit {
 
       let notificationObj = {
         contents: {
-          en: 'message body',
+          en: this.text,
         },
         app_id: this.app_id,
         external_user_id: this.userId,
@@ -290,9 +291,9 @@ export class MessagesPage implements OnInit {
         .postNotification(notificationObj)
         .then((success) => {
           // handle received here how you wish.
-          alert('message from ' + this.userId + ' to ' + this.user_id);
+          //alert('message from ' + this.userId + ' to ' + this.user_id);
           // alert(JSON.stringify(success));
-          alert('message send');
+          //alert('message send');
         })
         .catch((error) => {
           alert(error.message);

@@ -34,6 +34,8 @@
                             <p>
                                 {{chat.message}}
                                 <br />
+                                <ion-button shape="round" color="light" (click)="addToCalender(chat)">Add To Calendar</ion-button>
+                                <br />
                                 <ion-text class="ion-text-right">{{chat.time}}</ion-text>
                             </p>
                         </ion-label>
@@ -64,8 +66,8 @@
                     <p>
                         Are you still interested ?
                         <br />
-                        <ion-button shape="round" color="medium" (click)="questionOneNo()">No</ion-button>
-                        <ion-button shape="round" color="medium" (click)="questionOneYes()">Yes</ion-button>
+                        <ion-button shape="round" color="light" (click)="questionOneNo()">No</ion-button>
+                        <ion-button shape="round" color="light" (click)="questionOneYes()">Yes</ion-button>
                     </p>
                 </ion-label>
             </ion-item>
@@ -101,8 +103,8 @@
                     <p>
                         Would you like to make an appointment ?
                         <br />
-                        <ion-button shape="round" color="medium" (click)="questionTwoNo()">No</ion-button>
-                        <ion-button shape="round" color="medium" (click)="questionTwoYes()">Yes</ion-button>
+                        <ion-button shape="round" color="light" (click)="questionTwoNo()">No</ion-button>
+                        <ion-button shape="round" color="light" (click)="questionTwoYes()">Yes</ion-button>
                     </p>
                 </ion-label>
             </ion-item>
@@ -142,7 +144,7 @@
                     <ol>
                         <span *ngFor="let day of viewingDates.days">
                             <li *ngIf="day.checked === true">
-                                <ion-button shape="round" color="medium" expand="full" (click)="selectDay(day)">
+                                <ion-button shape="round" color="light" expand="full" (click)="selectDay(day)">
                                     {{day.name}} {{day.from}} - {{day.to}}
                                 </ion-button>
                             </li>
@@ -187,12 +189,12 @@
                         <ion-grid>
                             <ion-row>
                                 <ion-col>
-                                    <ion-button shape="round" color="medium" expand="block" (click)="cancelAppointment()">
+                                    <ion-button shape="round" color="light" expand="block" (click)="cancelAppointment()">
                                         Cancel
                                     </ion-button>
                                 </ion-col>
                                 <ion-col>
-                                    <ion-button shape="round" color="medium" expand="block" (click)="setTime()">
+                                    <ion-button shape="round" color="light" expand="block" (click)="setTime()">
                                         Continue
                                     </ion-button>
                                 </ion-col>
@@ -225,8 +227,8 @@
                         Time: {{time}}
                         <br />
                         
-                        <ion-button shape="round" expand="full" color="medium" (click)="requestAppointment()">Request Appointment</ion-button>
-                        <ion-button shape="round" expand="full" color="medium" (click)="cancelAppointment()">Cancel</ion-button>
+                        <ion-button shape="round" expand="full" color="light" (click)="requestAppointment()">Request Appointment</ion-button>
+                        <ion-button shape="round" expand="full" color="light" (click)="cancelAppointment()">Cancel</ion-button>
                     </p>
                 </ion-label>
             </ion-item>
