@@ -41,15 +41,27 @@ export class ChatsPage implements OnInit {
 
       const temp_chats = this.propertyChats.sort((a, b) => b.date - a.date);
       this.propertyChats = temp_chats;
+      console.log(this.propertyChats)
     });
   }
 
   toMessages(chat) {
     const { id, to, from, propertyName } = chat;
-    
-    this.router.navigate(['messages/'+this.property_Owner_id], {
-      queryParams: { propertyID: id, userID: from, sendTo: to , propertyName},
-    });
+
+    if (chat.requestType) {
+      if (chat.requestType === "cleaning") {
+        this.router.navigate(['request-service'], {queryParams: {
+          id: id,
+          to: to,
+          name: chat.cleaningName,
+        }})
+      }
+    } else {
+      this.router.navigate(['messages/'+this.property_Owner_id], {
+        queryParams: { propertyID: id, userID: from, sendTo: to , propertyName},
+      });
+    }
+  
   }
 
 }

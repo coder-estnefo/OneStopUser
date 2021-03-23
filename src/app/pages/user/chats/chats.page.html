@@ -31,13 +31,13 @@
     <ion-item-group> -->
     <ion-item button *ngFor="let chat of propertyChats" (click)="toMessages(chat)">
         <ion-avatar slot="start" shape="round">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==" alt="" />
+            <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
         </ion-avatar>
         <ion-label>
             <!-- <h3>Itumeleng </h3> -->
             <p>{{chat.message}}</p>
         </ion-label>
-        <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>
+        <ion-badge color="primary" shape="round" slot="end">{{chat.time}}</ion-badge>
     </ion-item>
     <!-- </ion-item-group>
     </ion-list> -->
