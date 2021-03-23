@@ -10,7 +10,9 @@ import { UserService } from 'src/app/services/user/user.service';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 import { PropertiesService } from 'src/app/services/properties/properties.service';
+import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +21,7 @@ import { PropertiesService } from 'src/app/services/properties/properties.servic
 })
 export class DashboardPage implements OnInit {
 
+  user_id = firebase.auth().currentUser.uid;
 
   user: IUser;
   carwashes: ICarWash[] = [];
@@ -27,6 +30,10 @@ export class DashboardPage implements OnInit {
   properties: IProperty[] = [];
   totalCleaningServices: number = 0;
   cleaning_services: ICleaning[] = [];
+  totalFavoriteProperties: number = 0;
+  totalFavoriteCarwashes: number = 0;
+  totalFavoriteCleaning: number = 0;
+
 
   options = {
     centeredSlides: true,
@@ -41,12 +48,17 @@ export class DashboardPage implements OnInit {
     private _carwashService: CarwashService,
     private _cleaningService: CleaningService,
     private _propertyService: PropertiesService,
+    private _favoriteService: FavoritesService
   ) { }
 
   ngOnInit() {
     this.getTotalCarwashes();
     this.getTotalProperties();
     this.getTotalCleaningServices();
+
+    this.getfavoriteCarwashes();
+    this.getfavoriteProperties();
+    this.getfavoriteCleaningServices();
 
     this.fireAuth.onAuthStateChanged(user => {
       if(user){
@@ -93,6 +105,30 @@ export class DashboardPage implements OnInit {
     this._userService.getUser(user_id).subscribe(
       response => {
         this.user = response.payload.data() as IUser;
+      }
+    )
+  }
+
+  getfavoriteCarwashes() {
+    this._favoriteService.getFavoriteCarwashes(this.user_id).subscribe(
+      response => {
+        this.totalFavoriteCarwashes = response.length;
+      }
+    )
+  }
+
+  getfavoriteProperties() {
+    this._favoriteService.getFavoriteProperties(this.user_id).subscribe(
+      response => {
+        this.totalFavoriteProperties = response.length;
+      }
+    );
+  }
+
+  getfavoriteCleaningServices() {
+    this._favoriteService.getFavoriteCleaningServices(this.user_id).subscribe(
+      response => {
+        this.totalFavoriteCleaning = response.length;
       }
     )
   }
