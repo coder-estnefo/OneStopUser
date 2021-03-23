@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CarwashService } from 'src/app/services/carwash/carwash.service';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
@@ -26,6 +27,7 @@ export class AddFavoritesPage implements OnInit {
   cleaningServices: ICleaning[] = [];
 
   constructor(
+    private activeRoute: ActivatedRoute,
     private _carWashService: CarwashService,
     private _propertyService: PropertiesService,
     private _cleaningService: CleaningService,
@@ -33,12 +35,22 @@ export class AddFavoritesPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.carWashes();
     this.getProperties();
     this.getCleaningServices();
 
-    console.log(this.user_id);
-
+    // this.activeRoute.queryParams.subscribe(params => {
+    //   if(params.type ===  "apartments"){
+    //     this.getProperties();
+    //   }
+    //   else if(params.type ===  "carwashes"){
+    //     this.carWashes();
+    //   }
+    //   else if(params.type ===  "cleaning-services"){
+    //     this.getCleaningServices();
+    //   }
+    // })
   }
 
 
