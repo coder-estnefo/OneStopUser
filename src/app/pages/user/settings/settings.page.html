@@ -17,11 +17,11 @@
 <ion-content>
     <ion-item lines="full" button *ngIf="user" routerLink="/profile">
         <ion-avatar slot="start" shape="round">
-            <img src="../../../../assets/images/user.png" alt="">
+            <ion-img src="../../../../assets/images/avatar.jpg"></ion-img>
         </ion-avatar>
-        <ion-label>
-            <h3>Itumeleng</h3>
-            <p>example@example.com</p>
+        <ion-label class="ion-text-center">
+            <!-- <h3>Itumeleng</h3> -->
+            <h3 class="email">{{user.email}}</h3>
         </ion-label>
     </ion-item>
 
