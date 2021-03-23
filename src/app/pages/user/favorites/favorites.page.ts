@@ -40,7 +40,7 @@ export class FavoritesPage implements OnInit {
 
   gotoAddFavorites(type) {
     this.router.navigate(['/add-favorites'], {
-      queryParams: type,
+      queryParams:{ type: type},
     })
   }
 

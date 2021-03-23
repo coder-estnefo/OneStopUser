@@ -6,9 +6,8 @@
             </ion-label>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-button routerLink="#">
+            <ion-button routerLink="#" *ngIf="favoriteCarwashes.length > 0 || favoritesProperties.length > 0 || favoriteCleaningService.length > 0;">
                 <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-                <!-- <ion-badge color="primary" style="position: absolute; right: -5px; top: -5px;">0</ion-badge> -->
             </ion-button>
         </ion-buttons>
     </ion-item>
