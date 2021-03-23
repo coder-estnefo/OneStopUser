@@ -9,7 +9,7 @@
         <ion-buttons slot="end">
             <ion-button routerLink="/notification">
                 <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
-                <ion-badge color="secondary" style="position: absolute; right: -5px; top: -5px;">0</ion-badge>
+                <ion-badge color="primary " style="position: absolute; right: -5px; top: -5px;">0</ion-badge>
             </ion-button>
         </ion-buttons>
 
@@ -21,20 +21,16 @@
         <ion-row>
             <ion-col size="12">
                 <ion-card class="card property-dashboard" (click)="gotoProperties()">
-                    <ion-card-content class="ion-text-left">
+                    <ion-card-content class="ion-text-center">
+                        <h2 class="">Apartments</h2>
                         <ion-grid>
                             <ion-row>
-                                <ion-col size="12" class="ion-text-center">
-                                    <h2 class="h2">Apartments</h2>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col size="6" class="ion-text-center">
+                                <ion-col size="6" class="ion-text-left">
                                     <ion-card-title class="title">{{this.totalProperties}}</ion-card-title>
-                                    <ion-card-subtitle>Properties</ion-card-subtitle>
+                                    <ion-card-subtitle>Apartments</ion-card-subtitle>
                                 </ion-col>
-                                <ion-col size="6" class="ion-text-center">
-                                    <ion-card-title class="title">203</ion-card-title>
+                                <ion-col size="6" class="ion-text-right">
+                                    <ion-card-title class="total_fav">203</ion-card-title>
                                     <ion-card-subtitle>Favorite</ion-card-subtitle>
                                 </ion-col>
                             </ion-row>
@@ -47,20 +43,16 @@
         <ion-row>
             <ion-col size="12">
                 <ion-card class="card carwash-dashboard" (click)="gotoCarwash()">
-                    <ion-card-content class="ion-text-left">
+                    <ion-card-content class="ion-text-center">
+                        <h2 class="">Car Wash</h2>
                         <ion-grid>
                             <ion-row>
-                                <ion-col size="12" class="ion-text-center">
-                                    <h2 class="h2">Car Wash</h2>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col size="6" class="ion-text-center">
+                                <ion-col size="6" class="ion-text-left">
                                     <ion-card-title class="title">{{this.totalCarWashes}}</ion-card-title>
-                                    <ion-card-subtitle>Car Washes</ion-card-subtitle>
+                                    <ion-card-subtitle>Car Wash</ion-card-subtitle>
                                 </ion-col>
-                                <ion-col size="6" class="ion-text-center">
-                                    <ion-card-title class="title">115</ion-card-title>
+                                <ion-col size="6" class="ion-text-right">
+                                    <ion-card-title class="total_fav">115</ion-card-title>
                                     <ion-card-subtitle>Favorite</ion-card-subtitle>
                                 </ion-col>
                             </ion-row>
@@ -78,17 +70,12 @@
                         <h2 class="">Cleaning Services</h2>
                         <ion-grid>
                             <ion-row>
-                                <ion-col size="12" class="ion-text-center">
-                                    <h2>Cleaning Services</h2>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col size="6" class="ion-text-center">
+                                <ion-col size="6" class="ion-text-left">
                                     <ion-card-title class="title">{{totalCleaningServices}}</ion-card-title>
-                                    <ion-card-subtitle>Cleaning Services</ion-card-subtitle>
+                                    <ion-card-subtitle>Services</ion-card-subtitle>
                                 </ion-col>
-                                <ion-col size="6" class="ion-text-center">
-                                    <ion-card-title class="title">145</ion-card-title>
+                                <ion-col size="6" class="ion-text-right">
+                                    <ion-card-title class="total_fav">145</ion-card-title>
                                     <ion-card-subtitle>Favorite</ion-card-subtitle>
                                 </ion-col>
                             </ion-row>
