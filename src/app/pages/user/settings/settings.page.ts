@@ -7,6 +7,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 import firebase from 'firebase/app';
+import { IUser } from 'src/app/structures/interfaces';
 
 @Component({
   selector: 'app-settings',
@@ -17,7 +18,7 @@ export class SettingsPage implements OnInit {
 
   spinner;
 
-  user: any;
+  user: IUser;
 
   userID = firebase.auth().currentUser.uid;
 
@@ -31,8 +32,16 @@ export class SettingsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = this.profileService;
-    console.log(this.user);
+    // this.user = this.profileService;
+    this.getUser(this.userID);
+  }
+
+  getUser(user_id: string){
+    this._userService.getUser(user_id).subscribe(
+      response => {
+        this.user = response.payload.data() as IUser;
+      }
+    )
   }
 
   // Logout
