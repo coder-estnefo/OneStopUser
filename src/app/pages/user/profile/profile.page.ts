@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserService } from 'src/app/services/user/user.service';
-
+import { finalize } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { IUser } from 'src/app/structures/interfaces';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-profile',
@@ -14,10 +15,15 @@ import { IUser } from 'src/app/structures/interfaces';
 })
 export class ProfilePage implements OnInit {
 
+  userID;
+
   user: any;
   user_details: IUser;
   frm_profile: FormGroup;
   spinner: boolean = false;
+
+  imageUpload = false;
+  image;
 
   constructor(
     public route: Router,
@@ -25,6 +31,7 @@ export class ProfilePage implements OnInit {
     private _userService: UserService,
     private fireAuth: AngularFireAuth,
     private profileService: ProfileService,
+    private storage: AngularFireStorage
     ) { }
 
   goConfirm(){
@@ -36,7 +43,8 @@ export class ProfilePage implements OnInit {
 
     this.fireAuth.onAuthStateChanged(user => {
       if(user){
-        this.getUser(user.uid);
+        this.userID = user.uid;
+        this.getUser(this.userID);
       }
     });
     this.createForm();
@@ -62,5 +70,34 @@ export class ProfilePage implements OnInit {
     this.spinner = true;
 
     console.log(this.frm_profile.value);
+  }
+
+  uploadFile(event) {
+    this.imageUpload = true;
+    const file = event.target.files[0];
+    //this.imagesList.push(file);
+
+    const fileName = file.name;
+    const fileExt = fileName.split('.').pop();
+    const filename = Math.random().toString(36).substring(2) + '.' + fileExt;
+    const filePath = 'profiles/' + filename;
+    const task = this.storage.upload(filePath, file);
+    const ref = this.storage.ref(filePath);
+
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          ref.getDownloadURL().subscribe((downloadURL) => {
+            this.image = downloadURL;
+            this.imageUpload = false;
+          });
+        })
+      )
+      .subscribe();
+  }
+
+  updateImage() {
+    this._userService.updateImage(this.userID, this.image);
   }
 }

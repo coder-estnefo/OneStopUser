@@ -24,9 +24,24 @@
         <div class="form" *ngIf="user_details">
 
             <div class="container">
-                <ion-avatar>
+                <ion-avatar *ngIf="user_details.profilePic === undefined">
                     <ion-img src="../../../../assets/images/avatar.jpg"></ion-img>
                 </ion-avatar>
+                <ion-avatar *ngIf="user_details.profilePic != undefined">
+                    <ion-img [src]="user_details.profilePic"></ion-img>
+                </ion-avatar>
+            </div>
+            
+
+            <div class="image-sec">
+                <label class="form-label" for="upload">Images</label>
+                <input id="upload" type="file" accept="image/*" (change)="uploadFile($event)"/>
+                <ion-button shape="round" (click)="updateImage()" [disabled]="imageUpload">
+                    Update Image 
+                    <span [hidden]="!imageUpload">
+                        <ion-spinner name="circles"></ion-spinner>
+                    </span>
+                </ion-button>
             </div>
 
             <ion-card class="card">
@@ -66,7 +81,7 @@
                         </ion-label>
                         <ion-note slot="end" color="">
                             <ion-label color="primary">
-                                edit
+                                <!-- edit -->
                             </ion-label>
                         </ion-note>
                     </ion-item>
@@ -79,7 +94,7 @@
                                 </ion-col>
                                 <ion-col size="8">
                                     <ion-label>
-                                        <p>{{user_details.email}}</p>
+                                        <p>{{user_details.location[0]}}</p>
                                     </ion-label>
                                 </ion-col>
                             </ion-row>
@@ -94,7 +109,7 @@
                                 </ion-col>
                                 <ion-col size="8">
                                     <ion-label>
-                                        <p>{{user_details.email}}</p>
+                                        <p>{{user_details.location[1]}}</p>
                                     </ion-label>
                                 </ion-col>
                             </ion-row>
@@ -109,7 +124,7 @@
                                 </ion-col>
                                 <ion-col size="8">
                                     <ion-label className="ion-text-wrap">
-                                        <p>Itumelengtshabalala8@gmail.com</p>
+                                        <p>{{user_details.location[2]}}</p>
                                     </ion-label>
                                 </ion-col>
                             </ion-row>
@@ -124,7 +139,7 @@
                                 </ion-col>
                                 <ion-col size="8">
                                     <ion-label>
-                                        <p>{{user_details.email}}</p>
+                                        <p>{{user_details.location[3]}}</p>
                                     </ion-label>
                                 </ion-col>
                             </ion-row>
@@ -149,7 +164,26 @@
                 </ion-grid>
             </ion-item-divider> -->
 
+            <!-- <ion-card class="card">
 
+                <form>
+                    <ion-item>
+                        <ion-label position="stacked">Name</ion-label>
+                        <ion-input></ion-input>
+                    </ion-item>
+                    
+                    <ion-item>
+                        <ion-label position="fixed">Email</ion-label>
+                        <ion-input></ion-input>
+                    </ion-item>
+                    
+                    <ion-item>
+                        <ion-label position="stacked">Address</ion-label>
+                        <ion-textarea autocomplete="street-address"></ion-textarea>
+                    </ion-item>
+                </form>
+
+            </ion-card> -->
 
 
         </div>

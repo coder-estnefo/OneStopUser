@@ -105,3 +105,36 @@ ion-img {
 .ion-text-wrap {
   word-wrap: normal;
 }
+
+.image-sec {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+input[type="file"] {
+  width: 100%;
+  height: 40px;
+  border-radius: 17px;
+  color: #000000;
+  font-weight: 500;
+  border: 1px solid gray;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  height: 42px;
+  border: 0;
+  background-color: #3880ff;
+  color: #ffffff;
+  border-radius: 17px 0 0 17px;
+  transition: 1s;
+}
+
+input[type="file"]::file-selector-button {
+  height: 42px;
+  border: 0;
+  background-color: #3880ff;
+  color: #ffffff;
+  border-radius: 17px 0 0 17px;
+  transition: 1s;
+}
