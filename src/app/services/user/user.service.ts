@@ -54,4 +54,13 @@ export class UserService {
 
 
   /* ********** End testing   **************** */
+
+  updateImage(userID, image) {
+    return this.firestore
+      .collection('Users')
+      .doc(userID)
+      .update({
+        profilePic: image
+      })
+  }
 }
