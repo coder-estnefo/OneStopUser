@@ -23,6 +23,7 @@ ion-item {
     width: 100%;
     border-radius: 10px;
     --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
+    // --background: rgba(255, 255, 255, 0.96);
 }
 
 .category {
@@ -31,7 +32,8 @@ ion-item {
 }
 
 ion-content {
-    --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
+    // --background: linear-gradient(to left, rgba(255, 255, 255, 0.96), rgb(237, 243, 243));
+    --background: rgba(255, 255, 255, 0.96);
 }
 
 ion-card-content {
