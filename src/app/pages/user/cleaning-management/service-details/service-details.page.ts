@@ -43,9 +43,10 @@ export class ServiceDetailsPage implements OnInit {
     this.router.navigate(['prices'])
   }
 
-  goToServiceTypes(id: string) {
+  goToServiceTypes(serviceObj) {
+    const { id, name} = serviceObj;
     this.router.navigate(['/service-type/'], {
-      queryParams: { id: id },
+      queryParams: { id: id, name: name },
     });
   }
 

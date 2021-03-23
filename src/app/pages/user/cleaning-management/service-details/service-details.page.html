@@ -39,6 +39,7 @@
                                     Location:
                                 </ion-col>
                                 <ion-col size="6">
+                                    <ion-icon style="font-size: 16px;" color="secondary" name="location-outline"></ion-icon>
                                     {{cleaningService.address}}
                                 </ion-col>
                             </ion-row>
@@ -46,7 +47,7 @@
                             <ion-row>
                                 <ion-col>
                                     <ion-col size="6">
-                                        <ion-button expand="full" (click)="goToServiceTypes(cleaningService.id)" class="ion-button" size="small" shape="round"
+                                        <ion-button expand="full" (click)="goToServiceTypes(cleaningService)" class="ion-button" size="small" shape="round"
                                             expand="block">Services</ion-button>
                                     </ion-col>
                                 </ion-col>

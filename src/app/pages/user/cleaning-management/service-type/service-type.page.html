@@ -53,15 +53,68 @@
         </div>
       </ion-slide>
     </ion-slides>
+
+    <ion-card class="service-card">
+      <ion-list>
+        <ion-item>Your Requests</ion-item>
+        <ion-item *ngFor="let service of requestList">
+          {{service.service}} R {{service.price}}
+        </ion-item>
+        <ion-item>
+          Total: R {{totalPrice}}
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <ion-card class="service-card">
+      <ion-list>
+        <ion-radio-group>
+          <ion-list-header>
+            <ion-label>
+              Select Your Address
+            </ion-label>
+          </ion-list-header>
+      
+          <ion-item>
+            <ion-label>
+              <ion-icon name="location-outline"></ion-icon>
+              <span *ngIf="userDetails">
+                <span *ngFor="let address of userDetails.location">
+                  {{address}}
+                </span>
+              </span>
+            </ion-label>
+            <ion-radio slot="start" value="savedAddress" (click)="setAddress(userDetails.location)"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="location-outline"></ion-icon>
+              New Address
+            </ion-label>
+            <ion-radio slot="start" value="newAddress" (click)="setAddress('new')"></ion-radio>
+            <ion-textarea 
+              [(ngModel)]="address"
+              (ionChange)="updateAddress($event)" 
+              placeholder="Enter Address Here"
+            >
+            </ion-textarea>
+          </ion-item>
+      
+        </ion-radio-group>
+      </ion-list>
+    </ion-card>
   
-    <ion-button 
-      shape="round" 
-      expand="full" 
-      (click)="requestService()" 
-      [disabled]="requestList.length === 0"
-    >
-      Request
-    </ion-button>
+    <div *ngIf="services">
+      <ion-button 
+        shape="round" 
+        expand="full" 
+        (click)="requestService()" 
+        [disabled]="requestList.length === 0 || addressOk === false"
+      >
+        Request
+      </ion-button>
+    </div>
 
   </div>
 
