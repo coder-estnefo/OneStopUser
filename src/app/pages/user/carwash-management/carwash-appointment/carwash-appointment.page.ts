@@ -21,16 +21,18 @@ export class CarwashAppointmentPage implements OnInit {
   totalPrice = 0;
   washPrice=0;
   CarModelPrice=0;
+  collectWashPrice=0
+  collectProgress=0
 
   fullWash = 'diactive'
   exterior = 'diactive'
   interior = 'diactive'
+  collectWash='diactive'
+  homeWash='diactive'
 
   carwash_id = this.activatedRoute.snapshot.paramMap.get('id');
   userID = firebase.auth().currentUser.uid;
   carwash = [];
-
-
 
 
   slideOpts = {
@@ -197,14 +199,11 @@ export class CarwashAppointmentPage implements OnInit {
 
 
   constructor(private _formBuilder: FormBuilder,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private _carwashService: CarwashService,) { }
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private _carwashService: CarwashService,) { }
 
   ngOnInit() {
-
-
-
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -281,6 +280,53 @@ export class CarwashAppointmentPage implements OnInit {
     this.exterior = "diactive"
 
     this.totalPrice = this.totalPrice + this.washPrice;
+
+  }
+
+  collectW() {
+
+    this.totalPrice = this.totalPrice - this.collectWashPrice;
+    if (this.collectWash == "active") {
+      this.collectWash = 'diactive'
+      this.collectWashPrice= this.collectWashPrice - 15
+
+    }
+    else {
+      this.collectWash = 'active';
+      this.collectWashPrice= 15 
+    }
+    
+    this.homeWash = "diactive";
+   
+
+    this.totalPrice = this.totalPrice + this.collectWashPrice;
+
+  }
+
+
+  homeW() {
+
+    this.totalPrice = this.totalPrice - this.collectWashPrice;
+    if (this.homeWash == "active") {
+      this.homeWash = 'diactive';
+      this.collectWashPrice = this.collectWashPrice - 20;
+
+      this.progressVall = this.progressVall - 0.2;
+      this.collectProgress =this.collectProgress -0.2;
+
+    }
+    else {
+      this.homeWash = 'active';
+
+      this.collectWashPrice =  20;
+
+    }
+
+
+    this.collectWash = "diactive"
+    
+    this.totalPrice = this.totalPrice + this.collectWashPrice;
+    
 
   }
 

@@ -16,18 +16,10 @@ ion-item {
 }
 
 #row {
-    /*.col {
-        ion-card {
-            border: 1px solid;
-            padding: 10px;
-            box-shadow: 5px 10px #888888;
-        }
-    }*/
     .active {
         border: 1px solid;
         padding: 10px;
-        // box-shadow: 5px 10px rgb(65, 138, 248);
-        box-shadow: 5px 10px #83d7ee;
+        box-shadow: 5px 10px #3880ff;
     }
     .diactivate {
         border: 1px solid;
@@ -35,22 +27,3 @@ ion-item {
         box-shadow: 5px 10px #888888;
     }
 }
-
-// .div_interior {
-//     border: 1px solid;
-//     padding: 12px;
-//     box-shadow: 5px 10px #e27f7f;
-//     z-index: 2;
-// }
-// .div_exterior {
-//     border: 1px solid;
-//     padding: 12px;
-//     box-shadow: 5px 10px #e27f7f;
-//     z-index: 2;
-// }
-// .div_fullWash {
-//     border: 1px solid;
-//     padding: 12px;
-//     box-shadow: 5px 10px #e27f7f;
-//     z-index: 2;
-// }

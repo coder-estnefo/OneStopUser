@@ -4,7 +4,7 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-icon style="width: 20px; height: 20px; " name="alert-circle-outline"></ion-icon>
+            <ion-icon style="width: 20px; height: 20px;" color="primary" name="alert-circle-outline"></ion-icon>
         </ion-buttons>
     </ion-item>
 </ion-header>
@@ -128,32 +128,56 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <ion-card>
-                    <ion-list lines="none">
-                        <div style="width: 100; margin: auto; text-align: center;">
-                            <ion-icon style="width: 30px; height: 30px; " color="secondary" name="location-outline"></ion-icon>
-                            <ion-title>Collect</ion-title>
-                        </div>
+                <div (click)="collectW()">
+                    <ion-card *ngIf="collectWash==='diactive'">
+                        <ion-list lines="none">
+                            <div style="width: 100; margin: auto; text-align: center;">
+                                <ion-icon style="width: 30px; height: 30px; " color="primary" name="location-outline"></ion-icon>
+                                <ion-title>Collect</ion-title>
+                            </div>
 
-                    </ion-list>
-                </ion-card>
+                        </ion-list>
+                    </ion-card>
+
+                    <ion-card style="border: 1px solid;" *ngIf="collectWash==='active'">
+                        <ion-list lines="none">
+                            <div style="width: 100; margin: auto; text-align: center;">
+                                <ion-icon style="width: 30px; height: 30px; " color="primary" name="location-outline"></ion-icon>
+                                <ion-title>Collect</ion-title>
+                            </div>
+
+                        </ion-list>
+                    </ion-card>
+
+                </div>
             </ion-col>
 
             <ion-col>
-                <ion-card>
-                    <ion-list>
-                        <div style="width: 100; margin: auto; text-align: center;">
-                            <ion-icon style="width: 30px; height: 30px; " color="secondary" name="home-outline"></ion-icon>
-                            <ion-title>Wash home</ion-title>
-                        </div>
-                    </ion-list>
-                </ion-card>
+                <div (click)="homeW()">
+                    <ion-card *ngIf="homeWash==='diactive'">
+                        <ion-list>
+                            <div style="width: 100; margin: auto; text-align: center;">
+                                <ion-icon style="width: 30px; height: 30px; " color="primary" name="home-outline"></ion-icon>
+                                <ion-title>Wash home</ion-title>
+                            </div>
+                        </ion-list>
+                    </ion-card>
+
+                    <ion-card style="border: 1px solid;" *ngIf="homeWash==='active'">
+                        <ion-list>
+                            <div style="width: 100; margin: auto; text-align: center;">
+                                <ion-icon style="width: 30px; height: 30px; " color="primary" name="home-outline"></ion-icon>
+                                <ion-title>Wash home</ion-title>
+                            </div>
+                        </ion-list>
+                    </ion-card>
+                </div>
             </ion-col>
         </ion-row>
 
     </ion-grid>
 </ion-content>
-<ion-progress-bar color="secondary" value={{progressVall}} buffer="0.5"></ion-progress-bar>
+<ion-progress-bar color="primary" value={{progressVall}} buffer="0.5"></ion-progress-bar>
 <ion-footer>
     <ion-toolbar>
 
@@ -162,65 +186,11 @@
             <!-- <p style="font-size: 20px;">{{'R'+5645}}</p> -->
         </div>
 
-
         <ion-item slot="end" lines="none">
             <!-- <ion-button style="color:#83d7ee; " size="small " shape="round " expand="block " (click)="sendRequest() ">Request</ion-button> -->
-            <ion-button shape="round " expand="block " size="small" color="secondary" (click)="sendRequest() ">Request</ion-button>
+            <ion-button shape="round " expand="block " size="small" color="primary" (click)="sendRequest() ">Request</ion-button>
         </ion-item>
 
     </ion-toolbar>
 
 </ion-footer>
-
-
-
-
-
-<!--
-<ion-content [fullscreen]="true ">
-
-
-
-
-
-    <mat-vertical-stepper [linear]="isLinear " #stepper>
-
-        <mat-step [stepControl]="firstFormGroup ">
-            <form [formGroup]="firstFormGroup ">
-                <ng-template matStepLabel>Fill in Car model</ng-template>
-                <mat-form-field>
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="model " formControlName="firstCtrl " required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-
-        <mat-step [stepControl]="secondFormGroup ">
-            <form [formGroup]="secondFormGroup ">
-                <ng-template matStepLabel>Fill out your address</ng-template>
-                <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl " placeholder="Ex. 1 Main St, New York, NY " required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <!-- <p>You are now done.</p> --
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="sendRequest() ">Send</button>
-            </div>
-        </mat-step>
-    </mat-vertical-stepper>
-
-
-</ion-content>-->
