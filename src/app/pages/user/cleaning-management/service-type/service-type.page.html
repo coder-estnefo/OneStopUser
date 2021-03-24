@@ -94,13 +94,24 @@
             </ion-label>
             <ion-radio slot="start" value="newAddress" (click)="setAddress('new')"></ion-radio>
             <ion-textarea 
-              [(ngModel)]="address"
-              (ionChange)="updateAddress($event)" 
-              placeholder="Enter Address Here"
+              (input)="search($event)" (change)="addressCheck($event)" [value]="selectedAddress"
             >
             </ion-textarea>
+            <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)">
+            
+              {{ address}}
+            
+            </ion-item>
           </ion-item>
-      
+          <!-- <ion-item>
+            <ion-searchbar (input)="search($event)" (change)="addressCheck($event)" [value]="selectedAddress"></ion-searchbar>
+            <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)">
+            
+              {{ address}}
+            
+            </ion-item>
+          </ion-item> -->
+
         </ion-radio-group>
       </ion-list>
     </ion-card>

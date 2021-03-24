@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
+import { Feature, MapboxService } from 'src/app/services/mapbox/mapbox.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { IServiceType } from 'src/app/structures/interfaces';
 
@@ -30,12 +31,26 @@ export class ServiceTypePage implements OnInit {
     centeredSlides: false
   };
 
+  checkAddress ="";
+
+  delivery = false;
+  collect = true;
+  coordinates : any;
+  list : any;
+  selectedAddress : string= "";
+  lat;
+  lng;
+
+
+  addresses = [];
+
   constructor(
     private activatedRouter: ActivatedRoute,
     private _cleaningService: CleaningService,
     private router: Router,
     private userService: UserService,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private mapbox: MapboxService
   ) { }
 
   ngOnInit() {
@@ -106,5 +121,46 @@ export class ServiceTypePage implements OnInit {
     } else {
       this.addressOk = false;
     }
+  }
+
+   search(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+      this.mapbox.search_word(searchTerm)
+        .subscribe((features: Feature[]) => {
+          this.coordinates = features.map(feat => feat.geometry)
+          this.addresses = features.map(feat => feat.place_name)
+          this.list = features;
+          console.log(this.list)
+        });
+    } else {
+      this.addresses = [];
+    }
+  }
+
+
+  addressCheck(event){
+    this.checkAddress = event.target.value;
+    console.log("info",this.checkAddress);
+  }
+
+
+  onSelect(address, i) {
+    this.selectedAddress = address;
+    //  selectedcoodinates=
+
+    console.log("lng:" + JSON.stringify(this.list[i].geometry.coordinates[0]))
+    console.log("lat:" + JSON.stringify(this.list[i].geometry.coordinates[1]))
+    this.lng = JSON.stringify(this.list[i].geometry.coordinates[0])
+    this.lat = JSON.stringify(this.list[i].geometry.coordinates[1])
+    // this.user.coords = [this.lng,this.lat];
+    console.log("index =" + i)
+    console.log(this.selectedAddress)
+    // this.user.address = this.selectedAddress;
+    this.addresses = [];
+    
+    let newAddress = this.checkAddress + " , " + address; 
+    this._cleaningService.addUserServiceAddress(newAddress);
+    this.addressOk = true;
   }
 }
