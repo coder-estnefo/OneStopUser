@@ -23,7 +23,7 @@ import { FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { Calendar } from '@ionic-native/calendar/ngx';
-
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -40,8 +40,8 @@ import { Calendar } from '@ionic-native/calendar/ngx';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [{
     provide: RouteReuseStrategy,
