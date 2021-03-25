@@ -26,7 +26,7 @@ export class ServiceTypePage implements OnInit {
   services: IServiceType[] = [];
 
    sliderConfig = {
-    slidesPerView: 1,
+    slidesPerView: 1.2,
     spaceBetween: 10,
     centeredSlides: false
   };
