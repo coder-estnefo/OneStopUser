@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import firebase from 'firebase/app';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginPage implements OnInit {
 		private _authService: AuthService,
 		private _userService: UserService,
 		private oneSignal: OneSignal,
-		private firestore: AngularFirestore
+		private firestore: AngularFirestore,
+		public alertController: AlertController
 	) { }
 
 	ngOnInit() {
@@ -84,7 +86,7 @@ export class LoginPage implements OnInit {
 						this.spinner = false;
 						this.router.navigate(['tabs-pages/tabs/dashboard']);
 					} else {
-						alert("user does not exist");
+						this.presentAlert('This email cannot be used for this Account');
 						this.spinner = false;
 						this._authService.signOut()
 					}
@@ -131,4 +133,15 @@ export class LoginPage implements OnInit {
 
 		this.oneSignal.endInit();
 	}
+
+	async presentAlert(msg) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alert',
+      message: `${msg} !`,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
 }
