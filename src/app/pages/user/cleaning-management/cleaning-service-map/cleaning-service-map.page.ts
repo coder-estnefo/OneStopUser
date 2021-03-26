@@ -23,8 +23,9 @@ export class CleaningServiceMapPage implements OnInit {
 
   options = {
     centeredSlides: true,
-    slidesPerView: 1,
-    spaceBetween: 10,
+    // slidesPerView: 1.3,
+    loop: true,
+    spaceBetween: 5,
   };
 
 

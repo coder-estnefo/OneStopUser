@@ -22,6 +22,13 @@ export class CarwashMapPage implements OnInit {
 
   infor: ICarWash[] = [];
 
+  options = {
+    centeredSlides: true,
+    // slidesPerView: 1.3,
+    loop: true,
+    spaceBetween: 5,
+  };
+
   constructor(private router: Router,
     private _carWashService: CarwashService
   ) { }

@@ -21,9 +21,13 @@ export class PropertyMapPage implements OnInit {
   properties: IProperty[] = [];
 
   options = {
-    centeredSlides: true,
-    slidesPerView: 1,
-    spaceBetween: 10,
+    // centeredSlides: true,
+    grabCursor: true,
+    autoplay: 1000,
+    loop: true,
+    speed: 200,
+    // slidesPerView: 1.1,
+    spaceBetween: 5,
   };
 
 

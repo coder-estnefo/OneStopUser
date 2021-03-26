@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content color="light">
+
     <div class="main">
         <div *ngIf="chats.length > 0">
             <ion-list *ngFor="let chat of chats" class="item-background-color">
@@ -64,7 +65,7 @@
                 </ion-avatar>
                 <ion-label class="you ion-text-wrap">
                     <p>
-                        Hello, I am interested in the property. When is it available for viewing ?
+                        Hello, I am interested in having my car washed. When is the next available slot ?
                     </p>
                 </ion-label>
             </ion-item>
@@ -77,14 +78,14 @@
                     </ng-template>
                 </ion-avatar>
                 <ion-label class="receiver ion-text-wrap">
-                    <P>The property can be viewed on the following days:</P>
+                    <P>The available slots are:</P>
 
                     <ol>
                         <span *ngFor="let day of viewingDates.days">
-                            <li *ngIf="day.checked === true" class="list">
-                                {{day.name}} {{day.from}} - {{day.to}}
-                            </li>
-                        </span>
+                          <li *ngIf="day.checked === true" class="list">
+                              {{day.name}} {{day.from}} - {{day.to}}
+                          </li>
+                      </span>
                     </ol>
                 </ion-label>
             </ion-item>
@@ -98,16 +99,16 @@
                 </ion-avatar>
                 <ion-label class="receiver ion-text-wrap">
 
-                    <h2>Make appointment for viewing</h2>
+                    <h2>Please Choose slot</h2>
 
                     <ol>
                         <span *ngFor="let day of viewingDates.days">
-                            <li *ngIf="day.checked === true">
-                                <ion-button shape="round" color="light" expand="full" (click)="selectDay(day)">
-                                    {{day.name}} {{day.from}} - {{day.to}}
-                                </ion-button>
-                            </li>
-                        </span>
+                          <li *ngIf="day.checked === true">
+                              <ion-button shape="round" color="light" expand="full" (click)="selectDay(day)">
+                                  {{day.name}} {{day.from}} - {{day.to}}
+                              </ion-button>
+                          </li>
+                      </span>
                     </ol>
 
                 </ion-label>
@@ -137,7 +138,7 @@
                 </ion-avatar>
                 <ion-label class="receiver ion-text-wrap">
                     <p>
-                        At what time would you like to see this property ?
+                        At what time will you deliver the car ?
                         <br />
                         <ion-item class="time-box">
                             <ion-label>
@@ -187,6 +188,7 @@
                 <ion-label class="receiver ion-text-wrap">
                     <p>
                         Request appointment for:<br> Date: {{dateSelected}}<br> Time: {{time}}
+                        <br> Total Price of : R{{totalPrice}}
                         <br />
 
                         <ion-button shape="round" expand="full" color="light" (click)="requestAppointment()">Request Appointment
@@ -204,14 +206,14 @@
     <div class="dummy"></div>
 
     <!-- <div class="footer">
-        <div class="message-input">
-            <textarea [(ngModel)]="text"></textarea>
-        </div>
-        <div class="send">
-            <ion-button shape="round" color="primary" (click)="sendMessage()" class="send-btn">
-                <ion-icon name="send-outline"></ion-icon>
-            </ion-button>
-        </div>
-    </div> -->
+      <div class="message-input">
+          <textarea [(ngModel)]="text"></textarea>
+      </div>
+      <div class="send">
+          <ion-button shape="round" color="primary" (click)="sendMessage()" class="send-btn">
+              <ion-icon name="send-outline"></ion-icon>
+          </ion-button>
+      </div>
+  </div> -->
 
 </ion-content>

@@ -403,14 +403,14 @@ export class CarwashAppointmentPage implements OnInit {
   
       const from = this.userID;
       const to = ownerID;
-      const message = 'I am interested in this property: ' + carWashName;
+      const message = 'I am interested in Washing  : ' + carWashName;
       const date = new Date();
       const time = date.getHours() + ':' + date.getMinutes();
       // const senderName = this.userDetails.name;
       const chat = { id, message, from, to, time, date };
   
-      this.router.navigate(['/messages/' + ownerID], {
-        queryParams: { propertyID: id, userID: from, sendTo: to, propertyName: carWashName },
+      this.router.navigate(['/carwash-messages/' + ownerID], {
+        queryParams: { carwashID: id, userID: from, sendTo: to, carwashName: carWashName,carPrice:this.totalPrice },
       });
   
     }
