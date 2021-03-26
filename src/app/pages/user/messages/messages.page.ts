@@ -38,6 +38,15 @@ export class MessagesPage implements OnInit {
   ownerNoPic;
   ownerPicUrl;
 
+  date;
+  time;
+  minTime;
+  maxTime;
+  dateSelected;
+  
+  isDateSelected = false;
+  isTimeSelected = false;
+
   constructor(
     private route: ActivatedRoute,
     private propertiesService: PropertiesService,
@@ -72,15 +81,16 @@ export class MessagesPage implements OnInit {
             chat.to === this.userID &&
             chat.id === this.propID)
         );
-      });
+      }).sort((a, b) => a.date - b.date);
 
-      const temp_chats = this.chats.sort((a, b) => a.date - b.date);
-      this.chats = temp_chats;
+      // const temp_chats = this.chats.sort((a, b) => a.date - b.date);
+      // this.chats = temp_chats;
 
       this.propertiesService
         .getViewingDates(this.sendTo)
         .subscribe((response) => {
           this.viewingDates = response.payload.data();
+          console.log(this.viewingDates)
         });
     });
 
@@ -150,40 +160,15 @@ export class MessagesPage implements OnInit {
     }
   }
 
-  date;
-  time;
-  minTime;
-  maxTime;
-
-  questionOne = undefined;
-  questionTwo = undefined;
-  questionThree = undefined;
-  questionFour = undefined;
-  dateSelected;
-
-  questionOneYes() {
-    this.questionOne = true;
+  pickDay() {
+    this.isDateSelected = true;
   }
 
-  questionOneNo() {
-    this.questionOne = false;
-  }
-
-  questionTwoYes() {
-    this.questionTwo = true;
-  }
-
-  questionTwoNo() {
-    this.questionTwo = false;
-  }
-
-  cancelAppointment() {
-    this.questionThree = false;
-    this.questionTwoNo();
+  pickTime() {
+    this.isTimeSelected = true;
   }
 
   requestAppointment() {
-    this.questionThree = true;
 
     // let dt = new Date(this.date);
     // let t = new Date(this.time);
@@ -194,6 +179,11 @@ export class MessagesPage implements OnInit {
     this.text = 'Appointment request, Date: ' + this.dateSelected + ' ' + this.time;
     this.sendMessage();
     //this.addToCalender(dt);
+  }
+
+  cancelAppointment(){
+    this.isDateSelected = false;
+    this.isTimeSelected = false;
   }
 
   formatDate(dt) {
@@ -235,16 +225,16 @@ export class MessagesPage implements OnInit {
     let today = new Date();
     let newDate = new Date(today);
     newDate.setDate(today.getDate() + (day.day - today.getDay() + 7) % 7 + 1);
-    this.questionThree = true;
     this.dateSelected = this.formatDate(newDate);
     this.minTime = day.from;
     this.maxTime = day.to;
+    this.pickDay();
   }
 
   setTime() {
-    this.questionFour = true;
     let newTime = this.formatTime(this.time);
     this.time = newTime;
+    this.pickTime();
   }
 
   addToCalender(chat) {
