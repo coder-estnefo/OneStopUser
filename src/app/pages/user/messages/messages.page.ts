@@ -120,7 +120,7 @@ export class MessagesPage implements OnInit {
 
       this.propertiesService.startChat(chat).then(() => {
         this.sendNotification();
-        this.text = '';
+        //this.text = '';
 
         let ownerData;
         let playerID;
@@ -286,6 +286,12 @@ export class MessagesPage implements OnInit {
         app_id: this.app_id,
         external_user_id: this.userId,
         include_player_ids: [this.messageId],
+        data: {
+          userID: this.userID,
+          propertyID: this.propID,
+          sendTo: this.sendTo,
+          propertyName: this.propertyName,
+        }
       };
 
       this.oneSignal
@@ -295,6 +301,7 @@ export class MessagesPage implements OnInit {
           //alert('message from ' + this.userId + ' to ' + this.user_id);
           // alert(JSON.stringify(success));
           //alert('message send');
+          this.text = "";
         })
         .catch((error) => {
           alert(error.message);
