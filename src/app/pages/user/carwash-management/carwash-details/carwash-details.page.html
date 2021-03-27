@@ -47,7 +47,10 @@
                                     Location:
                                 </ion-col>
                                 <ion-col size="6">
-                                    44 Grand Central, Midrand, Johannesburg, South africa
+                                    <ion-icon color="primary" name="location-outline"></ion-icon>
+                                    <span *ngFor="let address of carwash.location">
+                                        {{address}}
+                                    </span>
                                 </ion-col>
                             </ion-row>
 
