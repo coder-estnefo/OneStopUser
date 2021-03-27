@@ -291,6 +291,7 @@ export class MessagesPage implements OnInit {
           propertyID: this.propID,
           sendTo: this.sendTo,
           propertyName: this.propertyName,
+          type: 'propertyChat'
         }
       };
 
@@ -331,5 +332,9 @@ export class MessagesPage implements OnInit {
       }
       console.log(this.ownerDetails)
     })
+  }
+
+  newAppointment() {
+    this.chats = [];
   }
 }

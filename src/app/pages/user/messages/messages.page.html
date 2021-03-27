@@ -199,6 +199,17 @@
 
         </ion-list>
 
+
+        <ion-button
+            *ngIf="chats.length > 0"
+            shape="round" 
+            expand="full"
+            class="ion-padding"
+            (click)="newAppointment()"
+        >
+            make new appointment
+        </ion-button>
+
     </div>
 
     <div class="dummy"></div>
