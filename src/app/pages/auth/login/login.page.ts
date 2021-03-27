@@ -124,11 +124,13 @@ export class LoginPage implements OnInit {
 		this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
 
 		this.oneSignal.handleNotificationReceived().subscribe(() => {
-		alert('notification received')
+		alert('notification received in USER')
 		});
 
-		this.oneSignal.handleNotificationOpened().subscribe(() => {
-		alert('notification opened')
+		this.oneSignal.handleNotificationOpened().subscribe((data) => {
+		alert('notification opened in USER');
+		let additionalData = data.notification.payload.additionalData;
+		alert('data ka mo = > ' + JSON.stringify(additionalData));
 		});
 
 		this.oneSignal.endInit();
