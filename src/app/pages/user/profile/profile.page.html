@@ -82,71 +82,133 @@
                             ADDRESS
                         </ion-label>
                         <ion-note slot="end" color="">
-                            <ion-label color="primary">
-                                <!-- edit -->
+                            <ion-label color="primary" class="edit-label" (click)="editAddress()">
+                                edit
                             </ion-label>
                         </ion-note>
                     </ion-item>
 
-                    <!-- <ion-item-divider lines="none">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col size="4">
-                                    Street
-                                </ion-col>
-                                <ion-col size="8">
-                                    <ion-label>
-                                        <p>{{user_details.location[0]}}</p>
-                                    </ion-label>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item-divider>
+                    <div *ngIf="showAddress">
+                        <ion-item-divider lines="none">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="4">
+                                        Street
+                                    </ion-col>
+                                    <ion-col size="8">
+                                        <ion-label>
+                                            <p>{{user_details.location[0]}}</p>
+                                        </ion-label>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item-divider>
 
-                    <ion-item-divider lines="none">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col size="4">
-                                    Town
-                                </ion-col>
-                                <ion-col size="8">
-                                    <ion-label>
-                                        <p>{{user_details.location[1]}}</p>
-                                    </ion-label>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item-divider>
+                        <ion-item-divider lines="none">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="4">
+                                        Town
+                                    </ion-col>
+                                    <ion-col size="8">
+                                        <ion-label>
+                                            <p>{{user_details.location[1]}}</p>
+                                        </ion-label>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item-divider>
 
-                    <ion-item-divider lines="none">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col size="4">
-                                    Province
-                                </ion-col>
-                                <ion-col size="8">
-                                    <ion-label className="ion-text-wrap">
-                                        <p>{{user_details.location[2]}}</p>
-                                    </ion-label>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item-divider>
+                        <ion-item-divider lines="none">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="4">
+                                        Province
+                                    </ion-col>
+                                    <ion-col size="8">
+                                        <ion-label className="ion-text-wrap">
+                                            <p>{{user_details.location[2]}}</p>
+                                        </ion-label>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item-divider>
 
-                    <ion-item-divider lines="none">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col size="4">
-                                    Postal Code
-                                </ion-col>
-                                <ion-col size="8">
-                                    <ion-label>
-                                        <p>{{user_details.location[3]}}</p>
-                                    </ion-label>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item-divider> -->
+                        <ion-item-divider lines="none">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="4">
+                                        Postal Code
+                                    </ion-col>
+                                    <ion-col size="8">
+                                        <ion-label>
+                                            <p>{{user_details.location[3]}}</p>
+                                        </ion-label>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item-divider>
+                    </div>
+
+                    <form [formGroup]="addressForm" *ngIf="showEditAddress">
+                        <ion-list formGroupName="location">
+                            <ion-item>
+                                <ion-label position="floating">Street</ion-label>
+                                <ion-input 
+                                    type="text" 
+                                    placeholder="Street Address" 
+                                    formControlName="0" 
+                                    required
+                                >
+                                </ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label position="floating">Town</ion-label>
+                                <ion-input 
+                                    type="text" 
+                                    placeholder="Town/Suburb" 
+                                    formControlName="1"
+                                    required
+                                >
+                                </ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label position="floating">Province</ion-label>
+                                <ion-input 
+                                    type="text" 
+                                    placeholder="Province" 
+                                    formControlName="2" 
+                                    required
+                                >
+                                </ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label position="floating">Postal Code</ion-label>
+                                <ion-input 
+                                    type="text" 
+                                    placeholder="Postal Code" 
+                                    formControlName="3" 
+                                    required
+                                >
+                                </ion-input>
+                            </ion-item>
+
+                            <div class="ion-padding-top">
+                                <ion-button
+                                    shape="round"
+                                    expand="full"
+                                    strong="true"
+                                    [disabled]="addressForm.invalid"
+                                    (click)="updateAddress()"
+                                >
+                                    Update
+                                </ion-button>
+                            </div>
+                        </ion-list>
+                    </form>
 
                 </ion-card-content>
             </ion-card>

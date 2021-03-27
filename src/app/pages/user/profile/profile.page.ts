@@ -20,10 +20,16 @@ export class ProfilePage implements OnInit {
   user: any;
   user_details: IUser;
   frm_profile: FormGroup;
+  addressForm: FormGroup;
   spinner: boolean = false;
 
   imageUpload = false;
   image;
+
+  showAddress = false;
+  showEditAddress = false;
+
+  userLocation = ['' , '', '', ''];
 
   constructor(
     public route: Router,
@@ -48,6 +54,7 @@ export class ProfilePage implements OnInit {
       }
     });
     this.createForm();
+    this.createAddressForm();
   }
 
   createForm() {
@@ -62,6 +69,14 @@ export class ProfilePage implements OnInit {
     this._userService.getUser(user_id).subscribe(
       response => {
         this.user_details = response.payload.data() as IUser;
+
+        if(this.user_details.hasOwnProperty('location')) {
+          this.showAddress = true;
+          this.showEditAddress = false;
+        } else {
+          this.showAddress = false;
+          this.showEditAddress = true;
+        }
       }
     )
   }
@@ -99,5 +114,39 @@ export class ProfilePage implements OnInit {
 
   updateImage() {
     this._userService.updateImage(this.userID, this.image);
+  }
+
+  createAddressForm() {
+    console.log(this.user_details)
+    this.addressForm = this.formBuilder.group({
+      location: this.formBuilder.array([
+        ['', [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      ]),
+    })
+  }
+
+  editAddress() {
+    if(this.user_details.hasOwnProperty('location')) {
+      this.showAddress = !this.showAddress;
+      this.showEditAddress = !this.showEditAddress;
+      let address = this.user_details.location;
+      this.addressForm.controls['location'].setValue(address);
+
+    } else {
+      this.showAddress = false;
+      this.showEditAddress = true;
+    }
+  }
+
+  updateAddress(){
+    const address = this.addressForm.value.location;
+    this._userService
+      .updateAddress(this.userID, address)
+      .then(() => {
+        this.editAddress(); 
+      })
   }
 }

@@ -63,4 +63,13 @@ export class UserService {
         profilePic: image
       })
   }
+
+  updateAddress(userID, address) {
+    return this.firestore
+      .collection('Users')
+      .doc(userID)
+      .update({
+        location: address
+      });
+  }
 }
