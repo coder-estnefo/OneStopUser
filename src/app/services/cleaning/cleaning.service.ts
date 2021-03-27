@@ -47,38 +47,6 @@ export class CleaningService {
   getServiceTypes(service_id: string) {
     return this.firestore.collection('Cleaning_Services').doc(service_id).collection('types_of_services').snapshotChanges();
   }
-
-  requestList = [];
-  totalPrice = 0.00;
-  addUserService(service) {
-    let isFound = false;
-    if (this.requestList.length > 0) {
-      for (let current_item in this.requestList) {
-        if (this.requestList[current_item]["id"] == service.id) {
-          this.totalPrice -= this.requestList[current_item]["price"];
-          this.requestList.splice(this.requestList.indexOf(service), 1);
-          isFound = true;
-          break;
-        }
-      }
-
-      if (isFound == false) {
-        this.requestList.push(service);
-        this.totalPrice += service.price;
-      }
-    } else {
-      this.requestList.push(service);
-      this.totalPrice += service.price;
-    }
-  }
-
-  getUserServices() {
-    return this.requestList;
-  }
-
-  getUserServicesTotal() {
-    return this.totalPrice;
-  }
   
   getViewingDates(ownerID) {
     return this.firestore
@@ -87,15 +55,6 @@ export class CleaningService {
       .collection('Cleaning_Dates')
       .doc(ownerID)
       .snapshotChanges();
-  }
-
-  address;
-  addUserServiceAddress(address) {
-    this.address = address;
-  }
-
-  getUserServiceAddress() {
-    return this.address;
   }
 
   setChatID(uid1, uid2) {
@@ -164,5 +123,52 @@ export class CleaningService {
       .doc(userID)
       .collection('messages', ref => ref.where('requestType','==','cleaning'))
       .snapshotChanges();
+  }
+
+  requestList = [];
+  totalPrice = 0.00;
+  addUserService(service) {
+    let isFound = false;
+    if (this.requestList.length > 0) {
+      for (let current_item in this.requestList) {
+        if (this.requestList[current_item]["id"] == service.id) {
+          this.totalPrice -= this.requestList[current_item]["price"];
+          this.requestList.splice(this.requestList.indexOf(service), 1);
+          isFound = true;
+          break;
+        }
+      }
+
+      if (isFound == false) {
+        this.requestList.push(service);
+        this.totalPrice += service.price;
+      }
+    } else {
+      this.requestList.push(service);
+      this.totalPrice += service.price;
+    }
+  }
+
+  getUserServices() {
+    return this.requestList;
+  }
+
+  getUserServicesTotal() {
+    return this.totalPrice;
+  }
+
+   address;
+  addUserServiceAddress(address) {
+    this.address = address;
+  }
+
+  getUserServiceAddress() {
+    return this.address;
+  }
+
+  clearUserServiceRequest() {
+    this.requestList = [];
+    this.totalPrice = 0.00;
+    this.address = "";
   }
 }

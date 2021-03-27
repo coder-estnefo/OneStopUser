@@ -33,6 +33,7 @@ export class ServiceDetailsPage implements OnInit {
   ngOnInit() {
     const cleaning_id: string = this.activatedRoute.snapshot.paramMap.get('id');
     this.getCleaningServiceById(cleaning_id);
+    this._cleaningService.clearUserServiceRequest();
   }
 
   gotoBookSlot() {
