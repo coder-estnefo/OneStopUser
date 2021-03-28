@@ -69,7 +69,25 @@ export class ChatsPage implements OnInit {
           name: chat.cleaningName,
         }})
       }
-    } else {
+
+      if (chat.requestType === "carWash") {
+        this.router.navigate(['carwash-messages'], {queryParams: {
+          id: id,
+          to: to,
+          name: chat.carwashName,
+        }})
+      }
+
+      if (chat.requestType === "property") {
+        this.router.navigate(['messages'], {queryParams: {
+          id: id,
+          to: to,
+          name: chat.propertyName,
+        }})
+      }
+
+    }
+     else {
       this.router.navigate(['messages/'+this.property_Owner_id], {
         queryParams: { propertyID: id, userID: from, sendTo: to , propertyName},
       });
