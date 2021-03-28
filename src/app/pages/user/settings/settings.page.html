@@ -16,8 +16,11 @@
 
 <ion-content>
     <ion-item lines="full" button *ngIf="user" routerLink="/profile">
-        <ion-avatar slot="start" shape="round">
+        <ion-avatar *ngIf="user.profilePic === undefined">
             <ion-img src="../../../../assets/images/avatar.jpg"></ion-img>
+        </ion-avatar>
+        <ion-avatar *ngIf="user.profilePic != undefined">
+            <ion-img [src]="user.profilePic"></ion-img>
         </ion-avatar>
         <ion-label class="ion-text-center">
             <!-- <h3>Itumeleng</h3> -->

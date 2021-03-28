@@ -40,6 +40,7 @@ export class SettingsPage implements OnInit {
     this._userService.getUser(user_id).subscribe(
       response => {
         this.user = response.payload.data() as IUser;
+        console.log(this.user)
       }
     )
   }
