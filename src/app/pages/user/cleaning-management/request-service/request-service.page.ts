@@ -33,7 +33,7 @@ export class RequestServicePage implements OnInit {
   cleaningBusinesID;
   cleaningName;
 
-  chats;
+  chats = [];
   text;
 
   userDetails;
@@ -231,6 +231,10 @@ export class RequestServicePage implements OnInit {
         this.ownerNoPic = true;
       }
     })
+  }
+
+  newAppointment() {
+    this.chats = [];
   }
 
 }

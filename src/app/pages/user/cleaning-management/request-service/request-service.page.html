@@ -9,7 +9,7 @@
 
 <ion-content color="light">
   <div class="main">
-    <div *ngIf="chats">
+    <div *ngIf="chats.length > 0">
       <ion-list *ngFor="let chat of chats" class="item-background-color">
         <ion-item button *ngIf="chat.from === userID; else to">
           <ion-avatar slot="end">
@@ -49,7 +49,7 @@
     </div>
   
   
-    <ion-list class="item-background-color">
+    <ion-list class="item-background-color" *ngIf="chats.length === 0">
       <ion-item button>
         <ion-avatar slot="start">
           <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
@@ -202,6 +202,16 @@
   
   
     </ion-list>
+
+    <ion-button
+      *ngIf="chats.length > 0"
+      shape="round"
+      expand="full"
+      class="ion-padding"
+      (click)="newAppointment()"
+      >
+      make new appointment
+    </ion-button>
   
   </div>
   
