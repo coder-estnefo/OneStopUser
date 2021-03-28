@@ -58,4 +58,62 @@ export class CarwashService {
         email: appointment.email
       });
   }
+
+  setChatID(uid1, uid2) {
+    if (uid1 < uid2) {
+      return uid1 + uid2;
+    } else {
+      return uid2 + uid1;
+    }
+  }
+
+  //Chat
+  startChat(chat) {
+    const { id, message, from, to, time, date,carwashName, appointmentDate, requestType } = chat;
+    const chatID = this.setChatID(from, to) + id;
+    return this.firestore
+      .collection('chats')
+      .doc(from)
+      .collection('messages')
+      .add({
+        id,
+        message,
+        from,
+        to,
+        time,
+        date,
+        chatID,
+        carwashName,
+        appointmentDate,
+        requestType
+      })
+      .then(() => {
+        return this.firestore
+          .collection('chats')
+          .doc(to)
+          .collection('messages')
+          .add({
+            id,
+            message,
+            from,
+            to,
+            time,
+            date,
+            chatID,
+            carwashName,
+            appointmentDate,
+            requestType
+          });
+      });
+  }
+
+  //get chats
+  getChats(userID) {
+    return this.firestore
+      .collection('chats')
+      .doc(userID)
+      .collection('messages')
+      .snapshotChanges();
+  }
+
 }

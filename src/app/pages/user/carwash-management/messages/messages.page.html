@@ -16,7 +16,8 @@
             <ion-list *ngFor="let chat of chats" class="item-background-color">
                 <ion-item button *ngIf="chat.from === userID; else to">
                     <ion-avatar slot="end">
-                        <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon"></ion-icon>
+                        <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon">
+                        </ion-icon>
                         <ng-template #pic>
                             <ion-img [src]="picUrl" class="user-icon"></ion-img>
                         </ng-template>
@@ -43,7 +44,8 @@
                             <p>
                                 {{chat.message}}
                                 <br />
-                                <ion-button shape="round" color="light" (click)="addToCalender(chat)">Add To Calendar</ion-button>
+                                <ion-button shape="round" color="light" (click)="addToCalender(chat)">Add To Calendar
+                                </ion-button>
                                 <br />
                                 <ion-text class="ion-text-right">{{chat.time}}</ion-text>
                             </p>
@@ -58,18 +60,19 @@
 
             <ion-item button>
                 <ion-avatar slot="end">
-                    <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon"></ion-icon>
+                    <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon">
+                    </ion-icon>
                     <ng-template #pic>
                         <ion-img [src]="picUrl" class="user-icon"></ion-img>
                     </ng-template>
                 </ion-avatar>
                 <ion-label class="you ion-text-wrap">
                     <p>
-                        Hello, I am interested in having my car washed. When is the next available slot ?
+                        Hello, I am interested in having my car washed.
                     </p>
                 </ion-label>
             </ion-item>
-
+            <!-- 
             <ion-item button *ngIf="viewingDates">
                 <ion-avatar slot="start">
                     <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
@@ -113,7 +116,33 @@
 
                 </ion-label>
             </ion-item>
+             -->
 
+            <ion-item button>
+                <ion-avatar slot="start">
+                    <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon">
+                    </ion-icon>
+                    <ng-template #OwnerPic>
+                        <ion-img [src]="ownerPicUrl" class="user-icon"></ion-img>
+                    </ng-template>
+                </ion-avatar>
+                <ion-label class="receiver ion-text-wrap">
+                    <P>When do you want to come?</P>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input [(ngModel)]="date" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker (selectedChanged)="getDate($event.value)" #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    {{date}}
+
+                </ion-label>
+            </ion-item>
+
+
+            <!-- 
             <ion-item button *ngIf="isDateSelected">
                 <ion-avatar slot="end">
                     <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon"></ion-icon>
@@ -126,12 +155,13 @@
                         {{dateSelected}}
                     </p>
                 </ion-label>
-            </ion-item>
+            </ion-item> -->
 
 
-            <ion-item button *ngIf="isDateSelected">
+            <ion-item button *ngIf="date">
                 <ion-avatar slot="start">
-                    <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon"></ion-icon>
+                    <ion-icon *ngIf="ownerNoPic === true; else OwnerPic" name="person-circle-outline" class="user-icon">
+                    </ion-icon>
                     <ng-template #OwnerPic>
                         <ion-img [src]="ownerPicUrl" class="user-icon"></ion-img>
                     </ng-template>
@@ -169,7 +199,8 @@
 
             <ion-item button *ngIf="isTimeSelected">
                 <ion-avatar slot="end">
-                    <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon"></ion-icon>
+                    <ion-icon *ngIf="noPic === true; else pic" name="person-circle-outline" class="user-icon">
+                    </ion-icon>
                     <ng-template #pic>
                         <ion-img [src]="picUrl" class="user-icon"></ion-img>
                     </ng-template>
@@ -187,19 +218,26 @@
                 </ion-avatar>
                 <ion-label class="receiver ion-text-wrap">
                     <p>
-                        Request appointment for:<br> Date: {{dateSelected}}<br> Time: {{time}}
+                        Request appointment for:<br> Date: {{date}}<br> Time: {{time}}
+                        <br> CarModel is : {{carModel}}
+                        <br> Type of wash is : {{washType}}
                         <br> Total Price of : R{{totalPrice}}
                         <br />
 
                         <ion-button shape="round" expand="full" color="light" (click)="requestAppointment()">Request Appointment
                         </ion-button>
-                        <ion-button shape="round" expand="full" color="light" (click)="cancelAppointment()">Cancel</ion-button>
+                        <ion-button shape="round" expand="full" color="light" (click)="cancelAppointment()">Cancel
+                        </ion-button>
                     </p>
                 </ion-label>
             </ion-item>
 
 
         </ion-list>
+
+        <ion-button *ngIf="chats.length > 0" shape="round" expand="full" class="ion-padding" (click)="newAppointment()">
+            make new request
+        </ion-button>
 
     </div>
 

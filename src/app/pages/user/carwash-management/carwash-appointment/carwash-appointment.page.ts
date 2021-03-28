@@ -16,19 +16,22 @@ export class CarwashAppointmentPage implements OnInit {
   secondFormGroup: FormGroup;
 
   progressVall = 0;
-  progressContro=0;
+  progressContro = 0;
   selectorVal;
   totalPrice = 0;
-  washPrice=0;
-  CarModelPrice=0;
-  collectWashPrice=0
-  collectProgress=0
+  washPrice = 0;
+  CarModelPrice = 0;
+  collectWashPrice = 0
+  collectProgress = 0
 
   fullWash = 'diactive'
   exterior = 'diactive'
   interior = 'diactive'
-  collectWash='diactive'
-  homeWash='diactive'
+  washType
+  carModel
+
+  collectWash = 'diactive'
+  homeWash = 'diactive'
 
   carwash_id = this.activatedRoute.snapshot.paramMap.get('id');
   userID = firebase.auth().currentUser.uid;
@@ -196,12 +199,10 @@ export class CarwashAppointmentPage implements OnInit {
 
 
 
-
-
   constructor(private _formBuilder: FormBuilder,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private _carwashService: CarwashService,) { }
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private _carwashService: CarwashService,) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -288,16 +289,16 @@ export class CarwashAppointmentPage implements OnInit {
     this.totalPrice = this.totalPrice - this.collectWashPrice;
     if (this.collectWash == "active") {
       this.collectWash = 'diactive'
-      this.collectWashPrice= this.collectWashPrice - 15
+      this.collectWashPrice = this.collectWashPrice - 15
 
     }
     else {
       this.collectWash = 'active';
-      this.collectWashPrice= 15 
+      this.collectWashPrice = 15
     }
-    
+
     this.homeWash = "diactive";
-   
+
 
     this.totalPrice = this.totalPrice + this.collectWashPrice;
 
@@ -312,64 +313,72 @@ export class CarwashAppointmentPage implements OnInit {
       this.collectWashPrice = this.collectWashPrice - 20;
 
       this.progressVall = this.progressVall - 0.2;
-      this.collectProgress =this.collectProgress -0.2;
+      this.collectProgress = this.collectProgress - 0.2;
 
     }
     else {
       this.homeWash = 'active';
 
-      this.collectWashPrice =  20;
+      this.collectWashPrice = 20;
 
     }
 
 
     this.collectWash = "diactive"
-    
+
     this.totalPrice = this.totalPrice + this.collectWashPrice;
-    
+
 
   }
 
   getval(val) {
     // console.log(val)
     this.progressVall = this.progressVall - this.progressContro;
-    this.progressContro=0.2;
+    this.progressContro = 0.2;
     switch (val) {
       case '01':
         this.totalPrice = this.totalPrice - this.CarModelPrice;
         this.CarModelPrice = 30;
         this.totalPrice = this.totalPrice + this.CarModelPrice;
 
+        this.carModel = "Sedan";
+
         break;
       case '02':
         this.totalPrice = this.totalPrice - this.CarModelPrice;
         this.CarModelPrice = 25;
         this.totalPrice = this.totalPrice + this.CarModelPrice;
-        
+        this.carModel = "Station wagon";
+
         break;
       case '03':
         this.totalPrice = this.totalPrice - this.CarModelPrice;
         this.CarModelPrice = 40;
         this.totalPrice = this.totalPrice + this.CarModelPrice;
-        
+        this.carModel = "HatchBack";
+
         break;
       case '04':
         this.totalPrice = this.totalPrice - this.CarModelPrice;
         this.CarModelPrice = 45;
         this.totalPrice = this.totalPrice + this.CarModelPrice;
-        
+        this.carModel = "Minivan";
+
         break;
       case '05':
         this.totalPrice = this.totalPrice - this.CarModelPrice;
         this.CarModelPrice = 55;
         this.totalPrice = this.totalPrice + this.CarModelPrice;
-        
+        this.carModel = "Bus";
+
         break;
       case '06':
         this.totalPrice = this.totalPrice - this.CarModelPrice;
         this.CarModelPrice = 55;
         this.totalPrice = this.totalPrice + this.CarModelPrice;
-        
+
+        this.carModel = "Truck";
+
         break;
 
       default:
@@ -378,41 +387,60 @@ export class CarwashAppointmentPage implements OnInit {
     this.progressVall = this.progressVall + this.progressContro;
   }
 
-  
-    sendRequest() {
-  
-      let id, temp_carwash;
-      this._carwashService.getCarwashById(this.carwash_id).subscribe(
-        response => {
-          id = response.payload.id;
-          temp_carwash = response.payload.data();
-          this.carwash.push(temp_carwash)
-  
-          this.carwash.forEach(data => {
-            console.log(data)
-            this.startChat(id,data.ownerID, data.name)
-          })
-        }
-  
-      )
+
+  sendRequest() {
+
+    let id, temp_carwash;
+    this._carwashService.getCarwashById(this.carwash_id).subscribe(
+      response => {
+        id = response.payload.id;
+        temp_carwash = response.payload.data();
+        this.carwash.push(temp_carwash)
+
+        this.carwash.forEach(data => {
+          console.log(data)
+          this.startChat(id, data.ownerID, data.name)
+        })
+      }
+
+    )
+  }
+
+  //  this.router.navigate(['tabs-pages/tabs/dashboard'])
+
+  startChat(id, ownerID, carWashName) {
+
+    const from = this.userID;
+    const to = ownerID;
+    const message = 'I am interested in Washing  : ' + carWashName;
+    const date = new Date();
+    const time = date.getHours() + ':' + date.getMinutes();
+    // const senderName = this.userDetails.name;
+    const chat = { id, message, from, to, time, date };
+
+    if (this.fullWash === 'active') {
+      this.washType = "fullWash"
     }
-  
-    //  this.router.navigate(['tabs-pages/tabs/dashboard'])
-  
-    startChat(id, ownerID, carWashName) {
-  
-      const from = this.userID;
-      const to = ownerID;
-      const message = 'I am interested in Washing  : ' + carWashName;
-      const date = new Date();
-      const time = date.getHours() + ':' + date.getMinutes();
-      // const senderName = this.userDetails.name;
-      const chat = { id, message, from, to, time, date };
-  
-      this.router.navigate(['/carwash-messages/' + ownerID], {
-        queryParams: { carwashID: id, userID: from, sendTo: to, carwashName: carWashName,carPrice:this.totalPrice },
-      });
-  
+    if (this.exterior === 'active') {
+
+      this.washType = "Exterior"
     }
-     
+    if (this.interior === 'active') {
+      this.washType = "Interior"
+    }
+
+    this.router.navigate(['/carwash-messages/' + ownerID], {
+      queryParams: {
+        carwashID: id,
+        userID: from,
+        sendTo: to,
+        carwashName: carWashName,
+        carPrice: this.totalPrice,
+        washType: this.washType,
+        carModel: this.carModel
+      },
+    });
+
+  }
+
 }
