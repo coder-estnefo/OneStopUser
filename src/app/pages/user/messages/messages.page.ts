@@ -111,7 +111,8 @@ export class MessagesPage implements OnInit {
         time: time,
         date: date,
         propertyName: this.propertyName,
-        appointmentDate: appointment
+        appointmentDate: appointment,
+        requestType: "property",
       };
 
       console.log(chat.id);
@@ -305,8 +306,8 @@ export class MessagesPage implements OnInit {
           this.text = "";
         })
         .catch((error) => {
-          alert(error.message);
-          alert(JSON.stringify(error));
+          //alert(error.message);
+          //alert(JSON.stringify(error));
         });
     });
   }
