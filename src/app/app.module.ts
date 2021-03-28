@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 
 import { Calendar } from '@ionic-native/calendar/ngx';
 import {HttpClientModule} from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule,
+    MatDatepickerModule,
     HttpClientModule
   ],
   providers: [{
