@@ -59,7 +59,7 @@ export class ChatsPage implements OnInit {
   }
 
   toMessages(chat) {
-    const { id, to, from, propertyName } = chat;
+    const { id, to, from } = chat;
 
     if (chat.requestType) {
       if (chat.requestType === "cleaning") {
@@ -72,6 +72,8 @@ export class ChatsPage implements OnInit {
 
       if (chat.requestType === "carWash") {
         this.router.navigate(['carwash-messages'], {queryParams: {
+          userID: from,
+          sendTo: to,
           id: id,
           to: to,
           name: chat.carwashName,
@@ -79,18 +81,21 @@ export class ChatsPage implements OnInit {
       }
 
       if (chat.requestType === "property") {
-        this.router.navigate(['messages'], {queryParams: {
-          id: id,
-          to: to,
-          name: chat.propertyName,
-        }})
+        // this.router.navigate(['messages'], {queryParams: {
+        //   id: id,
+        //   to: to,
+        //   name: chat.propertyName,
+        // }})
+        this.router.navigate(['messages/'+this.property_Owner_id], {
+        queryParams: { propertyID: id, userID: from, sendTo: to , propertyName: chat.propertyName},
+      });
       }
 
     }
      else {
-      this.router.navigate(['messages/'+this.property_Owner_id], {
-        queryParams: { propertyID: id, userID: from, sendTo: to , propertyName},
-      });
+      // this.router.navigate(['messages/'+this.property_Owner_id], {
+      //   queryParams: { propertyID: id, userID: from, sendTo: to , propertyName},
+      // });
     }
   
   }

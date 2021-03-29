@@ -132,9 +132,9 @@ export class LoginPage implements OnInit {
 			let data = dataObj.notification.payload.additionalData;
 			let type = data.requestType;
 
-			if(type === 'propertyChat') {
-				this.router.navigate(['/tabs-pages/tabs/chats']);
-			}
+			// if(type === 'propertyChat') {
+			// 	this.router.navigate(['/tabs-pages/tabs/chats']);
+			// }
 		});
 
 		this.oneSignal.endInit();

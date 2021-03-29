@@ -40,6 +40,8 @@
               <p>
                 {{chat.message}}
                 <br />
+                  <ion-button shape="round" color="light" (click)="addEvent(chat)">Add To Calendar</ion-button>
+                <br />
                 <ion-text class="ion-text-right">{{chat.time}}</ion-text>
               </p>
             </ion-label>

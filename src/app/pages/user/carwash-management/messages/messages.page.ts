@@ -133,7 +133,7 @@ export class MessagesPage implements OnInit {
       // this._userService.getOwner()
 
       this.carWashService.startChat(chat).then(() => {
-        this.sendNotification();
+        //his.sendNotification();
         //this.text = '';
 
         let ownerData;
@@ -320,8 +320,8 @@ export class MessagesPage implements OnInit {
           this.text = "";
         })
         .catch((error) => {
-          alert(error.message);
-          alert(JSON.stringify(error));
+          // alert(error.message);
+          // alert(JSON.stringify(error));
         });
     });
   }

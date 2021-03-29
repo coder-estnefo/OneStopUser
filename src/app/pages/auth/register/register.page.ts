@@ -95,13 +95,13 @@ export class RegisterPage implements OnInit {
 			let msg = data.payload.body;
 			let title = data.payload.title;
 
-			alert("received");
+			//alert("received");
 		});
 
 		this.oneSignal.handleNotificationOpened().subscribe(data => {
 			let msg = data.notification.payload.body
 			// alert(msg)
-			alert("opened");
+			//alert("opened");
 		});
 
 		this.oneSignal.endInit();

@@ -120,7 +120,7 @@ export class MessagesPage implements OnInit {
       // this._userService.getOwner()
 
       this.propertiesService.startChat(chat).then(() => {
-        this.sendNotification();
+        //this.sendNotification();
         //this.text = '';
 
         let ownerData;

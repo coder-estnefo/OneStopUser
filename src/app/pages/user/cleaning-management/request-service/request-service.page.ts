@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
+import { Calendar } from '@ionic-native/calendar/ngx';
 import { ModalController } from '@ionic/angular';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -50,9 +51,16 @@ export class RequestServicePage implements OnInit {
     private route: ActivatedRoute,
     private auth: AngularFireAuth,
     private userService: UserService,
+    private calendar: Calendar,
   ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((param) => {
+      this.sendTo = param.to;
+      this.cleaningBusinesID = param.id;
+      this.cleaningName = param.name;
+      this.getDays(this.sendTo);
+    });
 
     this.auth.authState.subscribe((user) => {
       this.userID = user.uid;
@@ -81,17 +89,9 @@ export class RequestServicePage implements OnInit {
       });
 
       this.getUserDetails(this.userID);
-    this.getOwnerDetails(this.sendTo);
+      this.getOwnerDetails(this.sendTo);
     });
 
-    this.route.queryParams.subscribe((param) => {
-      this.sendTo = param.to;
-      this.cleaningBusinesID = param.id;
-      this.cleaningName = param.name;
-      this.getDays(this.sendTo);
-    });
-
-    
 
     this.requestedServices = this.cleaningService.getUserServices();
     // console.log(this.requestedServices);
@@ -235,6 +235,31 @@ export class RequestServicePage implements OnInit {
 
   newAppointment() {
     this.chats = [];
+  }
+
+  addEvent(chat) {
+    console.log(chat);
+    let dt = chat.requestDate;
+    let dd = dt.slice(0,2);
+    let mm = dt.slice(3,5);
+    let yyyy = dt.slice(6,10);
+    let time = dt.slice(11);
+    let newDate = yyyy + "/" + mm + "/" + dd +" " + time;
+    let startdate = new Date(newDate);
+    let newDateEnd = new Date(newDate);
+    let enddate = new Date(newDateEnd.setMinutes(newDateEnd.getMinutes() + 30));
+
+    let options = { 
+      calendername: "Cleaning Request" + chat.serviceRequest.address, 
+      url: '', 
+      firstReminderMinute: 30 
+    };
+
+    this.calendar
+      .createEventInteractivelyWithOptions('Cleaning Request', chat.serviceRequest.address, '',startdate, enddate, options)
+      .then(()=>{
+        alert("Event Saved");
+      })
   }
 
 }
